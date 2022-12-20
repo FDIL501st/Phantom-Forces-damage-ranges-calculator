@@ -18823,7 +18823,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": -251,
-											"top": 41,
+											"top": -4,
 											"width": 421.8525390625,
 											"height": 13,
 											"text": "+calculateAllCombinationHits(): dict[str, float]",
@@ -18840,7 +18840,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": -251,
-											"top": 56,
+											"top": 11,
 											"width": 421.8525390625,
 											"height": 13,
 											"text": "+calculateLeastHitsToKill(): str",
@@ -18857,10 +18857,61 @@
 											},
 											"font": "Arial;13;0",
 											"left": -251,
-											"top": 71,
+											"top": 26,
 											"width": 421.8525390625,
 											"height": 13,
 											"text": "+calculateMostHitsToKill(): str",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFLOj6NJX1P9U=",
+											"_parent": {
+												"$ref": "AAAAAAGFIaoepcDKaEk="
+											},
+											"model": {
+												"$ref": "AAAAAAGFLMAfZJAypEM="
+											},
+											"font": "Arial;13;0",
+											"left": -251,
+											"top": 41,
+											"width": 421.8525390625,
+											"height": 13,
+											"text": "+highestDamage(): float",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFLOj6NJX4zos=",
+											"_parent": {
+												"$ref": "AAAAAAGFIaoepcDKaEk="
+											},
+											"model": {
+												"$ref": "AAAAAAGFLMCRHZIeH3I="
+											},
+											"font": "Arial;13;0",
+											"left": -251,
+											"top": 56,
+											"width": 421.8525390625,
+											"height": 13,
+											"text": "+lowestDamage(): float",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFLOj6NJX7VCc=",
+											"_parent": {
+												"$ref": "AAAAAAGFIaoepcDKaEk="
+											},
+											"model": {
+												"$ref": "AAAAAAGFLMDQ1pVasek="
+											},
+											"font": "Arial;13;0",
+											"left": -251,
+											"top": 71,
+											"width": 421.8525390625,
+											"height": 13,
+											"text": "+numHitsToKill(): int",
 											"horizontalAlignment": 0
 										}
 									],

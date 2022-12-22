@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
-from DamageCalculator import dmg_calc
+from ..damage_calculator import DamageCalculator
+
+DmgCalc = DamageCalculator.DamageCalculator
 
 class DamageInfo(ABC):
     """Parent class for all DamageInfo classes.
@@ -11,7 +13,7 @@ class DamageInfo(ABC):
         self.min_damage: float = d2
         self.max_damage_range: float = r1
         self.min_damage_range: float = r2
-        self.calculator: dmg_calc = None   
+        self.calculator: DmgCalc = None   
         # calculator is to be set later by subclasses to the one they need
 
     @abstractmethod
@@ -23,12 +25,14 @@ class DamageInfo(ABC):
     # Setter and getters for all instance variables
 
     @property
-    def calculator(self) -> dmg_calc:
+    def calculator(self) -> DmgCalc:
         return self._calculator
 
     @calculator.setter
-    def calculator(self, calculator: dmg_calc) -> None:
-        self._calculator = calculator
+    def calculator(self, calculator: DmgCalc) -> None:
+        # Before setting calculator, must check if calculator passed is a subclass of DamageCalculator
+        if issubclass(calculator, DmgCalc):
+            self._calculator = calculator
 
     @property
     def max_damage(self) -> float:
@@ -69,9 +73,3 @@ class DamageInfo(ABC):
         # Can't set negative range, so do nothing if that occurs
         if r2 > 0:
             self._min_damage_range = r2
-
-
-
-
-
-

@@ -1,7 +1,9 @@
+from typing import TypeAlias
 from abc import ABC, abstractmethod
 from ..damage_calculator import DamageCalculator
 
-DmgCalc = DamageCalculator.DamageCalculator
+
+DmgCalc: TypeAlias = 'DamageCalculator.DamageCalculator'
 
 class DamageInfo(ABC):
     """Parent class for all DamageInfo classes.
@@ -17,8 +19,7 @@ class DamageInfo(ABC):
         # calculator is to be set later by subclasses to the one they need
 
     @abstractmethod
-    def calculate_killing_ranges() -> None:
-        """Uses the calculator to calculate and display the killing ranges of a weapon."""
+    def calculate_killing_ranges(self) -> None:
         pass
 
 
@@ -31,7 +32,7 @@ class DamageInfo(ABC):
     @calculator.setter
     def calculator(self, calculator: DmgCalc) -> None:
         # Before setting calculator, must check if calculator passed is a subclass of DamageCalculator
-        if issubclass(calculator, DmgCalc):
+        if issubclass(type(calculator), type(DmgCalc)):
             self._calculator = calculator
 
     @property
@@ -73,3 +74,4 @@ class DamageInfo(ABC):
         # Can't set negative range, so do nothing if that occurs
         if r2 > 0:
             self._min_damage_range = r2
+

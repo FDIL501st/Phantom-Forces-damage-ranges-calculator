@@ -1,28 +1,39 @@
-from .DamageInfo import DamageInfo as Dmg_Info
-from ..damage_calculator.GunDamageCalculator import gun_dmg_calc
+from typing import TypeAlias
+#from typing_extensions import Self
+from . import DamageInfo
+from ..damage_calculator import GunDamageCalculator 
 
 
-class GunDamageInfo(Dmg_Info):
+# Some odd reason gets error if try to use alias for base class name 
+GunDmgCalc: TypeAlias = 'GunDamageCalculator.GunDamageCalculator'
+
+
+class GunDamageInfo(DamageInfo.DamageInfo):
     """Class representing the damage information of a gun in Phantom Forces.
     This is a subclass of the abstract DamageInfo class."""
 
     def __init__(self, d1: float, d2: float, r1: float, r2: float, torsoMulti: float, headMulti: float) -> None:
         # first check for reverse damage drop
-        self.reverse_damage_drop = False
+        self.reverse_damage_drop: bool = False
         if d1 < d2:
             # Case where gun has reverse damage drop
             self.reverse_damage_drop = True
-            # Need to switch values of d1 and d2 for correct storing of variables
-            # Damage calculations will consider for reverse_damage_drop
-            temp: float = d1
-            d1 = d2
-            d2 = temp
+            # This information is needed for labelling and figuring out the hits to kill combiantions
 
         super().__init__(d1, d2, r1, r2)
         self.torso_multi: float = torsoMulti
         self.head_multi: float = headMulti
 
         # Set calculator to a GunDamageCalculator object
-        self.calculator = gun_dmg_calc
+        self.calculator: GunDmgCalc = GunDmgCalc(self.get_ref_self())   # Unable to pass self as an argument
 
-    
+    # Overriding abstract method
+    def calculate_killing_ranges(self) -> None:
+        # Only try to use the calculator if the calculator is set to some object and is not None
+        # This check is to avoid any errors of using None to call methods
+        if self.calculator is not None:
+            self.calculator.calculate_all_hits_to_kill()
+        
+    def get_ref_self(self):
+        """Returns a reference to itself."""
+        return self

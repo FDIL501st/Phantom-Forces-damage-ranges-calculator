@@ -2,7 +2,3 @@
 
 __all__ = ['DamageInfo','GunDamageInfo', 'GrenadeDamageInfo']
 
-#from . import DamageInfo, GunDamageInfo
-
-## alias for DamageInfo class
-#dmg_info = DamageInfo.DamageInfo

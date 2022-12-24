@@ -1,12 +1,11 @@
 from . import DamageCalculator
+from typing import TypeAlias
 
-DmgCalc = DamageCalculator.DamageCalculator
 
-class GrenadeDamageCalculator(DmgCalc):
+
+class GrenadeDamageCalculator(DamageCalculator.DamageCalculator):
     """Calculator for grenade kill radius.
     Is subclass to abstract class DamageCalcultor"""
     pass
 
 
-# A GrenadeDamageCalculator object to reference in other modules
-gren_dmg_calc: GrenadeDamageCalculator = GrenadeDamageCalculator()

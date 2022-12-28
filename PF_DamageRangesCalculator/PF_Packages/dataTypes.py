@@ -8,9 +8,9 @@ class Hit(enum.Enum):
     Base = "base"
 
 class Range(enum.Enum):
-    BEFORE_MIN_RANGE = 1
-    DROP = 2
-    AFTER_MAX_RANGE = 3
+    BEFORE_MIN_RANGE = -1
+    DAMAGE_DROP = 0
+    AFTER_MAX_RANGE = 1
 
 
 HitsToKill: TypeAlias = Tuple[int, int, int]

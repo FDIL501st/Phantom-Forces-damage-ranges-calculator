@@ -13,8 +13,8 @@ class DamageInfo(ABC):
         super().__init__()
         self.max_damage: float = d1
         self.min_damage: float = d2
-        self.max_damage_range: float = r1
-        self.min_damage_range: float = r2
+        self.max_range: float = r1
+        self.min_range: float = r2
         self.calculator: DmgCalc = None   
         # calculator is to be set later by subclasses to the one they need
 
@@ -32,6 +32,7 @@ class DamageInfo(ABC):
     @calculator.setter
     def calculator(self, calculator: DmgCalc) -> None:
         # Before setting calculator, must check if calculator passed is a subclass of DamageCalculator
+        # Don't want to set objects that aren't actually a DamageCalculator
         if issubclass(type(calculator), type(DmgCalc)):
             self._calculator = calculator
 
@@ -56,22 +57,22 @@ class DamageInfo(ABC):
             self._min_damage = d2
 
     @property
-    def max_damage_range(self) -> float:
-        return self._max_damage_range
+    def max_range(self) -> float:
+        return self._max_range
 
-    @max_damage_range.setter
+    @max_range.setter
     def max_damage_range(self, r1: float) -> None:
         # Can't set negative range, so do nothing if that occurs
         if r1 > 0:
-            self._max_damage_range = r1
+            self._max_range = r1
 
     @property
-    def min_damage_range(self) -> float:
-        return self._min_damage_range
+    def min_range(self) -> float:
+        return self._min_range
 
-    @min_damage_range.setter
-    def min_damage_range(self, r2: float) -> None:
+    @min_range.setter
+    def min_range(self, r2: float) -> None:
         # Can't set negative range, so do nothing if that occurs
         if r2 > 0:
-            self._min_damage_range = r2
+            self._min_range = r2
 

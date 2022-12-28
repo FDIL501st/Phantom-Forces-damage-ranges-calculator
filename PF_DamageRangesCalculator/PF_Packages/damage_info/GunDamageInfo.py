@@ -24,16 +24,11 @@ class GunDamageInfo(DamageInfo.DamageInfo):
         self.torso_multi: float = torsoMulti
         self.head_multi: float = headMulti
 
-        # Set calculator to a GunDamageCalculator object
-        self.calculator: GunDmgCalc = GunDmgCalc(self.get_ref_self())   # Unable to pass self as an argument
 
     # Overriding abstract method
     def calculate_killing_ranges(self) -> None:
         # Only try to use the calculator if the calculator is set to some object and is not None
         # This check is to avoid any errors of using None to call methods
-        if self.calculator is not None:
-            self.calculator.calculate_all_hits_to_kill()
+        if self._calculator is not None:
+            self._calculator.calculate_all_hits_to_kill()
         
-    def get_ref_self(self):
-        """Returns a reference to itself."""
-        return self

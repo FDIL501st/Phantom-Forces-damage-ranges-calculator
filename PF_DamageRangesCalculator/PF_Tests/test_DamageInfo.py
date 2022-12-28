@@ -1,12 +1,12 @@
 import unittest
-import sys
-sys.path.append('C:/Users/fdilf\Desktop/Phantom-Forces-damage-ranges-calculator/PF_DamageRangesCalculator/PF_Packages/')
+from typing import TypeAlias
 
 import PF_Packages.damage_info.GunDamageInfo
 # Having importing troubles, so can't run the test
 # ModuleNotFoundError: No module named 'PF_Packages'
+# Somehow vs test explorer can still run the tests
 
-GunDmgInfo = PF_Packages.damage_info.GunDamageInfo.GunDmgInfo
+GunDmgInfo: TypeAlias = PF_Packages.damage_info.GunDamageInfo.GunDamageInfo
 
 class Test_test_DamageInfo(unittest.TestCase):
     def test_GunDamageInfo_setter_getters(self):
@@ -20,10 +20,15 @@ class Test_test_DamageInfo(unittest.TestCase):
         test_obj: GunDmgInfo = GunDmgInfo(d1,d2, r1, r2, torsoMulti, headMulti)
 
         self.assertEqual(test_obj.max_damage, d1, "Constructor didn't assign d1 to max_damage.")
+        self.assertEqual(test_obj.min_damage, d2, "Constructor didn't assign d2 to min_damage.")
+        self.assertEqual(test_obj.max_damage_range, r1, "Constructor didn't assign r1 to max_damage_range.")
+        self.assertEqual(test_obj.min_range, r2, "Constructor didn't assign r2 to min_damage_range.")
+        self.assertEqual(test_obj.reverse_damage_drop, False, "Constructor didn't properly see that damage does not have reverse damage.")
+        self.assertEqual(test_obj.torso_multi, torsoMulti, "Constructor didn't assign torsoMulti to torso_multi.")
+        self.assertEqual(test_obj.head_multi, headMulti, "Constructor didn't assign headMulti to head_multi.")
 
-
+    # Need to test set calculator
+    # calculate_killing_ranges are set in the testing of the subclasses
 
 if __name__ == '__main__':
-    for p in sys.path:
-        print(p)
     unittest.main()

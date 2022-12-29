@@ -7,6 +7,7 @@ import PF_Packages.damage_calculator.GunDamageCalculator
 
 GunDmgInfo: typing.TypeAlias = PF_Packages.damage_info.GunDamageInfo.GunDamageInfo
 GunDmgCalc: typing.TypeAlias = PF_Packages.damage_calculator.GunDamageCalculator.GunDamageCalculator
+DmgInfo: typing.TypeAlias = PF_Packages.damage_info.DamageInfo.DamageInfo
 
 def main():
     for search_path in sys.path:
@@ -20,6 +21,9 @@ def main():
 
     print(gun_dmg_calc.gun_damage_info.head_multi)
 
+    print(isinstance(gun_dmg_calc, GunDmgInfo))
+    print(isinstance(gun_dmg_inf, GunDmgInfo))
+    print(isinstance(gun_dmg_inf, DmgInfo)) # also works here as gun_dmg_inf is an isntance of a subclass
     
 
 if __name__ == "__main__":

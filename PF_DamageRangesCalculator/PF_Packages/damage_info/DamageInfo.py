@@ -18,10 +18,15 @@ class DamageInfo(ABC):
         self.calculator: DmgCalc = None   
         # calculator is to be set later by subclasses to the one they need
 
+        
     @abstractmethod
     def calculate_killing_ranges(self) -> None:
         pass
 
+    def __calculate_damage_drop(self)  -> None:
+        """Calculates and set damage_drop."""
+        # Simple slope calculation, change in damage/change in range
+        self._damage_drop: float = (self._max_damage - self._min_damage)/(self._min_range - self._max_range)
 
     # Setter and getters for all instance variables
 
@@ -45,6 +50,7 @@ class DamageInfo(ABC):
         # Damage must be greater than 0
         if d1 > 0:
             self._max_damage: float = d1
+            self.__calculate_damage_drop()
         # do not set if not given proper damage to set
 
     @property
@@ -56,6 +62,7 @@ class DamageInfo(ABC):
         # Damage must be greater than 0
         if d2 > 0:
             self._min_damage: float = d2
+            self.__calculate_damage_drop()
         # do not set if not given proper damage to set
 
     @property
@@ -67,6 +74,7 @@ class DamageInfo(ABC):
         # range must not be negative
         if not r1 < 0:
             self._max_range: float = r1
+            self.__calculate_damage_drop()
         # Do nothing if not given proper value
         
     @property
@@ -78,5 +86,15 @@ class DamageInfo(ABC):
         # range must not be negative
         if not r2 < 0:
             self._min_range: float = r2
+            self.__calculate_damage_drop()
         # Do nothing if not given proper value
 
+    @property
+    def damage_drop(self) -> float:
+        return self._damage_drop
+    
+    @damage_drop.setter
+    def damage_drop(self, drop: float) -> None:
+        # Make damage_drop not setable, should be only return
+        # So setter should do nothing
+        pass

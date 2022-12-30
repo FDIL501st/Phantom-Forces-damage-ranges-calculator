@@ -93,8 +93,5 @@ class DamageInfo(ABC):
     def damage_drop(self) -> float:
         return self._damage_drop
     
-    @damage_drop.setter
-    def damage_drop(self, drop: float) -> None:
-        # Make damage_drop not setable, should be only return
-        # So setter should do nothing
-        pass
+    # No setter for damage_drop as it should not be set directly
+    

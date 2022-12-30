@@ -1,39 +1,27 @@
-from typing import TypeAlias
+from typing import TypeAlias, Final
 from .. import DamageFunction
-from ...damage_info import GunDamageInfo, DamageInfo
+from ...damage_info import GunDamageInfo
 from ...dataTypes import Hit, HitsToKill
 
 DmgFunc: TypeAlias = 'DamageFunction.DamageOverRangeFunction'
-DmgFuncSub: TypeAlias = DmgFunc # use | operator for all subclasses
 
 GunDmgInfo: TypeAlias = 'GunDamageInfo.GunDamageInfo'
-DmgInfo: TypeAlias = 'DamageInfo.DamageInfo'
-DmgInfoSub: TypeAlias = GunDmgInfo|DmgInfo    # use | for all subclasses
+DmgInfoSub: TypeAlias = GunDmgInfo    # use | for all subclasses, need to add grenade damage info
 
 class DamageFunctionCalculator:
     """Class that handles all base calculations related to damage functions."""
     
-    def __init__(self, dmg_func: DmgFuncSub) -> None:
-        # Before assigning to damage_function, need to make sure actually is of proper type
-        # Proper type is any subclass of DmgFunc
-        # Luckily, the setter will do this for us
-        self.damage_function: DmgFuncSub = dmg_func
-
-        # Call getters for all damage info here so as to call them only once
-        # SO no need to call them each time need to do a calculation
-        # As will be using these same values more than once
-        # TODO - proper calls to getters
-        # Might be good idea to first get the damage_info class to no need to repeat that call
-        damage_info: DmgInfoSub = None
+    def __init__(self, damage_info: DmgInfoSub, max_hp: int) -> None:
+        self.__MAX_HP: Final[int] = max_hp
         self.d1: float = damage_info.max_damage # base damage at min range
         self.d2: float = damage_info.min_damage # base damage at max range
         # Damages named as d1 and d2 as names like max and min damage get confusing for reverse damage drop
         # even though the calculation is the exact same
         self.min_range: float = damage_info.min_range
         self.max_range: float = damage_info.max_range
-        self.damage_drop: float = 0
+        self.__damage_drop: float = damage_info.damage_drop
         # Info below is dependant if gun_damage_info or not
-        if isinstance(damage_info, DmgInfo):
+        if isinstance(damage_info, GunDmgInfo):
             self.torso_multi: float = 1
             self.head_multi: float = 1.4
         else:
@@ -85,29 +73,38 @@ class DamageFunctionCalculator:
             return multiplier*function_result
             
         
-    def calculate_max_range_hits_kill(hits_to_kill: HitsToKill) -> float:
+    def calculate_max_range_hits_kill(self, hits_to_kill: HitsToKill) -> float:
         """Calculates the max range the hits to kill provided can kill up to.
         Ignores any previous range that less hits can kill up to.
         For reverse damage drop, nothing special occurs. 
-        Any less ranges that more hits to kill are required are ignored."""
-        
-        pass
+        Any less ranges that more hits to kill are required are ignored.
+        Range provided assumes a single linear equation with damage_drop as the slope.
+        Meaning any ranges returned that are outside the damage ranges is possible and 
+        should be appropriately handled outside this function."""
+        # Formula used to calculate range will be discussed in comments at the end, after the return statment
 
-    # getter and setter
-    @property
-    def damage_function(self) -> DmgFuncSub:
-        return self._damage_function
+        y_int: float = self.__d1 - (self.__damage_drop*self.__min_range)
+        h: float = (hits_to_kill[0]*self.__head_multi) + (hits_to_kill[1]*self.__torso_multi) + hits_to_kill[2]
+        range: float = ( (self.__MAX_HP/h) - y_int )/self.__damage_drop
+        return range
 
-    @damage_function.getter
-    def damage_function(self, dmg_func: DmgFuncSub) -> None:
-        # Before assigning, need to check if of correct type
-        # Any subclass of DmgFunc
-        if isinstance(dmg_func, DmgFunc):
-            self._damage_function = dmg_func
-
-        else:
-            # All other cases, set to None
-            self._damage_function = None
+        # Formula discussed:
+        # Function for damage at range r is:
+        # D(r) = n_headshots*head_multi*f(r) + n_torsoshots*torso_multi*f(r) + n_limbshots*f(r)
+        # n is number of shots to that part of the body
+        # f(r) is base damage at range r, assuming damage is always dropping (ignoring how damage is constant before and after min and max range)
+        # f(r) = damage_drop*r + y_int, the linear equation, y_int = d1 - damage_drop*min_range
+        # To find range at which hits to kills can kill up to, set D(r) to MAX_HP and isolate for r
+        # MAX_HP = f(r)[n_headshots*head_multi + n_torsoshots*torso_multi + n_limbshots]
+        # Let [n_headshots*head_multi + n_torsoshots*torso_multi + n_limbshots] = h
+        # Then we get MAX_HP = f(r)h
+        # MAX_HP/h = f(r)
+        # Expand f(r) to isolate for r
+        # MAX_HP/h = damage_drop*r + y_int
+        # MAX_HP/h - y_int = damage_drop*r
+        # (MAX_HP/h - y_int )/damage_drop = r
+    
+    # getters and setters
 
     @property
     def torso_multi(self) -> float:
@@ -186,8 +183,9 @@ class DamageFunctionCalculator:
     @property
     def damage_drop(self) -> float:
         return self.__damage_drop
-
-    @damage_drop.setter
-    def damage_drop(self, drop: float) -> None:
-        self.__damage_drop: float = drop
+    # Should not be able to set damage_drop
     
+    @property
+    def MAX_HP(self) -> float:
+        return self.__MAX_HP
+    # Should not be able to set MAX_HP

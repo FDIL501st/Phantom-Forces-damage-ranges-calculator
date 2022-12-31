@@ -24,10 +24,12 @@ class DamageFunctionCalculator:
         if isinstance(damage_info, GunDmgInfo):
             self.torso_multi: float = 1
             self.head_multi: float = 1.4
+            self.reverse_damage_drop: bool = damage_info.reverse_damage_drop
         else:
             # Default values if not dealing with a gun, same as base damage then
             self.torso_multi = 1
             self.head_multi = 1
+            self.reverse_damage_drop = False
         
     
     def calculate_damage_one_hit(self, hit_type: str|Hit, range: float) -> float:
@@ -78,15 +80,17 @@ class DamageFunctionCalculator:
         Ignores any previous range that less hits can kill up to.
         For reverse damage drop, nothing special occurs. 
         Any less ranges that more hits to kill are required are ignored.
-        Range provided assumes a single linear equation with damage_drop as the slope.
-        Meaning any ranges returned that are outside the damage ranges is possible and 
-        should be appropriately handled outside this function."""
-        # Formula used to calculate range will be discussed in comments at the end, after the return statment
+        If can kill at any range, returns inf. 
+        If can't kill at any range, returns -1."""
+        # Formula used to calculate range will be discussed in comments after the range is calculated
+        # The formula assumes only the linear equation where damage changes over range
+        # After formula discussion is dealing with the piecewise function and checking actual range of 
+        # hits to kill
 
         y_int: float = self.__d1 - (self.__damage_drop*self.__min_range)
         h: float = (hits_to_kill[0]*self.__head_multi) + (hits_to_kill[1]*self.__torso_multi) + hits_to_kill[2]
         range: float = ( (self.__MAX_HP/h) - y_int )/self.__damage_drop
-        return range
+        
 
         # Formula discussed:
         # Function for damage at range r is:
@@ -103,7 +107,37 @@ class DamageFunctionCalculator:
         # MAX_HP/h = damage_drop*r + y_int
         # MAX_HP/h - y_int = damage_drop*r
         # (MAX_HP/h - y_int )/damage_drop = r
-    
+
+        # Now need to concern with entire piecewise function and figure out if range calculated is valid or not
+        # If range caluclated it outside of the valid range the linear equation works in, 
+        # then need to see if the hits to kill can kill all ranges or can't kill at all
+        # Results change if we have reverse_damage or not
+
+        # When have regular damage drop
+        if not self.__reverse_damage_drop:
+            if range < self.__min_range:
+                # Can't kill at any range as damage never gets high enough
+                # As before min_range, damage at its highest
+                range = -1
+            elif range >= self.__max_range:
+                # Can kill at any range as past (or at) max_range, damage doesn't go any lower
+                # So doing more than 100 damage past max_range
+                range = float('inf')
+         # Have reverse damage drop, range checks are a bit different now
+        else:
+            if range <= self.__min_range:
+                # Can kill at all ranges as damage can't get any lower before or at min_range
+                # Thus, at any range doing more than 100 damage
+                range = float('inf')
+            elif range > self.__max_range:
+                # past max_range, damage doesn't increase any more
+                # So can't kill at any range
+                range = -1
+
+        # All other cases, can return range as is as within the proper linear equation
+        # Having reverse damage drop or not doesn't change the validity of original range calculation
+        return range
+        
     # getters and setters
 
     @property
@@ -189,3 +223,11 @@ class DamageFunctionCalculator:
     def MAX_HP(self) -> float:
         return self.__MAX_HP
     # Should not be able to set MAX_HP
+
+    @property
+    def reverse_damage_drop(self) -> bool:
+        return self.__reverse_damage_drop
+
+    @reverse_damage_drop.setter
+    def reverse_damage_drop(self, reverseDamageDrop: bool) -> None:
+        self.__reverse_damage_drop: bool = reverseDamageDrop

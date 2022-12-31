@@ -17,7 +17,7 @@ class GunDamageInfo(DamageInfo.DamageInfo):
         self.reverse_damage_drop: bool = False
         if d1 < d2:
             # Case where gun has reverse damage drop
-            self.reverse_damage_drop = True
+            self.reverse_damage_drop: bool = True
             # This information is needed for labelling and figuring out the hits to kill combiantions
 
         super().__init__(d1, d2, r1, r2)
@@ -31,4 +31,13 @@ class GunDamageInfo(DamageInfo.DamageInfo):
         # This check is to avoid any errors of using None to call methods
         if self._calculator is not None:
             self._calculator.calculate_all_hits_to_kill()
-        
+    
+    # Getter and setters
+    
+    @property
+    def reverse_damage_drop(self) -> bool:
+        return self._reverse_damage_drop
+
+    @reverse_damage_drop.setter
+    def reverse_damage_drop(self, reverseDamageDrop: bool) -> None:
+        self._reverse_damage_drop: bool = reverseDamageDrop

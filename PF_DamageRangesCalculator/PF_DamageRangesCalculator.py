@@ -20,7 +20,7 @@ def main():
     gun_dmg_calc: GunDmgCalc = GunDmgCalc(gun_dmg_inf)
 
     print(gun_dmg_calc.gun_damage_info.head_multi)
-
+    print(gun_dmg_calc.gun_damage_info.max_damage)
     print(isinstance(gun_dmg_calc, GunDmgInfo))
     print(isinstance(gun_dmg_inf, GunDmgInfo))
     print(isinstance(gun_dmg_inf, DmgInfo)) # also works here as gun_dmg_inf is an isntance of a subclass

@@ -13,7 +13,7 @@ class DamageInfo(ABC):
         super().__init__()
         self.max_damage: float = d1
         self.min_damage: float = d2
-        self.max_damage: float = r1
+        self.max_range: float = r1
         self.min_range: float = r2
         self.calculator: DmgCalc = None   
         # calculator is to be set later by subclasses to the one they need
@@ -25,8 +25,15 @@ class DamageInfo(ABC):
 
     def __calculate_damage_drop(self)  -> None:
         """Calculates and set damage_drop."""
-        # Simple slope calculation, change in damage/change in range
-        self._damage_drop: float = (self._max_damage - self._min_damage)/(self._min_range - self._max_range)
+        try:
+            # Simple slope calculation, change in damage/change in range
+            self._damage_drop: float = (self._max_damage - self._min_damage)/(self._min_range - self._max_range)
+        except AttributeError:
+            # This can occur during constructor as other attributes yet to exist
+            # So just catch and do nothing with the exception
+            # Later at some point will be able to calculate
+            # For now, don't want program to stop
+            pass
 
     # Setter and getters for all instance variables
 

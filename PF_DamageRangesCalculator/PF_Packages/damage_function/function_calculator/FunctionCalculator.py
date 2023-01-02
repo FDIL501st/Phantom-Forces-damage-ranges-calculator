@@ -21,7 +21,7 @@ class DamageFunctionCalculator:
         self.max_range: float = damage_info.max_range
         self.__damage_drop: float = damage_info.damage_drop
         # Info below is dependant if gun_damage_info or not
-        if isinstance(damage_info, GunDmgInfo):
+        if isinstance(damage_info, type(GunDmgInfo)):
             self.torso_multi: float = 1
             self.head_multi: float = 1.4
             self.reverse_damage_drop: bool = damage_info.reverse_damage_drop
@@ -50,12 +50,12 @@ class DamageFunctionCalculator:
 
         # Now need if-else statement for range
         # Case where range before min_range, so use min_damage
-        if range < self.min_range:
+        if range < self.__min_range:
             # Calculation is simple, as it does multi*d1
             return multiplier*self.__d1
 
         # Case ranger after max_Range, so use max_damage
-        elif range > self.max_range:
+        elif range > self.__max_range:
             # Calculation is simple, does multi*d2
             return multiplier*self.__d2
 

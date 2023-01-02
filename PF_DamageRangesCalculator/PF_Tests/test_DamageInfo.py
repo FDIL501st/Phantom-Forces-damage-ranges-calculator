@@ -21,11 +21,12 @@ class Test_test_DamageInfo(unittest.TestCase):
 
         self.assertEqual(test_obj.max_damage, d1, "Constructor didn't assign d1 to max_damage.")
         self.assertEqual(test_obj.min_damage, d2, "Constructor didn't assign d2 to min_damage.")
-        self.assertEqual(test_obj.max_range, r1, "Constructor didn't assign r1 to max_damage_range.")
-        self.assertEqual(test_obj.min_range, r2, "Constructor didn't assign r2 to min_damage_range.")
+        self.assertEqual(test_obj.min_range, r1, "Constructor didn't assign r1 to max_damage_range.")
+        self.assertEqual(test_obj.max_range, r2, "Constructor didn't assign r2 to min_damage_range.")
         self.assertEqual(test_obj.reverse_damage_drop, False, "Constructor didn't properly see that damage does not have reverse damage.")
         self.assertEqual(test_obj.torso_multi, torsoMulti, "Constructor didn't assign torsoMulti to torso_multi.")
         self.assertEqual(test_obj.head_multi, headMulti, "Constructor didn't assign headMulti to head_multi.")
+        self.assertEqual(test_obj.damage_drop, -0.1, "Did not properly calculate the damage drop.")
 
     # Need to test set calculator
     # calculate_killing_ranges are set in the testing of the subclasses

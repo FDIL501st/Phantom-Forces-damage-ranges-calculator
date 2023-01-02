@@ -13,7 +13,7 @@ def main():
     for search_path in sys.path:
         print(search_path)
 
-    gun_dmg_inf: GunDmgInfo = GunDmgInfo(29, 19, 40, 170, 1, 1.5)
+    gun_dmg_inf: GunDmgInfo = GunDmgInfo(29, 19, 100, 200, 1, 1.5)
 
     print(gun_dmg_inf.reverse_damage_drop)
 
@@ -21,6 +21,7 @@ def main():
 
     print(gun_dmg_calc.gun_damage_info.head_multi)
     print(gun_dmg_calc.gun_damage_info.max_damage)
+    print(gun_dmg_inf.damage_drop)
     print(isinstance(gun_dmg_calc, GunDmgInfo))
     print(isinstance(gun_dmg_inf, GunDmgInfo))
     print(isinstance(gun_dmg_inf, DmgInfo)) # also works here as gun_dmg_inf is an isntance of a subclass

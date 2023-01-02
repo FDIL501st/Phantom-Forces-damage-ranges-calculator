@@ -13,8 +13,8 @@ class DamageInfo(ABC):
         super().__init__()
         self.max_damage: float = d1
         self.min_damage: float = d2
-        self.max_range: float = r1
-        self.min_range: float = r2
+        self.min_range: float = r1
+        self.max_range: float = r2
         self.calculator: DmgCalc = None   
         # calculator is to be set later by subclasses to the one they need
 

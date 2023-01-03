@@ -4,10 +4,11 @@ import typing
 
 import PF_Packages.damage_info.GunDamageInfo
 import PF_Packages.damage_calculator.GunDamageCalculator
-
+import PF_Packages.damage_function.function_calculator.FunctionCalculator
 GunDmgInfo: typing.TypeAlias = PF_Packages.damage_info.GunDamageInfo.GunDamageInfo
 GunDmgCalc: typing.TypeAlias = PF_Packages.damage_calculator.GunDamageCalculator.GunDamageCalculator
 DmgInfo: typing.TypeAlias = PF_Packages.damage_info.DamageInfo.DamageInfo
+DmgFuncCalc: typing.TypeAlias = PF_Packages.damage_function.function_calculator.FunctionCalculator.DamageFunctionCalculator
 
 def main():
     for search_path in sys.path:
@@ -26,6 +27,8 @@ def main():
     print(isinstance(gun_dmg_inf, GunDmgInfo))
     print(isinstance(gun_dmg_inf, DmgInfo)) # also works here as gun_dmg_inf is an isntance of a subclass
     
+    func_calc: DmgFuncCalc = DmgFuncCalc(gun_dmg_inf, 100)
+    print(func_calc.calculate_damage_one_hit('head', 50))
 
 if __name__ == "__main__":
     main()

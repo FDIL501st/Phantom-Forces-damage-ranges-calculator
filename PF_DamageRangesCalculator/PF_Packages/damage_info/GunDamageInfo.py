@@ -1,5 +1,4 @@
 from typing import TypeAlias
-#from typing_extensions import Self
 from . import DamageInfo
 from ..damage_calculator import GunDamageCalculator 
 
@@ -25,7 +24,7 @@ class GunDamageInfo(DamageInfo.DamageInfo):
         self.head_multi: float = headMulti
 
 
-    # Overriding abstract method
+    # Override abstract method
     def calculate_killing_ranges(self) -> None:
         # Only try to use the calculator if the calculator is set to some object and is not None
         # This check is to avoid any errors of using None to call methods
@@ -41,3 +40,33 @@ class GunDamageInfo(DamageInfo.DamageInfo):
     @reverse_damage_drop.setter
     def reverse_damage_drop(self, reverseDamageDrop: bool) -> None:
         self._reverse_damage_drop: bool = reverseDamageDrop
+
+    @property
+    def torso_multi(self) -> float:
+        try:
+            return self._torso_multi
+        except AttributeError:
+            # Possible incorrect setter caused torso_multi to not have been set,
+            # so return default torso multi of 1
+            return 1
+
+    @torso_multi.setter
+    def torso_multi(self, multi: float) -> None:
+        # Only set multi is positive
+        if multi > 0:
+            self._torso_multi = multi
+    
+    @property
+    def head_multi(self) -> float:
+        try:
+            return self.head_multi
+        except AttributeError:
+            # Possible incorrect setter caused head_multi to not have been set,
+            # so return default head_multi of 1.4
+            return 1.4
+
+    @head_multi.setter
+    def head_multi(self, multi: float) -> None:
+        # Only set multi is positive
+        if multi > 0:
+            self.head_multi = multi

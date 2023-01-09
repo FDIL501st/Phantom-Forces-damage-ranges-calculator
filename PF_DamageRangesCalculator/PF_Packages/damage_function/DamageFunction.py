@@ -10,13 +10,6 @@ class DamageOverRangeFunction(ABC):
         self.MAX_HP: Final[int] = 100
         self.function_calculator: DmgFuncCalc = None # to be set later by setter
 
-    @abstractmethod
-    def calculate_damage_drop(self) -> None:
-        """Calculates and set damage_drop.
-        Should be called within constructor of concrete subclasses as 
-        they have they data needed to calculate it."""
-        pass
-
     # Setter and getters (none for MAX_HP as should be constant)
 
     @property

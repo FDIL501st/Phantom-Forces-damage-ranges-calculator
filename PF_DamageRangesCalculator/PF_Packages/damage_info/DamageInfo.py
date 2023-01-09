@@ -99,6 +99,6 @@ class DamageInfo(ABC):
     @property
     def damage_drop(self) -> float:
         return self._damage_drop
-    
+        # No need to check of Attribute Error as constructor should give this a value
     # No setter for damage_drop as it should not be set directly
-    
+   

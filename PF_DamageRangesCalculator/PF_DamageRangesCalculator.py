@@ -5,6 +5,7 @@ import typing
 import PF_Packages.damage_info.GunDamageInfo
 import PF_Packages.damage_calculator.GunDamageCalculator
 import PF_Packages.damage_function.function_calculator.FunctionCalculator
+
 GunDmgInfo: typing.TypeAlias = PF_Packages.damage_info.GunDamageInfo.GunDamageInfo
 GunDmgCalc: typing.TypeAlias = PF_Packages.damage_calculator.GunDamageCalculator.GunDamageCalculator
 DmgInfo: typing.TypeAlias = PF_Packages.damage_info.DamageInfo.DamageInfo

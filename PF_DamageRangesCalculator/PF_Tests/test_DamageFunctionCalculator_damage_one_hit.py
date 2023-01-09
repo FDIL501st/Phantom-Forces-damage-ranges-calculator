@@ -1,5 +1,5 @@
-from typing import TypeAlias
 import unittest
+from typing import TypeAlias
 from PF_Packages.damage_function.function_calculator import FunctionCalculator
 from PF_Packages.damage_info import GunDamageInfo
 from PF_Packages.dataTypes import Hit

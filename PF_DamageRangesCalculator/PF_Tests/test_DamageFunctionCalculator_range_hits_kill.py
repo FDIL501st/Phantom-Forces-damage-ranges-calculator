@@ -62,7 +62,7 @@ class Test_test_DamageFunctionCalculator_range_hits_kill(unittest.TestCase):
         self.assertAlmostEqual(expected_r6, actual_r6, msg=f"Didn't calculate correct max range for {hits6}", delta=delta)
 
     def test_TART_21_hits_to_kill_ranges(self):
-        """Tests correcr range output from calculate_max_range_hits_kill for TAR 21."""
+        """Tests correct range output from calculate_max_range_hits_kill for TAR 21."""
         # Expected ranges
         expected_r1: float = -1         # 1 headshot
         expected_r2: float = -1         # 1 torso + 1 limb
@@ -92,8 +92,8 @@ class Test_test_DamageFunctionCalculator_range_hits_kill(unittest.TestCase):
         hits1: HitsToKill = (1, 0, 0)
         hits2: HitsToKill = (0, 1, 1)
         hits3: HitsToKill = (0, 0, 3)
-        hits4: HitsToKill = (0, 3, 0)
-        hits5: HitsToKill = (1, 1, 0)
+        hits4: HitsToKill = (0, 0, 2)
+        hits5: HitsToKill = (0, 1, 0)
 
         hits6: HitsToKill = (1, 2, 0)
         hits7: HitsToKill = (1, 0, 2)
@@ -164,5 +164,40 @@ class Test_test_DamageFunctionCalculator_range_hits_kill(unittest.TestCase):
         self.assertAlmostEqual(expected_r19, actual_r19, msg=f"Didn't calculate correct max range for {hits19}", delta=delta)
         self.assertAlmostEqual(expected_r20, actual_r20, msg=f"Didn't calculate correct max range for {hits20}", delta=delta)
 
+    def test_GYROJECT_MK_1_hits_to_kill_ranges(self):
+        """Tests correct range output from calculate_max_range_hits_kill for Gyrojet Mk 1."""
+        # Expected ranges
+        expected_r1: float = float('inf')   # 1 headshot
+        expected_r2: float = float('inf')   # 1 torso + 1 limb
+        expected_r3: float = float('inf')   # 3 limb
+        expected_r4: float = -1         # 2 limb
+        expected_r5: float = 171.944    # 1 torso
+        expected_r6: float = -1         # 1 limb
+
+        # Hits to kill
+        hits1: HitsToKill = (1, 0, 0)
+        hits2: HitsToKill = (0, 1, 1)
+        hits3: HitsToKill = (0, 0, 3)
+        hits4: HitsToKill = (0, 0, 2)
+        hits5: HitsToKill = (0, 1, 0)
+        hits6: HitsToKill = (0, 0, 1)
+
+        # Actual ranges
+        actual_r1: float = self.GYROJET_MK_1_DmgCalc.calculate_max_range_hits_kill(hits1)
+        actual_r2: float = self.GYROJET_MK_1_DmgCalc.calculate_max_range_hits_kill(hits2)
+        actual_r3: float = self.GYROJET_MK_1_DmgCalc.calculate_max_range_hits_kill(hits3)
+        actual_r4: float = self.GYROJET_MK_1_DmgCalc.calculate_max_range_hits_kill(hits4)
+        actual_r5: float = self.GYROJET_MK_1_DmgCalc.calculate_max_range_hits_kill(hits5)
+        actual_r6: float = self.GYROJET_MK_1_DmgCalc.calculate_max_range_hits_kill(hits6)
+
+        # Tests
+        delta: float = 0.001
+        self.assertAlmostEqual(expected_r1, actual_r1, msg=f"Didn't calculate correct max range for {hits1}", delta=delta)
+        self.assertAlmostEqual(expected_r2, actual_r2, msg=f"Didn't calculate correct max range for {hits2}", delta=delta)
+        self.assertAlmostEqual(expected_r3, actual_r3, msg=f"Didn't calculate correct max range for {hits3}", delta=delta)
+        self.assertAlmostEqual(expected_r4, actual_r4, msg=f"Didn't calculate correct max range for {hits4}", delta=delta)
+        self.assertAlmostEqual(expected_r5, actual_r5, msg=f"Didn't calculate correct max range for {hits5}", delta=delta)
+        self.assertAlmostEqual(expected_r6, actual_r6, msg=f"Didn't calculate correct max range for {hits6}", delta=delta)
+        
 if __name__ == '__main__':
     unittest.main()

@@ -15,7 +15,7 @@ def main():
     for search_path in sys.path:
         print(search_path)
 
-    gun_dmg_inf: GunDmgInfo = GunDmgInfo(29, 19, 100, 200, 1, 1.5)
+    gun_dmg_inf: GunDmgInfo = GunDmgInfo(35, 45, 35, 180, 2.25, 3.5)
 
     print(gun_dmg_inf.reverse_damage_drop)
 
@@ -31,6 +31,9 @@ def main():
     func_calc: DmgFuncCalc = DmgFuncCalc(gun_dmg_inf, 100)
     print(func_calc.calculate_damage_one_hit('head', 50))
 
+    print(func_calc.calculate_max_range_hits_kill((1, 0, 0)))
+    print(func_calc.calculate_max_range_hits_kill((0, 0, 2)))
+    
 if __name__ == "__main__":
     main()
 

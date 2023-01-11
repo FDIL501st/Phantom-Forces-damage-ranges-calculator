@@ -1,8 +1,9 @@
 from typing import TypeAlias
+from math import isinf
 from . import DamageFunction
 from ..damage_info import GunDamageInfo
 from .function_calculator import FunctionCalculator
-from ..dataTypes import HitsToKill
+from ..dataTypes import HitsToKill, Hits
 
 GunDmgInf: TypeAlias = 'GunDamageInfo.GunDamageInfo'
 
@@ -30,6 +31,30 @@ class GunDamageOverRangeFunction(DamageFunction.DamageOverRangeFunction):
 
     def __calculate_only_limb_hits(self) -> HitsToKill:
         """Calculates combinations of only limb hits that can kill."""
+        hits_to_kill: HitsToKill = {}   # stores the hits to kill
+        n_limb: int = 1 # Keep track of number of limb hits
+
+        while True:
+            hits: Hits = (0, 0, n_limb) # a potential hits to kil
+            range: float = self.function_calculator.calculate_max_range_hits_kill(hits)
+            # Check if can kill
+            if range != -1:
+                # Convert hits to string
+                # So need HitsToKillParser
+                # TODO - finish this if statement
+                pass
+            
+            # Check if can kill all ranges
+            if isinf(range):
+                # Leave loop, this is our leaving condition
+                # Also because after leaving loop, all that needs to be done is return hits_to_kill,
+                #   will just replace the break with the return statement to end the loop(as end the function) 
+                #   and return at the same time
+                return hits_to_kill
+
+            # Add 1 limb hit, our udpate condition
+            n_limb += 1
+
 
     def __calculate_torso_limb_hits(self) -> HitsToKill:
         """Calculates combinations of only torso and limb hits that can kill."""

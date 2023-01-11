@@ -5,6 +5,7 @@ import typing
 import PF_Packages.damage_info.GunDamageInfo
 import PF_Packages.damage_calculator.GunDamageCalculator
 import PF_Packages.damage_function.function_calculator.FunctionCalculator
+from PF_Packages.parser.HitsToKillParser import HitsToKillParser
 
 GunDmgInfo: typing.TypeAlias = PF_Packages.damage_info.GunDamageInfo.GunDamageInfo
 GunDmgCalc: typing.TypeAlias = PF_Packages.damage_calculator.GunDamageCalculator.GunDamageCalculator
@@ -34,6 +35,14 @@ def main():
     print(func_calc.calculate_max_range_hits_kill((1, 0, 0)))
     print(func_calc.calculate_max_range_hits_kill((0, 0, 2)))
     
+    hits = (0, 0, 1)
+    parsed: str = HitsToKillParser.convert_tuple_to_str(hits)
+    print(parsed)
+
+    hits = (0, 0, 4)
+    parsed: str = HitsToKillParser.convert_tuple_to_str(hits, True)
+    print(parsed)
+
 if __name__ == "__main__":
     main()
 

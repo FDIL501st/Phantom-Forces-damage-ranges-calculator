@@ -59,7 +59,7 @@ class GunDamageInfo(DamageInfo.DamageInfo):
     @property
     def head_multi(self) -> float:
         try:
-            return self.head_multi
+            return self._head_multi
         except AttributeError:
             # Possible incorrect setter caused head_multi to not have been set,
             # so return default head_multi of 1.4
@@ -69,4 +69,4 @@ class GunDamageInfo(DamageInfo.DamageInfo):
     def head_multi(self, multi: float) -> None:
         # Only set multi is positive
         if multi > 0:
-            self.head_multi = multi
+            self._head_multi = multi

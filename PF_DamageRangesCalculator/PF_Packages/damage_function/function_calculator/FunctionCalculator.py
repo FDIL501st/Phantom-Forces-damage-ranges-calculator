@@ -1,7 +1,7 @@
 from typing import TypeAlias, Final, Type
 from .. import DamageFunction
 from ...damage_info import GunDamageInfo
-from ...dataTypes import Hit, HitsToKill
+from ...dataTypes import Hit, Hits
 
 #DmgFunc: TypeAlias = DamageFunction.DamageOverRangeFunction
 
@@ -75,7 +75,7 @@ class DamageFunctionCalculator:
             return multiplier*function_result
             
         
-    def calculate_max_range_hits_kill(self, hits_to_kill: HitsToKill) -> float:
+    def calculate_max_range_hits_kill(self, hits_to_kill: Hits) -> float:
         """Calculates the max range the hits to kill provided can kill up to.
         Ignores any previous range that less hits can kill up to.
         For reverse damage drop, nothing special occurs. 

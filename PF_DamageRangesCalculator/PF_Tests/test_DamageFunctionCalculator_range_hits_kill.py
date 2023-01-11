@@ -2,7 +2,7 @@ import unittest
 from typing import TypeAlias
 from PF_Packages.damage_function.function_calculator import FunctionCalculator
 from PF_Packages.damage_info import GunDamageInfo
-from PF_Packages.dataTypes import HitsToKill
+from PF_Packages.dataTypes import Hits
 
 DmgFuncCalc: TypeAlias = FunctionCalculator.DamageFunctionCalculator
 GunDmgInfo: TypeAlias = GunDamageInfo.GunDamageInfo
@@ -37,12 +37,12 @@ class Test_test_DamageFunctionCalculator_range_hits_kill(unittest.TestCase):
         expected_r6: float = float('inf')   # 2 limb
 
         # Hits to kill
-        hits1: HitsToKill = (1, 0, 0)
-        hits2: HitsToKill = (0, 1, 1)
-        hits3: HitsToKill = (0, 0, 1)
-        hits4: HitsToKill = (0, 1, 0)
-        hits5: HitsToKill = (0, 2, 0)
-        hits6: HitsToKill = (0, 0, 2)
+        hits1: Hits = (1, 0, 0)
+        hits2: Hits = (0, 1, 1)
+        hits3: Hits = (0, 0, 1)
+        hits4: Hits = (0, 1, 0)
+        hits5: Hits = (0, 2, 0)
+        hits6: Hits = (0, 0, 2)
 
         # Actual ranges
         actual_r1: float = self.TRG_42_DmgCalc.calculate_max_range_hits_kill(hits1)
@@ -89,29 +89,29 @@ class Test_test_DamageFunctionCalculator_range_hits_kill(unittest.TestCase):
         expected_r20: float = float('inf')  # 1 head + 3 torso
 
         # Hits to kill
-        hits1: HitsToKill = (1, 0, 0)
-        hits2: HitsToKill = (0, 1, 1)
-        hits3: HitsToKill = (0, 0, 3)
-        hits4: HitsToKill = (0, 0, 2)
-        hits5: HitsToKill = (0, 1, 0)
+        hits1: Hits = (1, 0, 0)
+        hits2: Hits = (0, 1, 1)
+        hits3: Hits = (0, 0, 3)
+        hits4: Hits = (0, 0, 2)
+        hits5: Hits = (0, 1, 0)
 
-        hits6: HitsToKill = (1, 2, 0)
-        hits7: HitsToKill = (1, 0, 2)
-        hits8: HitsToKill = (0, 2, 2)
-        hits9: HitsToKill = (1, 1, 1)
-        hits10: HitsToKill = (2, 1, 0)
+        hits6: Hits = (1, 2, 0)
+        hits7: Hits = (1, 0, 2)
+        hits8: Hits = (0, 2, 2)
+        hits9: Hits = (1, 1, 1)
+        hits10: Hits = (2, 1, 0)
 
-        hits11: HitsToKill = (2, 1, 1)
-        hits12: HitsToKill = (2, 0, 2)
-        hits13: HitsToKill = (2, 2, 0)
-        hits14: HitsToKill = (3, 0, 0)
-        hits15: HitsToKill = (3, 0, 1)
+        hits11: Hits = (2, 1, 1)
+        hits12: Hits = (2, 0, 2)
+        hits13: Hits = (2, 2, 0)
+        hits14: Hits = (3, 0, 0)
+        hits15: Hits = (3, 0, 1)
 
-        hits16: HitsToKill = (0, 4, 0)
-        hits17: HitsToKill = (0, 0, 4)
-        hits18: HitsToKill = (1, 0, 4)
-        hits19: HitsToKill = (1, 0, 3)
-        hits20: HitsToKill = (1, 3, 0)
+        hits16: Hits = (0, 4, 0)
+        hits17: Hits = (0, 0, 4)
+        hits18: Hits = (1, 0, 4)
+        hits19: Hits = (1, 0, 3)
+        hits20: Hits = (1, 3, 0)
 
         # Actual ranges
         actual_r1: float = self.TAR_21_DmgCalc.calculate_max_range_hits_kill(hits1)
@@ -175,12 +175,12 @@ class Test_test_DamageFunctionCalculator_range_hits_kill(unittest.TestCase):
         expected_r6: float = -1         # 1 limb
 
         # Hits to kill
-        hits1: HitsToKill = (1, 0, 0)
-        hits2: HitsToKill = (0, 1, 1)
-        hits3: HitsToKill = (0, 0, 3)
-        hits4: HitsToKill = (0, 0, 2)
-        hits5: HitsToKill = (0, 1, 0)
-        hits6: HitsToKill = (0, 0, 1)
+        hits1: Hits = (1, 0, 0)
+        hits2: Hits = (0, 1, 1)
+        hits3: Hits = (0, 0, 3)
+        hits4: Hits = (0, 0, 2)
+        hits5: Hits = (0, 1, 0)
+        hits6: Hits = (0, 0, 1)
 
         # Actual ranges
         actual_r1: float = self.GYROJET_MK_1_DmgCalc.calculate_max_range_hits_kill(hits1)

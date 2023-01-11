@@ -1,5 +1,5 @@
 from typing import TypeAlias, Final
-from abc import ABC, abstractmethod
+from abc import ABC
 from .function_calculator import FunctionCalculator
 
 DmgFuncCalc: TypeAlias = 'FunctionCalculator.DamageFunctionCalculator'
@@ -19,7 +19,7 @@ class DamageOverRangeFunction(ABC):
     @function_calculator.setter
     def function_calculator(self, new_func_calc: DmgFuncCalc) -> None:
         # Before setting, make sure the argument passed is actually a DmgFuncCalc object
-        if issubclass(type(new_func_calc), type(DmgFuncCalc)):
+        if isinstance(new_func_calc, FunctionCalculator.DamageFunctionCalculator):
             self._function_calculator = new_func_calc
 
 

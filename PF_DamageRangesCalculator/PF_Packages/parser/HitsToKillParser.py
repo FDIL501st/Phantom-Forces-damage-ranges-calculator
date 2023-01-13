@@ -21,7 +21,7 @@ class HitsToKillParser:
 
         hits_str: str = ""  # What we will build and return
 
-        def parse_headshots(s: str = hits_str) -> str:
+        def parse_headshots(s: str) -> str:
             # Deal with headshots
             if n_head == 0:
                 # Don't add head_msg, got no headshots
@@ -34,7 +34,7 @@ class HitsToKillParser:
                 s += head_msg.format(n_head)
             return s
 
-        def parse_torsoshots(s: str = hits_str) -> str:
+        def parse_torsoshots(s: str) -> str:
             # Deal with torso shots
             if n_torso == 0:
                 # Don't add torso_msg, got no torso shots
@@ -47,7 +47,7 @@ class HitsToKillParser:
                 s += torso_msg.format(n_torso)
             return s
 
-        def parse_limbshots1(s: str = hits_str) -> str:
+        def parse_limbshots1(s: str) -> str:
             # Deal with torso shots
             if n_limb == 0:
                 # Don't add torso_msg, got no torso shots
@@ -60,7 +60,7 @@ class HitsToKillParser:
                 s += limb_msg1.format(n_limb)
             return s
 
-        def parse_limbshots2(s: str = hits_str) -> str:
+        def parse_limbshots2(s: str) -> str:
             # Deal with torso shots
             if n_limb == 0:
                 # Don't add torso_msg, got no torso shots
@@ -73,7 +73,7 @@ class HitsToKillParser:
                 s += limb_msg2.format(n_limb)
             return s
 
-        def add_space(s: str = hits_str) -> str:
+        def add_space(s: str) -> str:
             if len(s) == 0:
                 # s is empty
                 # Do nothing
@@ -85,18 +85,26 @@ class HitsToKillParser:
 
         if not torso_multi_is_one:
             # Consider all 3 type of shots
-            hits_str = parse_headshots()
-            hits_str = add_space()
-            hits_str = parse_torsoshots()
-            hits_str = add_space()
-            hits_str = parse_limbshots1()
+            hits_str = parse_headshots(hits_str)
+            hits_str = add_space(hits_str)
+            hits_str = parse_torsoshots(hits_str)
+            hits_str = add_space(hits_str)
+            hits_str = parse_limbshots1(hits_str)
         else:
             # Due to torso multi is 1, we use limb_msg2
             # Also only considering head and limb shots
-            hits_str = parse_headshots()
-            hits_str = add_space()
-            hits_str = parse_limbshots2()
-            
+            hits_str = parse_headshots(hits_str)
+            hits_str = add_space(hits_str)
+            hits_str = parse_limbshots2(hits_str)
+        
+        # Before returning, need to remove extra space if added at end
+        # This also only works if hits_str is not an empty string, for example (0, 0, 0) or
+        #   or for some odd reason have only torso hits when torso multi is 1, as then those hits are ignored
+        # Our program shouldn't be doing this, but in case it does, we deal with it to not run into an error
+        if len(hits_str) != 0:
+            if hits_str[-1].isspace():
+                hits_str = hits_str[:-2]
+                # Make itself equal to itself without last 2 char, ", "
         return hits_str
 
     @staticmethod

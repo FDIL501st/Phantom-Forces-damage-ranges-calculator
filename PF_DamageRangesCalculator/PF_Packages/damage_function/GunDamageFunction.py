@@ -4,6 +4,7 @@ from . import DamageFunction
 from ..damage_info import GunDamageInfo
 from .function_calculator import FunctionCalculator
 from ..dataTypes import HitsToKill, Hits
+from ..parser.HitsToKillParser import HitsToKillParser
 
 GunDmgInf: TypeAlias = 'GunDamageInfo.GunDamageInfo'
 
@@ -21,15 +22,16 @@ class GunDamageOverRangeFunction(DamageFunction.DamageOverRangeFunction):
         if self.__gun_damage_info.torso_multi == 1.0:
             # Torso multi is 1, so can ignore torso hits
             hits_to_kill.update(self.__calculate_head_limb_hits)
+            hits_to_kill.update(self.__calculate_only_limb_hits, True)
         else:
             # Include torso hits
             hits_to_kill.update(self.__calculate_head_torso_limb_hits)
             hits_to_kill.update(self.__calculate_torso_limb_hits)
+            hits_to_kill.update(self.__calculate_only_limb_hits)
 
-        hits_to_kill.update(self.__calculate_only_limb_hits)
         return hits_to_kill
 
-    def __calculate_only_limb_hits(self) -> HitsToKill:
+    def __calculate_only_limb_hits(self, torso_multi_one: bool = False) -> HitsToKill:
         """Calculates combinations of only limb hits that can kill."""
         hits_to_kill: HitsToKill = {}   # stores the hits to kill
         n_limb: int = 1 # Keep track of number of limb hits
@@ -39,10 +41,9 @@ class GunDamageOverRangeFunction(DamageFunction.DamageOverRangeFunction):
             range: float = self.function_calculator.calculate_max_range_hits_kill(hits)
             # Check if can kill
             if range != -1:
-                # Convert hits to string
-                # So need HitsToKillParser
-                # TODO - finish this if statement
-                pass
+                # Can kill, so add to hits_to_kill
+                hits_str: str = HitsToKillParser.convert_tuple_to_str(hits=hits, torso_multi_is_one=torso_multi_one)
+                hits_to_kill[hits_str] = range
             
             # Check if can kill all ranges
             if isinf(range):
@@ -58,7 +59,7 @@ class GunDamageOverRangeFunction(DamageFunction.DamageOverRangeFunction):
 
     def __calculate_torso_limb_hits(self) -> HitsToKill:
         """Calculates combinations of only torso and limb hits that can kill."""
-    
+
     def __calculate_head_limb_hits(self) -> HitsToKill:
         """Calculates combinations of only head and limb this that can kill."""
     

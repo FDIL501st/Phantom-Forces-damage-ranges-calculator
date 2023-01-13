@@ -142,10 +142,32 @@ class GunDamageOverRangeFunction(DamageFunction.DamageOverRangeFunction):
             
             # Check if can kill all ranges
             if isinf(range):
-                pass
+                # check if only have headshots (meaning torso and limb hits is 0)
+                if n_torso == 0 and n_limb == 0:
+                    # reached limit of hits to add
+                    # adding any more is redundant as already can kill all ranges currently with max number of headshots
+                    # so return hits to kill and end the function
+                    return hits_to_kill
+
+                # check number of limb shots
+                if n_limb == 0:
+                    # this means can't add more limb shots
+                    # also adding anoter torso shot is redundant as already can kill all ranges with current torso shots
+                    # so move to next headshot and reset torso and limb shots to 0 and continue loop
+                    n_head += 1
+                    n_torso = 0
+                    n_limb = 0
+                    continue
+                
+                # This means we need to move to next torso shot as can't add more limb shots
+                # in doing so, also need to reset limb shots then continue loop
+                n_torso += 1
+                n_limb = 0
+                continue
             
             #Before next iteration of loop, need to add 1 limb shot
             n_limb += 1
+
     # Getter and setters
     @property
     def gun_damage_info(self) -> GunDmgInf:

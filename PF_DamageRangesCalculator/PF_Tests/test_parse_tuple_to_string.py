@@ -1,5 +1,4 @@
 import unittest
-from typing import TypeAlias
 from PF_Packages.parser.HitsToKillParser import HitsToKillParser
 from PF_Packages.dataTypes import Hits
 
@@ -75,6 +74,33 @@ class Test_test_parse_tuple_to_string(unittest.TestCase):
 
     def test_parse_torso_limb_combination_shots(self) -> None:
         """Tests hits that are combinations of torso and limb shots."""
-        pass
+        hits_1_3: Hits = (0, 1, 3)
+        hits_2_2: Hits = (0, 2, 2)
+        hits_3_2: Hits = (0, 3, 2)
+
+        e: str = "1 torso shot, 3 limb shots"
+        a: str = HitsToKillParser.convert_tuple_to_str(hits_1_3)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_1_3} correctly where torso multi != 1.")
+        # When torso multi is 1, then should ignore torso shots in parse
+        e = "3 torso/limb shots"
+        a = HitsToKillParser.convert_tuple_to_str(hits_1_3, True)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_1_3} correctly where torso multi == 1.")
+
+        e = "2 torso shots, 2 limb shots"
+        a = HitsToKillParser.convert_tuple_to_str(hits_2_2)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_2_2} correctly where torso multi != 1.")
+
+        e = "2 torso/limb shots"
+        a = HitsToKillParser.convert_tuple_to_str(hits_2_2, True)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_2_2} correctly where torso multi == 1.")
+
+        e = "3 torso shots, 2 limb shots"
+        a = HitsToKillParser.convert_tuple_to_str(hits_3_2)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_3_2} correctly where torso multi != 1.")
+
+        e = "2 torso/limb shots"
+        a = HitsToKillParser.convert_tuple_to_str(hits_3_2, True)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_3_2} correctly where torso multi == 1.")
+
 if __name__ == '__main__':
     unittest.main()

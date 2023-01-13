@@ -101,6 +101,24 @@ class Test_test_parse_tuple_to_string(unittest.TestCase):
         e = "2 torso/limb shots"
         a = HitsToKillParser.convert_tuple_to_str(hits_3_2, True)
         self.assertEqual(e, a, msg=f"Did not parse {hits_3_2} correctly where torso multi == 1.")
+    def test_parse_headshots_only(self) -> None:
+        """Tests hits that are headshots only. This include 1 headshot, and many headshots."""
+        hits1: Hits = (1, 0, 0)
+        hits3: Hits = (3, 0, 0)
+
+        e: str = "1 headshot"
+        a: str = HitsToKillParser.convert_tuple_to_str(hits1)
+        self.assertEqual(e, a, msg=f"Did not parse {hits1} correctly where torso multi != 1.")
+        # Expect same result when torso multi is 1
+        a = HitsToKillParser.convert_tuple_to_str(hits1, True)
+        self.assertEqual(e, a, msg=f"Did not parse {hits1} correctly where torso multi == 1.")
+
+        e = "3 headshots"
+        a = HitsToKillParser.convert_tuple_to_str(hits3)
+        self.assertEqual(e, a, msg=f"Did not parse {hits3} correctly where torso multi != 1.")
+        # Expect same result when torso multi is 1
+        a = HitsToKillParser.convert_tuple_to_str(hits3, True)
+        self.assertEqual(e, a, msg=f"Did not parse {hits3} correctly where torso multi == 1.")
 
     def test_parse_head_limb_combination_shots(self) -> None:
         """Tests hits that are combinations of head and limb shots."""
@@ -131,6 +149,41 @@ class Test_test_parse_tuple_to_string(unittest.TestCase):
         e = "3 headshots, 2 torso/limb shots"
         a = HitsToKillParser.convert_tuple_to_str(hits_3_2, True)
         self.assertEqual(e, a, msg=f"Did not parse {hits_3_2} correctly where torso multi == 1")
-        
+    
+    def test_parse_head_torso_combination_shots(self) -> None:
+        """Tests hits that are combinations of head and torso shots."""
+        hits_1_4: Hits = (1, 4, 0)
+        hits_2_3: Hits = (2, 3, 0)
+        hits_3_1: Hits = (3, 1, 0)
+
+        # Whenever torso multi is 1, expect to ignore torso shots
+
+        e: str = "1 headshot, 4 torso shots"
+        a: str = HitsToKillParser.convert_tuple_to_str(hits_1_4)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_1_4} correctly where torso multi != 1")
+
+        e = "1 headshot"
+        a = HitsToKillParser.convert_tuple_to_str(hits_1_4, True)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_1_4} correctly where torso multi == 1")
+
+        e = "2 headshots, 3 torso shots"
+        a = HitsToKillParser.convert_tuple_to_str(hits_2_3)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_2_3} correctly where torso multi != 1")
+
+        e = "2 headshots"
+        a = HitsToKillParser.convert_tuple_to_str(hits_2_3, True)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_2_3} correctly where torso multi == 1")
+
+        e = "3 headshots, 1 torso shot"
+        a = HitsToKillParser.convert_tuple_to_str(hits_3_1)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_3_1} correctly where torso multi != 1")
+
+        e = "3 headshots"
+        a = HitsToKillParser.convert_tuple_to_str(hits_3_1, True)
+        self.assertEqual(e, a, msg=f"Did not parse {hits_3_1} correctly where torso multi == 1")
+
+    def test_parse_head_torso_limb_combination_shots(self) -> None:
+        """Tests hits that are combinations of head, torso and limb shots."""
+
 if __name__ == '__main__':
     unittest.main()

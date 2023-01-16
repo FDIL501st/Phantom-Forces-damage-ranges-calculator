@@ -136,7 +136,12 @@ class DamageFunctionCalculator:
 
         # All other cases, can return range as is as within the proper linear equation
         # Having reverse damage drop or not doesn't change the validity of original range calculation
-        return range
+        
+        # Because don't want super high presicion with range values, round to 3 decimal places
+        # Also range calculations can cause some very slightly different numbers due to limitations of representation of numbers 
+        # within hardware causing super high precision answers to not be accurate (like 10 decimal places)
+        # For example, for something where 60 was expected, calculations return 60.0000000000001, so round that to correct it
+        return round(range, 3)
         
     # getters and setters
 

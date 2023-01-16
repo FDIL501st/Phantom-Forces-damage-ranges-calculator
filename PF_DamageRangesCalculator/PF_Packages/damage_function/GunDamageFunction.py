@@ -21,14 +21,16 @@ class GunDamageOverRangeFunction(DamageFunction.DamageOverRangeFunction):
         hits_to_kill: HitsToKill = {}
         if self.__gun_damage_info.torso_multi == 1.0:
             # Torso multi is 1, so can ignore torso hits
-            hits_to_kill.update(self.__calculate_head_limb_hits)
-            hits_to_kill.update(self.__calculate_only_limb_hits, True)
+            hits_to_kill.update(self.__calculate_head_limb_hits())
+            hits_to_kill.update(self.__calculate_only_limb_hits(True))
         else:
             # Include torso hits
-            hits_to_kill.update(self.__calculate_head_torso_limb_hits)
-            hits_to_kill.update(self.__calculate_torso_limb_hits)
-            hits_to_kill.update(self.__calculate_only_limb_hits)
-
+            # Note: This doesn't work for rubber pellets because algorithm assumes need less torso shots than limb shots
+            # Which for rubber pellets is incorrect as it has multi of less than 1, so does less damage and need more shots
+            hits_to_kill.update(self.__calculate_head_torso_limb_hits())
+            hits_to_kill.update(self.__calculate_torso_limb_hits())
+            hits_to_kill.update(self.__calculate_only_limb_hits())
+        
         return hits_to_kill
 
     def __calculate_only_limb_hits(self, torso_multi_one: bool = False) -> HitsToKill:

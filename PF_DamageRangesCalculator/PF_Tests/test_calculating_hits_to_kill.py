@@ -43,6 +43,27 @@ class Test_test_calculating_hits_to_kill(unittest.TestCase):
             "1 torso shot, 1 limb shot": INF, "2 torso shots": INF}
         
         self.assertDictEqual(e, a)
+    
+    def test_TAR_21_hits_to_kill(self) -> None:
+        """Tests if can calculate all htis to kill of TAR 21."""
+        a = self.TAR_21_DmgFunc.calculate_all_combinations_hits_to_kill()
         
+            # Need to change this
+        e = {"1 headshot, 2 limb shots": 74.286, "1 headshot, 3 limb shots": 137.778, "1 headshot, 4 limb shots": INF, 
+            "1 headshot, 1 torso shot, 1 limb shot": 82.222, "1 headshot, 1 torso shot, 2 limb shots": INF,
+            "1 headshot, 2 torso shots": 89.73, "1 headshot, 2 torso shots, 1 limb shot": INF,
+            "1 headshot, 3 torso shots": INF, "2 headshots, 1 limb shot": 110.0, "2 headshots, 2 limb shots": INF,
+            "2 headshots, 1 torso shot": 116.098, "2 headshots, 1 torso shot, 1 limb shot": INF,
+            "2 headshots, 2 torso shots": INF, "3 headshots": 137.778, "3 headshots, 1 limb shot": INF,
+            "3 headshots, 1 torso shot": INF, "4 headshots": INF,
+            "1 torso shot, 3 limb shots": 116.098, "1 torso shot, 4 limb shots": INF,
+            "2 torso shots, 2 limb shots": 121.905, "2 torso shots, 3 limb shots": INF,
+            "3 torso shots, 1 limb shot": 127.442, "3 torso shots, 2 limb shots": INF,
+            "4 torso shots": 132.727, "4 torso shots, 1 limb shot": INF, "5 torso shots": INF,
+            "4 limb shots": 110, "5 limb shots": INF}
+        
+        self.assertDictEqual(e, a) 
+        
+
 if __name__ == '__main__':
     unittest.main()

@@ -5,7 +5,7 @@ from ...dataTypes import Hit, Hits
 
 #DmgFunc: TypeAlias = DamageFunction.DamageOverRangeFunction
 
-GunDmgInfo: TypeAlias = GunDamageInfo.GunDamageInfo
+GunDmgInfo: TypeAlias = 'GunDamageInfo.GunDamageInfo'
 DmgInfoSub: TypeAlias = GunDmgInfo    # use | for all subclasses, need to add grenade damage info
 
 class DamageFunctionCalculator:
@@ -21,7 +21,7 @@ class DamageFunctionCalculator:
         self.max_range: float = damage_info.max_range
         self.__damage_drop: float = damage_info.damage_drop
         # Info below is dependant if gun_damage_info or not
-        if isinstance(damage_info, GunDmgInfo):
+        if isinstance(damage_info, GunDamageInfo.GunDamageInfo):
             self.torso_multi: float = damage_info.torso_multi
             self.head_multi: float = damage_info.head_multi
             self.reverse_damage_drop: bool = damage_info.reverse_damage_drop

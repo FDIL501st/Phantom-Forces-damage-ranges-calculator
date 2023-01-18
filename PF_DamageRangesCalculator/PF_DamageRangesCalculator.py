@@ -1,9 +1,8 @@
 import sys
 import typing
-#sys.path.append(".\PF_Packages")
-
 import PF_Packages.damage_info.GunDamageInfo
 import PF_Packages.damage_calculator.GunDamageCalculator
+import PF_Packages.damage_function.GunDamageFunction
 import PF_Packages.damage_function.function_calculator.FunctionCalculator
 from PF_Packages.parser.HitsToKillParser import HitsToKillParser
 
@@ -11,12 +10,14 @@ GunDmgInfo: typing.TypeAlias = PF_Packages.damage_info.GunDamageInfo.GunDamageIn
 GunDmgCalc: typing.TypeAlias = PF_Packages.damage_calculator.GunDamageCalculator.GunDamageCalculator
 DmgInfo: typing.TypeAlias = PF_Packages.damage_info.DamageInfo.DamageInfo
 DmgFuncCalc: typing.TypeAlias = PF_Packages.damage_function.function_calculator.FunctionCalculator.DamageFunctionCalculator
+GunDmgFunc: typing.TypeAlias = PF_Packages.damage_function.GunDamageFunction.GunDamageOverRangeFunction
+
 
 def main():
     for search_path in sys.path:
         print(search_path)
 
-    gun_dmg_inf: GunDmgInfo = GunDmgInfo(35, 45, 35, 180, 2.25, 3.5)
+    gun_dmg_inf: GunDmgInfo = GunDmgInfo(29, 19, 40, 170, 1, 1.5)
 
     print(gun_dmg_inf.reverse_damage_drop)
 
@@ -42,6 +43,12 @@ def main():
     hits = (0, 0, 4)
     parsed: str = HitsToKillParser.convert_tuple_to_str(hits, True)
     print(parsed)
+
+    gun_dmg_func: GunDmgFunc = GunDmgFunc(gun_dmg_inf)
+
+    print()
+    for hits, range in gun_dmg_func.calculate_all_combinations_hits_to_kill().items():
+        print("{0} : {1}".format(hits, range))
 
 if __name__ == "__main__":
     main()

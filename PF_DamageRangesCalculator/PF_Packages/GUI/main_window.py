@@ -1,4 +1,5 @@
 from tkinter import Tk
+from damage_frame import DamageFrame
 
 class GUI(Tk):
     """The main window of the GUI.
@@ -8,7 +9,7 @@ class GUI(Tk):
 
         #Configure the  main window
         self.title("Phantom Forces Damage Ranges App")  # name of the window
-        self.geometry("600x400")    # size of the window
+        self.geometry("600x400")                        # size of the window
 
         self.__createGUI()
 
@@ -33,8 +34,8 @@ class GUI(Tk):
 
     def __createFrames(self) -> None:
         """Creates the frames that will be placed on the grid."""
-
-
+        self.damage_frame: DamageFrame = DamageFrame(master=self)
+        self.damage_frame.grid(column=0, row=1)
 
 if __name__ == '__main__':
     # Testing GUI

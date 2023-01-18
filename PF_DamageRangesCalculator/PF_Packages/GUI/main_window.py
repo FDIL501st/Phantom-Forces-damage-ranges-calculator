@@ -1,5 +1,6 @@
 from tkinter import Tk
 from damage_frame import DamageFrame
+from multi_frame import MultiFrame
 
 class GUI(Tk):
     """The main window of the GUI.
@@ -36,7 +37,10 @@ class GUI(Tk):
         """Creates the frames that will be placed on the grid."""
         self.damage_frame: DamageFrame = DamageFrame(master=self)
         self.damage_frame.grid(column=0, row=1)
-
+        
+        self.multi_frame: MultiFrame = MultiFrame(master=self)
+        self.multi_frame.grid(column=0, row=2)
+        
 if __name__ == '__main__':
     # Testing GUI
     gui = GUI()

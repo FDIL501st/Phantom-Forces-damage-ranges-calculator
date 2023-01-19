@@ -23,6 +23,7 @@ class MultiFrame(Frame):
         # Add the entry widget for the multi fields
         self.__createEntry()
 
+        
     def __createGrid(self) -> None:
         """Creates the grid for the frame."""
         # Will make a 2x2 grid, equal spacing    

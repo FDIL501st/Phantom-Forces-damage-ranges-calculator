@@ -42,7 +42,7 @@ class GUI(Tk):
         self.multi_frame: MultiFrame = MultiFrame(master=self)
         self.multi_frame.grid(column=0, row=2)
         
-        self.weapon_frame: WeaponLabelframe = WeaponLabelframe(master=self)
+        self.weapon_frame: WeaponLabelframe = WeaponLabelframe(master=self, frame=self.multi_frame)
         self.weapon_frame.grid(column=0, row=0)
         
 if __name__ == '__main__':

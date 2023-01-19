@@ -1,6 +1,7 @@
 from tkinter import Tk
 from damage_frame import DamageFrame
 from multi_frame import MultiFrame
+from weapon_labelframe import WeaponLabelframe
 
 class GUI(Tk):
     """The main window of the GUI.
@@ -40,6 +41,9 @@ class GUI(Tk):
         
         self.multi_frame: MultiFrame = MultiFrame(master=self)
         self.multi_frame.grid(column=0, row=2)
+        
+        self.weapon_frame: WeaponLabelframe = WeaponLabelframe(master=self)
+        self.weapon_frame.grid(column=0, row=0)
         
 if __name__ == '__main__':
     # Testing GUI

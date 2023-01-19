@@ -49,7 +49,9 @@ class WeaponLabelframe(Labelframe):
     def set_frame(self) -> None:
         """Disables or enables multi_frame depending on value of self.weapon."""
         if self.weapon.get() == 0:
-            self.frame.grid(column=0, row=2)
+            for w in self.frame.winfo_children():
+                w['state'] = 'normal'
 
         elif self.weapon.get() == 1:
-            self.frame.grid_forget()
+            for w in self.frame.winfo_children():
+                w['state'] = 'disabled'

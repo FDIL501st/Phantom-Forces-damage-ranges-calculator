@@ -3,15 +3,17 @@ import typing
 import PF_Packages.damage_info.GunDamageInfo
 import PF_Packages.damage_calculator.GunDamageCalculator
 import PF_Packages.damage_function.GunDamageFunction
+import PF_Packages.damage_info.DamageInfo
 import PF_Packages.damage_function.function_calculator.FunctionCalculator
 from PF_Packages.parser.HitsToKillParser import HitsToKillParser
+import PF_Packages.GUI.main_window
 
 GunDmgInfo: typing.TypeAlias = PF_Packages.damage_info.GunDamageInfo.GunDamageInfo
 GunDmgCalc: typing.TypeAlias = PF_Packages.damage_calculator.GunDamageCalculator.GunDamageCalculator
 DmgInfo: typing.TypeAlias = PF_Packages.damage_info.DamageInfo.DamageInfo
 DmgFuncCalc: typing.TypeAlias = PF_Packages.damage_function.function_calculator.FunctionCalculator.DamageFunctionCalculator
 GunDmgFunc: typing.TypeAlias = PF_Packages.damage_function.GunDamageFunction.GunDamageOverRangeFunction
-
+GUI: typing.TypeAlias = PF_Packages.GUI.main_window.GUI 
 
 def main():
     for search_path in sys.path:

@@ -15,7 +15,7 @@ class DamageInfo(ABC):
         self.min_damage: float = d2
         self.min_range: float = r1
         self.max_range: float = r2
-        self.calculator: DmgCalc = None   
+        self.calculator: DmgCalc | None = None   
         # calculator is to be set later by subclasses to the one they need
 
         

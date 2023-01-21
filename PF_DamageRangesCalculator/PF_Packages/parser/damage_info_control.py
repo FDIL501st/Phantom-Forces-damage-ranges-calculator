@@ -1,6 +1,6 @@
-import re
 from typing import TypeAlias
 from ..GUI import damage_frame, multi_frame
+from .PF_regex import PF_Regex
 
 DamageFrame: TypeAlias = 'damage_frame.DamageFrame'
 MultiFrame: TypeAlias = 'multi_frame.MultiFrame'
@@ -41,38 +41,33 @@ class DamageInfoControl:
 
     def __verify_damage(self) -> bool:
         """"Verifies the damage field from the GUI. 
-        This means having correct format, which is xx - xx.
-        2 numbers, with a '-' in between. May or may not be spaces with '-'.
+        This means having 2 non-negative numbers numbers.
         Returns true if all fields can be used/are in proper format.
         Returns false if there is an issue with the data in the fields."""
-
+        return PF_Regex.match_two_non_neg_nums(self.__damage)
 
     def __verify_damageRange(self) -> bool:
         """"Verifies the damage range field from the GUI. 
-        This means having correct format, which is xx - xx.
-        2 numbers, with a '-' in between. May or may not be spaces with '-'.
+        This means having 2 non-negative numbers.
         Also check if second number is greater than first number. 
         Now allowed to give ranges in opposite order.
         Returns true if all fields can be used/are in proper format.
         Returns false if there is an issue with the data in the fields."""
+        match_result: bool = PF_Regex.match_two_non_neg_nums(self.__damage_range)
+        if match_result:
+            # Need to figure out parsing out the numbers, prob need another function from PF_regex
+            pass
+
+        return False
 
     def __verify_multis(self) -> bool:
         """Verifies the head and toro multi fields from the GUI.
         All this means is have a positive number. This also includes decimals.
         Returns true if all fields can be used/are in proper format.
         Returns false if there is an issue with the data in the fields."""
-        try:
-            h_multi: float = float(self.__head_multi)
-            t_multi: float = float(self.__torso_multi)
-        except ValueError:
-            #  Will occur if failed to conver to float
-            # due to the fields not representing a number
-            return False
-        # Now check if the multis are positive numbers
-        if h_multi > 0 and t_multi > 0:
-            return True
-        else:
-            return False
+        head_result: bool = PF_Regex.match_one_pos_num(self.__head_multi)
+        torso_result: bool = PF_Regex.match_one_pos_num(self.__torso_multi)
+        return head_result and torso_result
             
     def createDamageInfo(self) -> None:
         """Parses the data and creates a DamageInfo class.

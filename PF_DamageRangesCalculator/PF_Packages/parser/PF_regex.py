@@ -20,7 +20,7 @@ class PF_Regex:
 
     @classmethod
     def match_two_non_neg_nums(cls, data: str) -> bool:
-        """Returns True if data has 2 non-negative numbers in it.
+        """Returns True if data has only 2 non-negative numbers in it.
         Otherwise False."""
         numbers: List[str] = cls.non_neg_num_pattern.findall(data)
 
@@ -29,3 +29,18 @@ class PF_Regex:
             return True
         else:
             return False
+    
+    @classmethod
+    def match_one_pos_num(cls, data: str) -> bool:
+        """Returns True if data has only 1 positive number in it.
+        Otherwise False."""
+        numbers: List[str] = cls.non_neg_num_pattern.findall(data)
+        
+        if len(numbers) == 1:
+            # This means only found 1 number, which is what we expect
+            # Now we check if number is 0 or not, as pattern only matchs non-negative numbers
+            if float(numbers[0]) != 0:
+                # if will filter out any 0 to not return True 
+                return True
+
+        return False

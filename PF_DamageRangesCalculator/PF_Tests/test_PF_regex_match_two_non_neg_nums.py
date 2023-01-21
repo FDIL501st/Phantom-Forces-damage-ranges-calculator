@@ -81,7 +81,7 @@ class Test_test_PF_regex_match_two_non_neg_nums(unittest.TestCase):
         """Tests regex if corrently unable to match data that has more than 1 decimal.
         Data represents when someone accidently puts in more than 1 decimals."""    
         e: bool = False
-        msg = "Did not correctly match 2 positive numbers."
+        msg = "Did not correctly not match having incorrect numbers."
         data = "12 - 54.33.44"
         a = PF_Regex.match_two_non_neg_nums(data=data)
         self.assertEqual(e, a, msg=msg)
@@ -90,6 +90,43 @@ class Test_test_PF_regex_match_two_non_neg_nums(unittest.TestCase):
         a = PF_Regex.match_two_non_neg_nums(data=data)
         self.assertEqual(e, a, msg=msg)
 
+    def test_two_non_nums_alphabets(self):
+        """Tests regex if correctly unable to match data that has alphabets.
+        Data represents when someone types in garbage."""
+        e: bool = False
+        msg = "Did not correctly not match having not numbers."
+        data = "ahdf - 123.34"
+        a = PF_Regex.match_two_non_neg_nums(data=data)
+        self.assertEqual(e, a, msg=msg)
+
+        data = "fifty - sixty"
+        a = PF_Regex.match_two_non_neg_nums(data=data)
+        self.assertEqual(e, a, msg=msg)
+    
+    def test_zero(self):
+        """Tests regex if correctly able to match data that has a 0.
+        Depleted uranium makes damage range 0-150 for example.
+        """
+        e: bool = True
+        msg = "Did not correctly match 0 as a number."
+        data = "0 - 150"
+        a = PF_Regex.match_two_non_neg_nums(data=data)
+        self.assertEqual(e, a, msg=msg)
+
+    def test_two_pos_nums_with_words(self):
+        """Tests regex if correctly able to match data that has the 2 numbers, with words.
+        Data could represent rare cases where user decides to use words(like unit) as well with their two numbers.
+        Regex should still be able to match the numbers."""
+        
+        e: bool = True
+        msg = "Did not correctly match the 2 positive numbers."
+        data = "30 studs - 45 studs"
+        a = PF_Regex.match_two_non_neg_nums(data=data)
+        self.assertEqual(e, a, msg=msg)
+
+        data = "110.5 - 100 damage"
+        a = PF_Regex.match_two_non_neg_nums(data=data)
+        self.assertEqual(e, a, msg=msg)
 
 if __name__ == '__main__':
     unittest.main()

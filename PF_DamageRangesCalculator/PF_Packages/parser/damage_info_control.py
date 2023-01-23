@@ -44,7 +44,7 @@ class DamageInfoControl:
         This means having 2 non-negative numbers numbers.
         Returns true if all fields can be used/are in proper format.
         Returns false if there is an issue with the data in the fields."""
-        return PF_Regex.match_two_non_neg_nums(self.__damage)
+        return PF_Regex.match_two_nums(self.__damage)
 
     def __verify_damageRange(self) -> bool:
         """"Verifies the damage range field from the GUI. 
@@ -53,7 +53,7 @@ class DamageInfoControl:
         Now allowed to give ranges in opposite order.
         Returns true if all fields can be used/are in proper format.
         Returns false if there is an issue with the data in the fields."""
-        match_result: bool = PF_Regex.match_two_non_neg_nums(self.__damage_range)
+        match_result: bool = PF_Regex.match_two_nums(self.__damage_range)
         if match_result:
             # Need to figure out parsing out the numbers, prob need another function from PF_regex
             pass
@@ -65,8 +65,8 @@ class DamageInfoControl:
         All this means is have a positive number. This also includes decimals.
         Returns true if all fields can be used/are in proper format.
         Returns false if there is an issue with the data in the fields."""
-        head_result: bool = PF_Regex.match_one_pos_num(self.__head_multi)
-        torso_result: bool = PF_Regex.match_one_pos_num(self.__torso_multi)
+        head_result: bool = PF_Regex.match_one_non_zero_num(self.__head_multi)
+        torso_result: bool = PF_Regex.match_one_non_zero_num(self.__torso_multi)
         return head_result and torso_result
             
     def createDamageInfo(self) -> None:

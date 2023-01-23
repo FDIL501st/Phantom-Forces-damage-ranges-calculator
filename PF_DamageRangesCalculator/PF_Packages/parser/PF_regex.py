@@ -10,10 +10,8 @@ class PF_Regex:
     non_neg_num_pattern: Pattern = regex.compile(
         r"""        # First try to match a decimal
         [\d]+       # integer part     
-        [.]         # decimal
-        [\d]+       # fractional part
-        |           # now check for only whole number as the decimal match failed
-        [\d]+       # just digits
+        [.]?        # decimal (may or may not have 1 decimal point)
+        [\d]*       # fractional part (may or may not have this part)
         """, regex.VERBOSE)
     # Pattern to match a positive number, can be a decimal number
     # Does include 0 

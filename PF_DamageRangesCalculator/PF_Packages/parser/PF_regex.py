@@ -43,3 +43,17 @@ class PF_Regex:
                 return True
 
         return False
+
+    @classmethod
+    def find_all_nums(cls, data: str) -> List[float]:
+        """Find all the numbers within data, then returns then all in a list, in order of finding them.
+        This will filter out anything that isn't a number (the decimal point will be included).
+        This also means any negative numbers will have their '-' ignored, thus returned as a positive number."""
+
+        numbers: List[float] = []
+
+        for match_num in cls.non_neg_num_pattern.finditer(data):
+            num: str = match_num.group()
+            numbers.append(float(num))
+        
+        return numbers

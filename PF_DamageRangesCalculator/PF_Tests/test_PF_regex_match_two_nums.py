@@ -148,34 +148,5 @@ class Test_test_PF_regex_match_two_nums(unittest.TestCase):
         a = PF_Regex.match_two_nums(data=data)
         self.assertEqual(e, a, msg=msg)
 
-class Test_test_PF_regex_match_one_non_zero_num(unittest.TestCase):   
-    """Class testing PF_Regex.match_one_pos_num()."""
-
-    def test_one_pos_num(self):
-        """Tests regex if correctly able to match data that has only 1 positive number.
-        Data could represent typing in multis."""
-
-        e = True
-        msg = "Did not correctly match the 1 positive number provided."
-        data = "1.0"
-        a = PF_Regex.match_one_non_zero_num(data=data)
-        self.assertEqual(e, a, msg=msg)
-
-        data = "1.4"
-        a = PF_Regex.match_one_non_zero_num(data=data)
-        self.assertEqual(e, a, msg=msg)
-    
-    def test_zero(self):
-        """Tests regex if correctly fails to match providing only a 0.
-        Data could represent an accident on user end in typing invalid multi of 0."""
-
-        e = False
-        msg = "Did not correctly fail match of 0."
-        data = "0"
-        a = PF_Regex.match_one_non_zero_num(data=data)
-        self.assertEqual(e, a, msg=msg)
-
-
-
 if __name__ == '__main__':
     unittest.main()

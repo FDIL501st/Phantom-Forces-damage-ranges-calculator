@@ -31,5 +31,13 @@ class Test_test_PF_regex_match_one_non_zero_num(unittest.TestCase):
         a = PF_Regex.match_one_non_zero_num(data=data)
         self.assertEqual(e, a, msg=msg)
 
+    def test_ignore_neg_num(self):
+        """Tests regex if ignores the '-' and still matches the number."""
+        e = True
+        msg = "Did not correctly match the number."
+        data = "-23"
+        a = PF_Regex.match_one_non_zero_num(data=data)
+        self.assertEqual(e, a, msg=msg) 
+
 if __name__ == '__main__':
     unittest.main()

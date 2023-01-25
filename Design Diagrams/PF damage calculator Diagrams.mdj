@@ -745,7 +745,7 @@
 									"font": "Arial;13;0",
 									"left": 479,
 									"top": 108.5,
-									"width": 185,
+									"width": 186.287109375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFDq+v0DOX6/0="
@@ -1209,7 +1209,7 @@
 									"font": "Arial;13;0",
 									"left": 321.5,
 									"top": 364.5,
-									"width": 197,
+									"width": 198.5126953125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFDrFU0EEBAug="
@@ -1503,7 +1503,7 @@
 									"font": "Arial;13;0",
 									"left": 139.5,
 									"top": 284.5,
-									"width": 209,
+									"width": 209.3671875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFDrGJcENwmS8="
@@ -1797,7 +1797,7 @@
 									"font": "Arial;13;0",
 									"left": 160,
 									"top": 476.5,
-									"width": 231,
+									"width": 231.79345703125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFDrGNZ0Pqicg="
@@ -2091,7 +2091,7 @@
 									"font": "Arial;13;0",
 									"left": 437.5,
 									"top": 556.5,
-									"width": 142,
+									"width": 142.21533203125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFDrGOzURkXRU="
@@ -2328,7 +2328,7 @@
 									"font": "Arial;13;0",
 									"left": 83,
 									"top": 21,
-									"width": 205.318359375,
+									"width": 231.51513671875,
 									"height": 13,
 									"text": "Phantom Forces damage calculator app"
 								},
@@ -2959,7 +2959,7 @@
 									"font": "Arial;13;0",
 									"left": 181,
 									"top": 68.5,
-									"width": 140,
+									"width": 140.0380859375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFDsAPaYyhG1o="
@@ -3467,7 +3467,7 @@
 									"font": "Arial;13;0",
 									"left": 519,
 									"top": 780.5,
-									"width": 185,
+									"width": 186.24267578125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFEsJpww5O/oY="
@@ -5649,7 +5649,7 @@
 									"font": "Arial;13;0",
 									"left": 332.5,
 									"top": 212.5,
-									"width": 97,
+									"width": 98.14990234375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGFE97tHxZtoXU="
@@ -11312,9 +11312,9 @@
 												"$ref": "AAAAAAGFGQv4o6u2B/M="
 											},
 											"font": "Arial;13;0",
-											"left": 30.55908203125,
+											"left": 32.72998046875,
 											"top": 13,
-											"width": 106.06640625,
+											"width": 112.26806640625,
 											"height": 13,
 											"text": "Calculate hits to kill"
 										},
@@ -11327,7 +11327,7 @@
 											"font": "Arial;13;1",
 											"left": 13,
 											"top": 13,
-											"width": 12.55908203125,
+											"width": 14.72998046875,
 											"height": 13,
 											"text": "sd"
 										}
@@ -11737,7 +11737,7 @@
 													},
 													"font": "Arial;13;1",
 													"left": 541,
-													"top": 267,
+													"top": 259,
 													"width": 110.39453125,
 													"height": 13,
 													"text": "GunDamageInfo"
@@ -11770,7 +11770,7 @@
 											],
 											"font": "Arial;13;0",
 											"left": 536,
-											"top": 260,
+											"top": 252,
 											"width": 120.39453125,
 											"height": 40,
 											"stereotypeLabel": {
@@ -11797,14 +11797,14 @@
 											},
 											"font": "Arial;13;0",
 											"left": 596,
-											"top": 300,
+											"top": 292,
 											"width": 1,
 											"height": 981
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 536,
-									"top": 260,
+									"top": 252,
 									"width": 120.39453125,
 									"height": 1021,
 									"nameCompartment": {
@@ -11950,12 +11950,12 @@
 												"$ref": "AAAAAAGFGRdBG7dw+Bc="
 											},
 											"font": "Arial;13;0",
-											"left": 89,
-											"top": 97,
+											"left": 88,
+											"top": 87,
 											"width": 167.64794921875,
 											"height": 13,
-											"alpha": 1.5707963267948966,
-											"distance": 10,
+											"alpha": -4.612721317992635,
+											"distance": 10.04987562112089,
 											"hostEdge": {
 												"$ref": "AAAAAAGFGRdBHLdxRmY="
 											},
@@ -11974,7 +11974,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 172,
-											"top": 82,
+											"top": 73,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -11995,7 +11995,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 172,
-											"top": 117,
+											"top": 108,
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -12015,9 +12015,9 @@
 											},
 											"font": "Arial;13;0",
 											"left": 269,
-											"top": 113,
+											"top": 104,
 											"width": 14,
-											"height": 88
+											"height": 29
 										}
 									],
 									"font": "Arial;13;0",
@@ -12027,7 +12027,7 @@
 									"tail": {
 										"$ref": "AAAAAAGFGRYIXbdNRh4="
 									},
-									"points": "75:113;269:113",
+									"points": "75:104;269:104",
 									"nameLabel": {
 										"$ref": "AAAAAAGFGRdBHLdypGU="
 									},
@@ -12039,6 +12039,117 @@
 									},
 									"activation": {
 										"$ref": "AAAAAAGFGRdBHLd1Fb8="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAGF6fYzRCba1yc=",
+									"_parent": {
+										"$ref": "AAAAAAGFGQv4oqu1egA="
+									},
+									"model": {
+										"$ref": "AAAAAAGF6fYzRCbZLW0="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGF6fYzRSbbaqE=",
+											"_parent": {
+												"$ref": "AAAAAAGF6fYzRCba1yc="
+											},
+											"model": {
+												"$ref": "AAAAAAGF6fYzRCbZLW0="
+											},
+											"font": "Arial;13;0",
+											"left": 108,
+											"top": 136,
+											"width": 129.33349609375,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAGF6fYzRCba1yc="
+											},
+											"edgePosition": 1,
+											"text": "2 : Calculate hits to kill"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGF6fYzRSbcIZc=",
+											"_parent": {
+												"$ref": "AAAAAAGF6fYzRCba1yc="
+											},
+											"model": {
+												"$ref": "AAAAAAGF6fYzRCbZLW0="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 172,
+											"top": 121,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAGF6fYzRCba1yc="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGF6fYzRSbdORo=",
+											"_parent": {
+												"$ref": "AAAAAAGF6fYzRCba1yc="
+											},
+											"model": {
+												"$ref": "AAAAAAGF6fYzRCbZLW0="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 172,
+											"top": 156,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAGF6fYzRCba1yc="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAGF6fYzRSbe4wM=",
+											"_parent": {
+												"$ref": "AAAAAAGF6fYzRCba1yc="
+											},
+											"model": {
+												"$ref": "AAAAAAGF6fYzRCbZLW0="
+											},
+											"font": "Arial;13;0",
+											"left": 269,
+											"top": 152,
+											"width": 14,
+											"height": 1081
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAGFGQ6rTqxiqG0="
+									},
+									"tail": {
+										"$ref": "AAAAAAGFGRYIXbdNRh4="
+									},
+									"points": "75:152;269:152",
+									"nameLabel": {
+										"$ref": "AAAAAAGF6fYzRSbbaqE="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAGF6fYzRSbcIZc="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAGF6fYzRSbdORo="
+									},
+									"activation": {
+										"$ref": "AAAAAAGF6fYzRSbe4wM="
 									}
 								},
 								{
@@ -12062,7 +12173,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 298,
-											"top": 130,
+											"top": 152,
 											"width": 125.74072265625,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -12071,7 +12182,7 @@
 												"$ref": "AAAAAAGFInlRVrU0mBQ="
 											},
 											"edgePosition": 1,
-											"text": "2 : Verify damage info"
+											"text": "3 : Verify damage info"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -12085,7 +12196,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 360,
-											"top": 115,
+											"top": 137,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -12106,7 +12217,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 360,
-											"top": 150,
+											"top": 172,
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -12126,9 +12237,9 @@
 											},
 											"font": "Arial;13;0",
 											"left": 439,
-											"top": 146,
+											"top": 168,
 											"width": 14,
-											"height": 47
+											"height": 33
 										}
 									],
 									"font": "Arial;13;0",
@@ -12138,7 +12249,7 @@
 									"tail": {
 										"$ref": "AAAAAAGFGQ6rTqxiqG0="
 									},
-									"points": "282:146;439:146",
+									"points": "282:168;439:168",
 									"nameLabel": {
 										"$ref": "AAAAAAGFInlRVrU1jTo="
 									},
@@ -12173,7 +12284,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 300,
-											"top": 188,
+											"top": 196,
 											"width": 119.95166015625,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -12182,7 +12293,7 @@
 												"$ref": "AAAAAAGFIo+9KuoG1QQ="
 											},
 											"edgePosition": 1,
-											"text": "3 : Verification result"
+											"text": "4 : Verification result"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -12196,7 +12307,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 359,
-											"top": 203,
+											"top": 211,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -12217,7 +12328,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 360,
-											"top": 168,
+											"top": 176,
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -12238,7 +12349,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 269,
-											"top": 184,
+											"top": 192,
 											"width": 14,
 											"height": 25
 										}
@@ -12250,7 +12361,7 @@
 									"tail": {
 										"$ref": "AAAAAAGFInhlFbUZZfU="
 									},
-									"points": "439:184;282:184",
+									"points": "439:192;282:192",
 									"nameLabel": {
 										"$ref": "AAAAAAGFIo+9KuoH3Oo="
 									},
@@ -12284,8 +12395,8 @@
 												"$ref": "AAAAAAGFIqMNjOwwHmc="
 											},
 											"font": "Arial;13;0",
-											"left": 294,
-											"top": 226,
+											"left": 297,
+											"top": 224,
 											"width": 127.18798828125,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -12294,7 +12405,7 @@
 												"$ref": "AAAAAAGFIqMNjewxuoA="
 											},
 											"edgePosition": 1,
-											"text": "4 : Parse damage info"
+											"text": "5 : Parse damage info"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -12307,8 +12418,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 357,
-											"top": 211,
+											"left": 360,
+											"top": 209,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
@@ -12328,8 +12439,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 357,
-											"top": 246,
+											"left": 360,
+											"top": 244,
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -12349,7 +12460,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 439,
-											"top": 242,
+											"top": 240,
 											"width": 14,
 											"height": 63
 										}
@@ -12361,7 +12472,7 @@
 									"tail": {
 										"$ref": "AAAAAAGFGQ6rTqxiqG0="
 									},
-									"points": "276:242;439:242",
+									"points": "282:240;439:240",
 									"nameLabel": {
 										"$ref": "AAAAAAGFIqMNjewyubE="
 									},
@@ -12396,7 +12507,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 485,
-											"top": 264,
+											"top": 256,
 											"width": 18.0654296875,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -12405,7 +12516,7 @@
 												"$ref": "AAAAAAGFIbdDbsKJDOc="
 											},
 											"edgePosition": 1,
-											"text": "5 : "
+											"text": "6 : "
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -12418,7 +12529,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 469,
-											"top": 249,
+											"top": 241,
 											"width": 50.5908203125,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -12441,7 +12552,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 494,
-											"top": 284,
+											"top": 276,
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
@@ -12462,7 +12573,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 596,
-											"top": 280,
+											"top": 272,
 											"width": 14,
 											"height": 25
 										}
@@ -12474,7 +12585,7 @@
 									"tail": {
 										"$ref": "AAAAAAGFInhlFbUZZfU="
 									},
-									"points": "452:280;536:280",
+									"points": "452:272;536:272",
 									"nameLabel": {
 										"$ref": "AAAAAAGFIbdDbsKKL5g="
 									},
@@ -12634,7 +12745,7 @@
 												"$ref": "AAAAAAGFIbf63cKewK0="
 											},
 											"edgePosition": 1,
-											"text": "6 : Set Calculator to GunDamageCalculator"
+											"text": "7 : Set Calculator to GunDamageCalculator"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -12745,7 +12856,7 @@
 												"$ref": "AAAAAAGFIbp0tcLwE2U="
 											},
 											"edgePosition": 1,
-											"text": "7 : Create the damage over range functions"
+											"text": "8 : Create the damage over range functions"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -12846,9 +12957,9 @@
 												"$ref": "AAAAAAGFIb7dqcM/W5M="
 											},
 											"font": "Arial;13;0",
-											"left": 962,
+											"left": 959,
 											"top": 432,
-											"width": 18.0654296875,
+											"width": 25.29541015625,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 10,
@@ -12856,7 +12967,7 @@
 												"$ref": "AAAAAAGFIb7dqcNAkXY="
 											},
 											"edgePosition": 1,
-											"text": "8 : "
+											"text": "9 : "
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -12969,7 +13080,7 @@
 												"$ref": "AAAAAAGFK+b7PNanXGE="
 											},
 											"edgePosition": 1,
-											"text": "9 : "
+											"text": "10 : "
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -13050,117 +13161,6 @@
 									},
 									"activation": {
 										"$ref": "AAAAAAGFK+b7PNarCSE="
-									}
-								},
-								{
-									"_type": "UMLSeqMessageView",
-									"_id": "AAAAAAGFIp5zBevNwAk=",
-									"_parent": {
-										"$ref": "AAAAAAGFGQv4oqu1egA="
-									},
-									"model": {
-										"$ref": "AAAAAAGFIp5zBevMe6E="
-									},
-									"subViews": [
-										{
-											"_type": "EdgeLabelView",
-											"_id": "AAAAAAGFIp5zBevOnss=",
-											"_parent": {
-												"$ref": "AAAAAAGFIp5zBevNwAk="
-											},
-											"model": {
-												"$ref": "AAAAAAGFIp5zBevMe6E="
-											},
-											"font": "Arial;13;0",
-											"left": 872,
-											"top": 632,
-											"width": 295.55322265625,
-											"height": 13,
-											"alpha": 1.5707963267948966,
-											"distance": 10,
-											"hostEdge": {
-												"$ref": "AAAAAAGFIp5zBevNwAk="
-											},
-											"edgePosition": 1,
-											"text": "10 : Calculate all possible hits to kill and their range"
-										},
-										{
-											"_type": "EdgeLabelView",
-											"_id": "AAAAAAGFIp5zBevPyIw=",
-											"_parent": {
-												"$ref": "AAAAAAGFIp5zBevNwAk="
-											},
-											"model": {
-												"$ref": "AAAAAAGFIp5zBevMe6E="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"left": 1019,
-											"top": 617,
-											"height": 13,
-											"alpha": 1.5707963267948966,
-											"distance": 25,
-											"hostEdge": {
-												"$ref": "AAAAAAGFIp5zBevNwAk="
-											},
-											"edgePosition": 1
-										},
-										{
-											"_type": "EdgeLabelView",
-											"_id": "AAAAAAGFIp5zBevQmic=",
-											"_parent": {
-												"$ref": "AAAAAAGFIp5zBevNwAk="
-											},
-											"model": {
-												"$ref": "AAAAAAGFIp5zBevMe6E="
-											},
-											"visible": false,
-											"font": "Arial;13;0",
-											"left": 1019,
-											"top": 652,
-											"height": 13,
-											"alpha": -1.5707963267948966,
-											"distance": 10,
-											"hostEdge": {
-												"$ref": "AAAAAAGFIp5zBevNwAk="
-											},
-											"edgePosition": 1
-										},
-										{
-											"_type": "UMLActivationView",
-											"_id": "AAAAAAGFIp5zBevRJT0=",
-											"_parent": {
-												"$ref": "AAAAAAGFIp5zBevNwAk="
-											},
-											"model": {
-												"$ref": "AAAAAAGFIp5zBevMe6E="
-											},
-											"font": "Arial;13;0",
-											"left": 1199,
-											"top": 648,
-											"width": 14,
-											"height": 361
-										}
-									],
-									"font": "Arial;13;0",
-									"head": {
-										"$ref": "AAAAAAGFIb5HZMMm5G8="
-									},
-									"tail": {
-										"$ref": "AAAAAAGFGRhYDbeWqzc="
-									},
-									"points": "840:648;1199:648",
-									"nameLabel": {
-										"$ref": "AAAAAAGFIp5zBevOnss="
-									},
-									"stereotypeLabel": {
-										"$ref": "AAAAAAGFIp5zBevPyIw="
-									},
-									"propertyLabel": {
-										"$ref": "AAAAAAGFIp5zBevQmic="
-									},
-									"activation": {
-										"$ref": "AAAAAAGFIp5zBevRJT0="
 									}
 								},
 								{
@@ -13401,6 +13401,117 @@
 								},
 								{
 									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAGFIp5zBevNwAk=",
+									"_parent": {
+										"$ref": "AAAAAAGFGQv4oqu1egA="
+									},
+									"model": {
+										"$ref": "AAAAAAGFIp5zBevMe6E="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGFIp5zBevOnss=",
+											"_parent": {
+												"$ref": "AAAAAAGFIp5zBevNwAk="
+											},
+											"model": {
+												"$ref": "AAAAAAGFIp5zBevMe6E="
+											},
+											"font": "Arial;13;0",
+											"left": 872,
+											"top": 632,
+											"width": 295.55322265625,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAGFIp5zBevNwAk="
+											},
+											"edgePosition": 1,
+											"text": "11 : Calculate all possible hits to kill and their range"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGFIp5zBevPyIw=",
+											"_parent": {
+												"$ref": "AAAAAAGFIp5zBevNwAk="
+											},
+											"model": {
+												"$ref": "AAAAAAGFIp5zBevMe6E="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 1019,
+											"top": 617,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAGFIp5zBevNwAk="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAGFIp5zBevQmic=",
+											"_parent": {
+												"$ref": "AAAAAAGFIp5zBevNwAk="
+											},
+											"model": {
+												"$ref": "AAAAAAGFIp5zBevMe6E="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 1019,
+											"top": 652,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAGFIp5zBevNwAk="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAGFIp5zBevRJT0=",
+											"_parent": {
+												"$ref": "AAAAAAGFIp5zBevNwAk="
+											},
+											"model": {
+												"$ref": "AAAAAAGFIp5zBevMe6E="
+											},
+											"font": "Arial;13;0",
+											"left": 1199,
+											"top": 648,
+											"width": 14,
+											"height": 361
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAGFIb5HZMMm5G8="
+									},
+									"tail": {
+										"$ref": "AAAAAAGFGRhYDbeWqzc="
+									},
+									"points": "840:648;1199:648",
+									"nameLabel": {
+										"$ref": "AAAAAAGFIp5zBevOnss="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAGFIp5zBevPyIw="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAGFIp5zBevQmic="
+									},
+									"activation": {
+										"$ref": "AAAAAAGFIp5zBevRJT0="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
 									"_id": "AAAAAAGFrABOMGfM+Lw=",
 									"_parent": {
 										"$ref": "AAAAAAGFGQv4oqu1egA="
@@ -13421,7 +13532,7 @@
 											"font": "Arial;13;0",
 											"left": 1223,
 											"top": 656,
-											"width": 152.216796875,
+											"width": 153.181640625,
 											"height": 13,
 											"alpha": 1.9082513412131499,
 											"distance": 60.40695324215582,
@@ -13429,7 +13540,7 @@
 												"$ref": "AAAAAAGFrABOMGfM+Lw="
 											},
 											"edgePosition": 1,
-											"text": "11 : Calculate all hits to kill"
+											"text": "12 : Calculate all hits to kill"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -13540,7 +13651,7 @@
 												"$ref": "AAAAAAGFLLlg62wlCcA="
 											},
 											"edgePosition": 1,
-											"text": "12 : Get max range that each combination of hits to kill kill up to"
+											"text": "13 : Get max range that each combination of hits to kill kill up to"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -13651,7 +13762,7 @@
 												"$ref": "AAAAAAGFLLnWFGw7I+w="
 											},
 											"edgePosition": 1,
-											"text": "13 : range each combination can kill up to"
+											"text": "14 : range each combination can kill up to"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -13763,7 +13874,7 @@
 												"$ref": "AAAAAAGFLLQ6lWuZ9nY="
 											},
 											"edgePosition": 1,
-											"text": "14 : Convert hits to kill to a string"
+											"text": "15 : Convert hits to kill to a string"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -13874,7 +13985,7 @@
 												"$ref": "AAAAAAGFLLS4TGuvufk="
 											},
 											"edgePosition": 1,
-											"text": "15 : Hits to kill as a string"
+											"text": "16 : Hits to kill as a string"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -13986,7 +14097,7 @@
 												"$ref": "AAAAAAGFLLoQZ2xR6/U="
 											},
 											"edgePosition": 1,
-											"text": "16 : Add to dict the hits to kill and the range it can kill up to"
+											"text": "17 : Add to dict the hits to kill and the range it can kill up to"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -14068,6 +14179,19 @@
 									}
 								},
 								{
+									"_type": "UMLNoteView",
+									"_id": "AAAAAAGFf0EobtYi43c=",
+									"_parent": {
+										"$ref": "AAAAAAGFGQv4oqu1egA="
+									},
+									"font": "Arial;13;0",
+									"left": 1648,
+									"top": 792,
+									"width": 121,
+									"height": 65,
+									"text": "Steps 11-16 are looped for each potential hits to kill. "
+								},
+								{
 									"_type": "UMLSeqMessageView",
 									"_id": "AAAAAAGFIqCUkuwQMKI=",
 									"_parent": {
@@ -14097,7 +14221,7 @@
 												"$ref": "AAAAAAGFIqCUkuwQMKI="
 											},
 											"edgePosition": 1,
-											"text": "17 : dict with all possible hits to kill and their range"
+											"text": "18 : dict with all possible hits to kill and their range"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -14178,19 +14302,6 @@
 									"activation": {
 										"$ref": "AAAAAAGFIqCUkuwUL+8="
 									}
-								},
-								{
-									"_type": "UMLNoteView",
-									"_id": "AAAAAAGFf0EobtYi43c=",
-									"_parent": {
-										"$ref": "AAAAAAGFGQv4oqu1egA="
-									},
-									"font": "Arial;13;0",
-									"left": 1648,
-									"top": 792,
-									"width": 121,
-									"height": 65,
-									"text": "Steps 11-16 are looped for each potential hits to kill. "
 								}
 							]
 						}
@@ -14203,6 +14314,20 @@
 								"$ref": "AAAAAAGFGQv4oqu0PoQ="
 							},
 							"name": "Enter damage information",
+							"source": {
+								"$ref": "AAAAAAGFGRYIXbdGVEM="
+							},
+							"target": {
+								"$ref": "AAAAAAGFGQ6rTaxbX4g="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAGF6fYzRCbZLW0=",
+							"_parent": {
+								"$ref": "AAAAAAGFGQv4oqu0PoQ="
+							},
+							"name": "Calculate hits to kill",
 							"source": {
 								"$ref": "AAAAAAGFGRYIXbdGVEM="
 							},

@@ -9,7 +9,7 @@ GunDmgCalc: TypeAlias = 'GunDamageCalculator.GunDamageCalculator'
 
 class GunDamageInfo(DamageInfo.DamageInfo):
     """Class representing the damage information of a gun in Phantom Forces.
-    This is a subclass of the abstract DamageInfo class."""
+    This is a concrete subclass of the abstract DamageInfo class."""
 
     def __init__(self, d1: float, d2: float, r1: float, r2: float, torsoMulti: float, headMulti: float) -> None:
         # first check for reverse damage drop

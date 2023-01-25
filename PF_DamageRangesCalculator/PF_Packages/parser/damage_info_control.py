@@ -1,9 +1,11 @@
-from typing import TypeAlias
+from typing import TypeAlias, List, Union
 from ..GUI import damage_frame, multi_frame
 from .PF_regex import PF_Regex
+from ..damage_info import GunDamageInfo, GrenadeDamageInfo, DamageInfo
 
 DamageFrame: TypeAlias = 'damage_frame.DamageFrame'
 MultiFrame: TypeAlias = 'multi_frame.MultiFrame'
+DmgInfo: TypeAlias = 'DamageInfo.DamageInfo'
 
 class DamageInfoControl:
     """Deals with the information damage information from the GUI.
@@ -55,8 +57,10 @@ class DamageInfoControl:
         Returns false if there is an issue with the data in the fields."""
         match_result: bool = PF_Regex.match_two_nums(self.__damage_range)
         if match_result:
-            # Need to figure out parsing out the numbers, prob need another function from PF_regex
-            pass
+            # Need to check if second number greater than first number
+            ranges: List[float] = PF_Regex.find_all_nums(self.__damage_range)
+            if ranges[0] < ranges[1]:
+                return True
 
         return False
 
@@ -69,8 +73,36 @@ class DamageInfoControl:
         torso_result: bool = PF_Regex.match_one_non_zero_num(self.__torso_multi)
         return head_result and torso_result
             
-    def createDamageInfo(self) -> None:
-        """Parses the data and creates a DamageInfo class.
+    def createDamageInfo(self) -> DmgInfo:
+        """Parses the data and creates one of the DamageInfo objects.
+        If have multis, creates GunDamageInfo object. 
+        If not, then GrenadeDamageInfo object.
         Should be used after using the verify_all_fields() and it returning true.
-        Not doing so can result in an exception being thrown.
+        Not doing so may result in an exception being thrown.
         """
+        # Extract damage info and damage range info
+        # get this first as common between all DamageInfo classes
+        damage_result: List[float] = PF_Regex.find_all_nums(self.__damage)
+        damage_range_result: List[float] = PF_Regex.find_all_nums(self.__damage_range)
+
+        d1: float = damage_result[0]
+        d2: float = damage_result[1]
+
+        r1: float = damage_range_result[0]
+        r2: float = damage_range_result[1]
+
+        if self.__have_multis:
+            # Extract multi info
+            h_multi_result: List[float] = PF_Regex.find_all_nums(self.__head_multi)
+            t_multi_result: List[float] = PF_Regex.find_all_nums(self.__torso_multi)
+
+            h_multi: float = h_multi_result[0]
+            t_multi: float = t_multi_result[0]
+
+            # Now have all needed info, create and return GunDamageInfo object
+            return GunDamageInfo.GunDamageInfo(d1, d2, r1, r2, t_multi, h_multi)
+
+        else:
+            # Don't have multis, so create and return GrenadeDamageInfo object
+            return GrenadeDamageInfo.GrenadeDamageInfo(d1, d2, r1, r2)
+

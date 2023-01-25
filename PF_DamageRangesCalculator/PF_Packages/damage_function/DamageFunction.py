@@ -8,7 +8,7 @@ class DamageOverRangeFunction(ABC):
     """Class representing all functions for damage vs range."""
     def __init__(self) -> None:
         self.MAX_HP: Final[int] = 100
-        self.function_calculator: DmgFuncCalc = None # to be set later by setter
+        self.function_calculator: DmgFuncCalc | None = None # to be set later by setter
 
     # Setter and getters (none for MAX_HP as should be constant)
 

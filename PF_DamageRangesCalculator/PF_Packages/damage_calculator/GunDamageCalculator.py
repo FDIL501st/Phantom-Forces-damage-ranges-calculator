@@ -16,7 +16,7 @@ class GunDamageCalculator(DamageCalculator.DamageCalculator):
         self.gun_damage_info: GunDmgInfo = gun_dmg_info
         self.gun_damage_function: GunDmgFunc = GunDamageFunction.GunDamageOverRangeFunction(gun_dmg_info)
     
-    def graph_hits_to_kill() -> None:
+    def graph_hits_to_kill(self) -> None:
         pass
     
     def calculate_all_hits_to_kill(self) -> None:

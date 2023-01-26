@@ -6,6 +6,7 @@ from ..damage_function import GunDamageFunction
 GunDmgInfo: TypeAlias = 'GunDamageInfo.GunDamageInfo'
 GunDmgFunc: TypeAlias = 'GunDamageFunction.GunDamageOverRangeFunction'
 
+
 class GunDamageCalculator(DamageCalculator.DamageCalculator):
     """Calculator for hits to kill of a gun.
     Is subclass to abstract class DamageCalculator."""
@@ -15,10 +16,10 @@ class GunDamageCalculator(DamageCalculator.DamageCalculator):
         print("Constructor GunDamageCalculator object.")
         self.gun_damage_info: GunDmgInfo = gun_dmg_info
         self.gun_damage_function: GunDmgFunc = GunDamageFunction.GunDamageOverRangeFunction(gun_dmg_info)
-    
+
     def graph_hits_to_kill(self) -> None:
         pass
-    
+
     def calculate_all_hits_to_kill(self) -> None:
         pass
 
@@ -34,7 +35,7 @@ class GunDamageCalculator(DamageCalculator.DamageCalculator):
     @property
     def gun_damage_function(self) -> GunDmgFunc:
         return self.__gun_dmg_func
-    
+
     @gun_damage_function.setter
     def gun_damage_function(self, newGunDmgFunc: GunDmgFunc) -> None:
         self.__gun_dmg_func: GunDmgFunc = newGunDmgFunc

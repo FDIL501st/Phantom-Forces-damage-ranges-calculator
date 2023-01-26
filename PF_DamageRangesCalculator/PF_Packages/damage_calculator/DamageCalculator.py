@@ -11,7 +11,7 @@ class DamageCalculator(ABC):
         self.hits_to_kill: dict[str, float] = dict()    # Make a new empty dict to store hits to kill in
     
     @abstractmethod
-    def graph_hits_to_kill() -> None:
+    def graph_hits_to_kill(self) -> None:
         pass
 
     # Setter and getter for hits_to_kill
@@ -22,11 +22,3 @@ class DamageCalculator(ABC):
     @hits_to_kill.setter
     def hits_to_kill(self, new_hits_to_kill) -> None:
         self._hits_to_kill = new_hits_to_kill
-
-
-
-
-
-    
-
-

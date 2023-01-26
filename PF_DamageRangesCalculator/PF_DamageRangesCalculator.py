@@ -13,7 +13,8 @@ GunDmgCalc: typing.TypeAlias = PF_Packages.damage_calculator.GunDamageCalculator
 DmgInfo: typing.TypeAlias = PF_Packages.damage_info.DamageInfo.DamageInfo
 DmgFuncCalc: typing.TypeAlias = PF_Packages.damage_function.function_calculator.FunctionCalculator.DamageFunctionCalculator
 GunDmgFunc: typing.TypeAlias = PF_Packages.damage_function.GunDamageFunction.GunDamageOverRangeFunction
-GUI: typing.TypeAlias = PF_Packages.GUI.main_window.GUI 
+GUI: typing.TypeAlias = PF_Packages.GUI.main_window.GUI
+
 
 def main():
     # for search_path in sys.path:
@@ -31,13 +32,13 @@ def main():
     # print(isinstance(gun_dmg_calc, GunDmgInfo))
     # print(isinstance(gun_dmg_inf, GunDmgInfo))
     # print(isinstance(gun_dmg_inf, DmgInfo)) # also works here as gun_dmg_inf is an isntance of a subclass
-    
+
     # func_calc: DmgFuncCalc = DmgFuncCalc(gun_dmg_inf, 100)
     # print(func_calc.calculate_damage_one_hit('head', 50))
 
     # print(func_calc.calculate_max_range_hits_kill((1, 0, 0)))
     # print(func_calc.calculate_max_range_hits_kill((0, 0, 2)))
-    
+
     # hits = (0, 0, 1)
     # parsed: str = HitsToKillParser.convert_tuple_to_str(hits)
     # print(parsed)
@@ -55,6 +56,6 @@ def main():
     gui: GUI = GUI()
     gui.mainloop()
 
+
 if __name__ == "__main__":
     main()
-

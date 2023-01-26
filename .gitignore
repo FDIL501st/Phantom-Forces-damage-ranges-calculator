@@ -3,3 +3,4 @@
 *.sln
 **/__pycache__/**
 *.json
+*.idea

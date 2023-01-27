@@ -6,13 +6,15 @@ Frame: TypeAlias = ttk.Frame
 Label: TypeAlias = ttk.Label
 Entry: TypeAlias = ttk.Entry
 
+
 class DamageFrame(Frame):
     """The frame containing damage and damage ranges entry/text fields."""
+
     def __init__(self, master: tkinter.Misc) -> None:
         super().__init__(master)
 
-        self.damage: StringVar = StringVar()           # Stores data from dmg_entry
-        self.damage_range: StringVar = StringVar()     # stores data from dmg_range_entry
+        self.damage: StringVar = StringVar()  # Stores data from dmg_entry
+        self.damage_range: StringVar = StringVar()  # stores data from dmg_range_entry
 
         # create the grid to place the widgets in
         self.__createGrid()
@@ -39,7 +41,7 @@ class DamageFrame(Frame):
 
         dmg_range_label: Label = Label(master=self, text="Damage Ranges")
         dmg_range_label.grid(column=0, row=1)
-    
+
     def __createEntry(self) -> None:
         """Creates the entry widgets for the damage fields"""
         dmg_entry: Entry = Entry(master=self, textvariable=self.damage)

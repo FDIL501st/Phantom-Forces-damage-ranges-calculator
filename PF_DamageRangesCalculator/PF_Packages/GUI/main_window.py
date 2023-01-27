@@ -1,4 +1,5 @@
 from tkinter import Tk
+from .button.button_frame import ButtonFrame
 from .damage_frame import DamageFrame
 from .multi_frame import MultiFrame
 from .weapon_labelframe import WeaponLabelframe
@@ -44,6 +45,8 @@ class GUI(Tk):
 
         self.weapon_frame: WeaponLabelframe = WeaponLabelframe(master=self, frame=self.multi_frame)
         self.weapon_frame.grid(column=0, row=0)
+
+        self.button_frame: ButtonFrame = ButtonFrame(master=self)
 
 # if __name__ == '__main__':
 #     # Testing GUI

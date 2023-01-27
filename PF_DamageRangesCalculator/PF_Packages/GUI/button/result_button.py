@@ -1,19 +1,20 @@
 from typing import TypeAlias
-import tkinter
 from tkinter import ttk, StringVar
+from .button_frame import ButtonFrame
+from ..main_window import GUI
 
 Button: TypeAlias = ttk.Button
 
 
 # noinspection SpellCheckingInspection
-class DisplayButton(Button):
+class ResultButton(Button):
     """The button from when pressed should do some calculations and display the results.
     This class is the parent class of the button classes
     that will be actual buttons placed on the GUI.
     """
-    def __init__(self, master: tkinter.Misc) -> None:
+    def __init__(self, master: ButtonFrame) -> None:
         super().__init__(master)
-
+        self.top_master: GUI = master.top_master
         self.label: StringVar = StringVar()
         # Variable to be set by children classes
 
@@ -22,5 +23,3 @@ class DisplayButton(Button):
 
         # Using a StringVar and textvariable, so when children classes later sets the value of label,
         # the value gets set automatically, and doesn't need to be specifically updated in children constructor
-
-

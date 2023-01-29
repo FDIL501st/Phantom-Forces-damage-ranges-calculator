@@ -6,13 +6,15 @@ Frame: TypeAlias = ttk.Frame
 Label: TypeAlias = ttk.Label
 Entry: TypeAlias = ttk.Entry
 
+
 class MultiFrame(Frame):
     """The frame containing torso and head multi extry/text fields."""
+
     def __init__(self, master: tkinter.Misc) -> None:
         super().__init__(master)
 
-        self.torso_multi: StringVar = StringVar()           # Stores data from torso_entry
-        self.head_multi: StringVar = StringVar()            # stores data from head_entry
+        self.torso_multi: StringVar = StringVar()  # Stores data from torso_entry
+        self.head_multi: StringVar = StringVar()  # stores data from head_entry
 
         # create the grid to place the widgets in
         self.__createGrid()
@@ -23,7 +25,6 @@ class MultiFrame(Frame):
         # Add the entry widget for the multi fields
         self.__createEntry()
 
-        
     def __createGrid(self) -> None:
         """Creates the grid for the frame."""
         # Will make a 2x2 grid, equal spacing    
@@ -40,7 +41,7 @@ class MultiFrame(Frame):
 
         torso_label: Label = Label(master=self, text="Torso multiplier")
         torso_label.grid(column=0, row=1)
-    
+
     def __createEntry(self) -> None:
         """Creates the entry widgets for the multi fields"""
         head_entry: Entry = Entry(master=self, textvariable=self.head_multi)
@@ -48,5 +49,3 @@ class MultiFrame(Frame):
 
         torso_entry: Entry = Entry(master=self, textvariable=self.torso_multi)
         torso_entry.grid(column=1, row=1)
-
-        

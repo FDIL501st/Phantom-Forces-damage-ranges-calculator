@@ -1,12 +1,12 @@
 from typing import TypeAlias, Dict, List
 from tkinter import ttk
 from .button import Button
-from .result_button import ResultButton
-from .gun_result_button import GunResultButton
-from .grenade_result_button import GrenadeResultButton
-from ..main_window import GUI
+from . import result_button, gun_result_button, grenade_result_button
+from .. import main_window
 
 Frame: TypeAlias = ttk.Frame
+ResultButton: TypeAlias = result_button.ResultButton
+GUI: TypeAlias = 'main_window.GUI'
 
 
 class ButtonFrame(Frame):
@@ -22,8 +22,11 @@ class ButtonFrame(Frame):
             num: int = self.__find_button_type(button)
             self.buttons[num] = button
 
-        self.current_button: ResultButton | None = None
+        self.current_button: ResultButton = self.buttons[Button.GUN.value]
         # Tracks the current button being displayed
+        # Initially set to the GunResultButton as the radio buttons also start with gun selected
+        # also will display it
+        self.current_button.pack()
 
     def __create_buttons(self) -> List[ResultButton]:
         """Makes 1 button of each ResultButton type, then returns them all as a list.
@@ -40,9 +43,9 @@ class ButtonFrame(Frame):
         # This code will be hard coded to search for all types of ResultButton classes,
         # and enum literals Button has
 
-        if isinstance(button, GunResultButton):
+        if isinstance(button, gun_result_button.GunResultButton):
             return Button.GUN.value
-        elif isinstance(button, GrenadeResultButton):
+        elif isinstance(button, grenade_result_button.GrenadeResultButton):
             return Button.GRENADE.value
         else:
             raise TypeError("Did not pass a ResultButton object.")
@@ -63,6 +66,8 @@ class ButtonFrame(Frame):
         # At this point, have the button that needs to be displayed
         # so need to remove whatever is on the frame right now,
         # then display the button that needs to be displayed
-        if self.current_button:
-            self.current_button.pack_forget()
+        self.current_button.pack_forget()
         button_display.pack()
+
+        # finally update current_button with the button we are now displaying
+        self.current_button = button_display

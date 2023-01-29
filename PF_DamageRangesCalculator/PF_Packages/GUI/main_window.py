@@ -47,6 +47,7 @@ class GUI(Tk):
         self.weapon_frame.grid(column=0, row=0)
 
         self.button_frame: ButtonFrame = ButtonFrame(master=self)
+        self.button_frame.grid(column=1, row=2)
 
 # if __name__ == '__main__':
 #     # Testing GUI

@@ -1,9 +1,11 @@
 from typing import TypeAlias
 from tkinter import ttk, StringVar
-from .button_frame import ButtonFrame
-from ..main_window import GUI
+from . import button_frame
+from .. import main_window
 
 Button: TypeAlias = ttk.Button
+ButtonFrame: TypeAlias = 'button_frame.ButtonFrame'
+GUI: TypeAlias = 'main_window.GUI'
 
 
 # noinspection SpellCheckingInspection
@@ -12,6 +14,7 @@ class ResultButton(Button):
     This class is the parent class of the button classes
     that will be actual buttons placed on the GUI.
     """
+
     def __init__(self, master: ButtonFrame) -> None:
         super().__init__(master)
         self.top_master: GUI = master.top_master

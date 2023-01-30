@@ -2,5 +2,5 @@
 *.pyproj
 *.sln
 **/__pycache__/**
-*.json
+*.vscode
 *.idea

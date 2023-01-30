@@ -17,7 +17,7 @@ class ResultButton(Button):
 
     def __init__(self, master: ButtonFrame) -> None:
         super().__init__(master)
-        self.top_master: GUI = master.top_master
+        self.gui: GUI = master.gui
         self.label: StringVar = StringVar()
         # Variable to be set by children classes
 

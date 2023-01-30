@@ -1,4 +1,4 @@
-from typing import TypeAlias, List, Union
+from typing import TypeAlias, List, Optional
 from ..GUI import damage_frame, multi_frame
 from .PF_regex import PF_Regex
 from ..damage_info import GunDamageInfo, GrenadeDamageInfo, DamageInfo
@@ -7,19 +7,22 @@ DamageFrame: TypeAlias = 'damage_frame.DamageFrame'
 MultiFrame: TypeAlias = 'multi_frame.MultiFrame'
 DmgInfo: TypeAlias = 'DamageInfo.DamageInfo'
 
+
 class DamageInfoControl:
     """Deals with the information damage information from the GUI.
     This includes verifying proper data given, parsing the data
     and passing it on to one of the DamageInfo classes.
     """
-    def __init__(self, damage_frame: DamageFrame, multi_frame: MultiFrame | None) -> None:
+
+    def __init__(self, damage_frame: DamageFrame, multi_frame: Optional[MultiFrame]) -> None:
+        """Reads all fields from GUI."""
         # First get values from all the entry fields
         self.__damage: str = damage_frame.damage.get()
         self.__damage_range: str = damage_frame.damage_range.get()
 
         if multi_frame:
             # Can send None to multi_frame if dealing with grenade damage
-            # So only get values if dealing with a gun(thus multis are relevent)
+            # So only get values if dealing with a gun(thus multis are relevant)
             self.__head_multi: str = multi_frame.head_multi.get()
             self.__torso_multi: str = multi_frame.torso_multi.get()
             self.__have_multis: bool = True
@@ -34,7 +37,7 @@ class DamageInfoControl:
         Returns false if there is an issue with the data in at least 1 fields."""
         verify_damage: bool = self.__verify_damage()
         verify_range: bool = self.__verify_damageRange()
-        
+
         if self.__have_multis:
             verify_multi: bool = self.__verify_multis()
             return verify_damage and verify_range and verify_multi
@@ -72,7 +75,7 @@ class DamageInfoControl:
         head_result: bool = PF_Regex.match_one_non_zero_num(self.__head_multi)
         torso_result: bool = PF_Regex.match_one_non_zero_num(self.__torso_multi)
         return head_result and torso_result
-            
+
     def createDamageInfo(self) -> DmgInfo:
         """Parses the data and creates one of the DamageInfo objects.
         If have multis, creates GunDamageInfo object. 
@@ -105,4 +108,3 @@ class DamageInfoControl:
         else:
             # Don't have multis, so create and return GrenadeDamageInfo object
             return GrenadeDamageInfo.GrenadeDamageInfo(d1, d2, r1, r2)
-

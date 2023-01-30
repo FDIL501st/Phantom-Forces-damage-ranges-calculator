@@ -13,7 +13,7 @@ class ButtonFrame(Frame):
     """Frame storing the buttons of the GUI."""
     def __init__(self, master: GUI) -> None:
         super().__init__(master=master)
-        self.top_master: GUI = master
+        self.gui: GUI = master
 
         self.buttons: Dict[int, ResultButton] = {}
         buttons: List[ResultButton] = self.__create_buttons()

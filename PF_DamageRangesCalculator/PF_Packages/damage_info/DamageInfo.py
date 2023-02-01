@@ -2,8 +2,8 @@ from typing import TypeAlias
 from abc import ABC, abstractmethod
 from ..damage_calculator import DamageCalculator
 
-
 DmgCalc: TypeAlias = 'DamageCalculator.DamageCalculator'
+
 
 class DamageInfo(ABC):
     """Parent class for all DamageInfo classes.
@@ -15,19 +15,18 @@ class DamageInfo(ABC):
         self.min_damage: float = d2
         self.min_range: float = r1
         self.max_range: float = r2
-        self.calculator: DmgCalc | None = None   
+        self.calculator: DmgCalc | None = None
         # calculator is to be set later by subclasses to the one they need
 
-        
     @abstractmethod
     def calculate_killing_ranges(self) -> None:
         pass
 
-    def __calculate_damage_drop(self)  -> None:
+    def __calculate_damage_drop(self) -> None:
         """Calculates and set damage_drop."""
         try:
             # Simple slope calculation, change in damage/change in range
-            self._damage_drop: float = (self._max_damage - self._min_damage)/(self._min_range - self._max_range)
+            self._damage_drop: float = (self._max_damage - self._min_damage) / (self._min_range - self._max_range)
         except AttributeError:
             # This can occur during constructor as other attributes yet to exist
             # So just catch and do nothing with the exception
@@ -83,7 +82,7 @@ class DamageInfo(ABC):
             self._max_range: float = r1
             self.__calculate_damage_drop()
         # Do nothing if not given proper value
-        
+
     @property
     def min_range(self) -> float:
         return self._min_range
@@ -101,4 +100,3 @@ class DamageInfo(ABC):
         return self._damage_drop
         # No need to check of Attribute Error as constructor should give this a value
     # No setter for damage_drop as it should not be set directly
-   

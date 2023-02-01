@@ -39,8 +39,17 @@ class ResultButton(Button):
         """Reads gun damage info(damage, damage ranges and multis) from GUI fields,
         calculates all hits to kills and displays the result.
         """
+        # need to remove from grid of GUI if there was an error message (re-enter their data)
+        self.gui.error_message.grid_forget()
 
         damage_info_control: DamageInfoControl = DamageInfoControl(damage_frame=self.gui.damage_frame,
                                                                    multi_frame=self.gui.multi_frame)
         if damage_info_control.verify_all_fields():
+            # having verified the fields, now we can calculate and display the results
+
             gun_dmg_info: DamageInfo = damage_info_control.createDamageInfo()
+            gun_dmg_info.calculate_killing_ranges()
+            
+        else:
+            self.gui.error_message.grid(row=1, column=1)
+

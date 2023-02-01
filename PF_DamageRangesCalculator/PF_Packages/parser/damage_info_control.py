@@ -1,5 +1,4 @@
 from typing import TypeAlias, List, Optional
-from ..GUI import damage_frame, multi_frame
 from .PF_regex import PF_Regex
 from ..damage_info import GunDamageInfo, GrenadeDamageInfo, DamageInfo
 
@@ -69,7 +68,7 @@ class DamageInfoControl:
 
     def __verify_multis(self) -> bool:
         """Verifies the head and toro multi fields from the GUI.
-        All this means is have a positive number. This also includes decimals.
+        All this means is having a positive number. This also includes decimals.
         Returns true if all fields can be used/are in proper format.
         Returns false if there is an issue with the data in the fields."""
         head_result: bool = PF_Regex.match_one_non_zero_num(self.__head_multi)

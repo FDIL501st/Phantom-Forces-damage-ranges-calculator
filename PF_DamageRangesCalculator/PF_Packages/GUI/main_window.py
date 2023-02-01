@@ -3,7 +3,7 @@ from .button.button_frame import ButtonFrame
 from .damage_frame import DamageFrame
 from .multi_frame import MultiFrame
 from .weapon_labelframe import WeaponLabelframe
-
+from .error_messages import ErrorMessage
 
 class GUI(Tk):
     """The main window of the GUI.
@@ -49,7 +49,5 @@ class GUI(Tk):
         self.button_frame: ButtonFrame = ButtonFrame(master=self)
         self.button_frame.grid(column=1, row=2)
 
-# if __name__ == '__main__':
-#     # Testing GUI
-#     gui = GUI()
-#     gui.mainloop()
+        self.error_message: ErrorMessage = ErrorMessage(master=self)
+        # self.error_message.grid(column=1, row=1)

@@ -28,7 +28,7 @@ class GunDamageInfo(DamageInfo.DamageInfo):
         # This check is to avoid any errors of using None to call methods
         if self._calculator is not None:
             self._calculator.calculate_all_hits_to_kill()
-            # TODO - actually define calculate_all_hits_to_kill()
+
     # Getter and setters
 
     @property

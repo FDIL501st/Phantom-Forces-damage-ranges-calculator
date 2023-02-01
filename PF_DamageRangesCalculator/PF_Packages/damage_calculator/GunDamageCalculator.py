@@ -14,24 +14,15 @@ class GunDamageCalculator(DamageCalculator.DamageCalculator):
     def __init__(self, gun_dmg_info: GunDmgInfo) -> None:
         super().__init__()
         print("Constructor GunDamageCalculator object.")
-        self.gun_damage_info: GunDmgInfo = gun_dmg_info
         self.gun_damage_function: GunDmgFunc = GunDamageFunction.GunDamageOverRangeFunction(gun_dmg_info)
 
     def graph_hits_to_kill(self) -> None:
         pass
 
     def calculate_all_hits_to_kill(self) -> None:
-        pass
+        self._hits_to_kill = self.__gun_dmg_func.calculate_all_combinations_hits_to_kill()
 
     # Getters and setters
-    @property
-    def gun_damage_info(self) -> GunDmgInfo:
-        return self.__gun_dmg_info
-
-    @gun_damage_info.setter
-    def gun_damage_info(self, newGunDmgInfo: GunDmgInfo) -> None:
-        self.__gun_dmg_info: GunDmgInfo = newGunDmgInfo
-
     @property
     def gun_damage_function(self) -> GunDmgFunc:
         return self.__gun_dmg_func

@@ -16,3 +16,4 @@ class ErrorMessage(Label):
         self.config(text="Invalid damage info entered.", foreground='#FF0000')
 
     # consider a way for different variations of error messages via decorator pattern
+    # or something similar

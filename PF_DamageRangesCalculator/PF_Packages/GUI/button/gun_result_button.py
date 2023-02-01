@@ -33,6 +33,8 @@ class GunResultButton(ResultButton):
 
             gun_dmg_info: DamageInfo = damage_info_control.createDamageInfo()
             gun_dmg_info.calculate_killing_ranges()
+            # now gun_dmg_info.calculator has result
+
 
         else:
             self.gui.error_message.grid(row=1, column=1)

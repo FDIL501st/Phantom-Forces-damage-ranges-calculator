@@ -1,7 +1,8 @@
 from typing import TypeAlias
-from tkinter import ttk, StringVar
+from tkinter import ttk, StringVar, Toplevel
 from . import button_frame
 from .. import main_window
+from ...dataTypes import HitsToKill
 from ...parser.damage_info_control import DamageInfoControl
 from ...damage_info import DamageInfo
 
@@ -41,4 +42,9 @@ class ResultButton(Button):
         """
         # TODO - somehow make the definations less repetive as only DamageInfoControl line is difference
         # TODO - add the display results part to the command
+
+    def __display_results(self, results: HitsToKill) -> None:
+        """Displays the results in a pop-up window.
+        """
+
 

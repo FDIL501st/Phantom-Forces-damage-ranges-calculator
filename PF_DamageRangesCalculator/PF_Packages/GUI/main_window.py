@@ -5,6 +5,7 @@ from .multi_frame import MultiFrame
 from .weapon_labelframe import WeaponLabelframe
 from .error_messages import ErrorMessage
 
+
 class GUI(Tk):
     """The main window of the GUI.
     The main entry point to the entire GUI."""

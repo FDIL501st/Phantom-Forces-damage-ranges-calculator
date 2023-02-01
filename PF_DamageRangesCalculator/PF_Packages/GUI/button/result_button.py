@@ -33,23 +33,12 @@ class ResultButton(Button):
         # Also set the command here, as the command is common between the 2 buttons
         # only difference betwee buttons should be the label they have
 
-        self.config(command=self.calculate_hits_to_kill)
+        self.config(command=self.calculate_and_display)
 
-    def calculate_hits_to_kill(self) -> None:
-        """Reads gun damage info(damage, damage ranges and multis) from GUI fields,
-        calculates all hits to kills and displays the result.
+    def calculate_and_display(self) -> None:
+        """Reads damage info(damage, damage ranges and maybe multis) from GUI fields,
+        then does the calculations required of the button, and then display the results.
         """
-        # need to remove from grid of GUI if there was an error message (re-enter their data)
-        self.gui.error_message.grid_forget()
-
-        damage_info_control: DamageInfoControl = DamageInfoControl(damage_frame=self.gui.damage_frame,
-                                                                   multi_frame=self.gui.multi_frame)
-        if damage_info_control.verify_all_fields():
-            # having verified the fields, now we can calculate and display the results
-
-            gun_dmg_info: DamageInfo = damage_info_control.createDamageInfo()
-            gun_dmg_info.calculate_killing_ranges()
-            
-        else:
-            self.gui.error_message.grid(row=1, column=1)
+        # TODO - somehow make the definations less repetive as only DamageInfoControl line is difference
+        # TODO - add the display results part to the command
 

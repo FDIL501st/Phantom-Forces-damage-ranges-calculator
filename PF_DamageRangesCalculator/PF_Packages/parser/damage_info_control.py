@@ -13,7 +13,7 @@ class DamageInfoControl:
     and passing it on to one of the DamageInfo classes.
     """
 
-    def __init__(self, damage_frame: DamageFrame, multi_frame: Optional[MultiFrame]) -> None:
+    def __init__(self, damage_frame: DamageFrame, multi_frame: Optional[MultiFrame] = None) -> None:
         """Reads all fields from GUI."""
         # First get values from all the entry fields
         self.__damage: str = damage_frame.damage.get()

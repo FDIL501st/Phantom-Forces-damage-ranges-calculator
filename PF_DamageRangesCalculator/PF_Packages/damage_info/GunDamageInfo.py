@@ -1,7 +1,6 @@
 from typing import TypeAlias
 from . import DamageInfo
-from ..damage_calculator import GunDamageCalculator 
-
+from ..damage_calculator import GunDamageCalculator
 
 # Some odd reason gets error if try to use alias for base class name 
 GunDmgCalc: TypeAlias = 'GunDamageCalculator.GunDamageCalculator'
@@ -23,16 +22,15 @@ class GunDamageInfo(DamageInfo.DamageInfo):
         self.torso_multi: float = torsoMulti
         self.head_multi: float = headMulti
 
-
     # Override abstract method
     def calculate_killing_ranges(self) -> None:
         # Only try to use the calculator if the calculator is set to some object and is not None
         # This check is to avoid any errors of using None to call methods
         if self._calculator is not None:
             self._calculator.calculate_all_hits_to_kill()
-    
+            # TODO - actually define calculate_all_hits_to_kill()
     # Getter and setters
-    
+
     @property
     def reverse_damage_drop(self) -> bool:
         return self._reverse_damage_drop
@@ -55,7 +53,7 @@ class GunDamageInfo(DamageInfo.DamageInfo):
         # Only set multi is positive
         if multi > 0:
             self._torso_multi = multi
-    
+
     @property
     def head_multi(self) -> float:
         try:

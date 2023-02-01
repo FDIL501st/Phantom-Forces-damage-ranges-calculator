@@ -1,8 +1,9 @@
 import unittest
-import PF_Packages.parser.PF_regex
+import PF_DamageRangesCalculator.PF_Packages.parser.PF_regex
 from typing import TypeAlias
 
-PF_Regex: TypeAlias = PF_Packages.parser.PF_regex.PF_Regex
+PF_Regex: TypeAlias = PF_DamageRangesCalculator.PF_Packages.parser.PF_regex.PF_Regex
+
 
 class Test_test_PF_regex_match_two_nums(unittest.TestCase):
     """Class testing PF_Regex.match_two_non_neg_nums()."""
@@ -81,7 +82,7 @@ class Test_test_PF_regex_match_two_nums(unittest.TestCase):
 
     def test_two_non_nums_many_decimals(self):
         """Tests regex if corrently unable to match data that has more than 1 decimal.
-        Data represents when someone accidently puts in more than 1 decimals."""    
+        Data represents when someone accidently puts in more than 1 decimals."""
         e: bool = False
         msg = "Did not correctly not match having incorrect numbers."
         data = "12 - 54.33.44"
@@ -104,7 +105,7 @@ class Test_test_PF_regex_match_two_nums(unittest.TestCase):
         data = "fifty - sixty"
         a = PF_Regex.match_two_nums(data=data)
         self.assertEqual(e, a, msg=msg)
-    
+
     def test_zero(self):
         """Tests regex if correctly able to match data that has a 0.
         Depleted uranium makes damage range 0-150 for example.
@@ -119,7 +120,7 @@ class Test_test_PF_regex_match_two_nums(unittest.TestCase):
         """Tests regex if correctly able to match data that has the 2 numbers, with words.
         Data could represent rare cases where user decides to use words(like unit) as well with their two numbers.
         Regex should still be able to match the numbers."""
-        
+
         e: bool = True
         msg = "Did not correctly match the 2 positive numbers."
         data = "30 studs - 45 studs"
@@ -147,6 +148,7 @@ class Test_test_PF_regex_match_two_nums(unittest.TestCase):
         data = "40 studs"
         a = PF_Regex.match_two_nums(data=data)
         self.assertEqual(e, a, msg=msg)
+
 
 if __name__ == '__main__':
     unittest.main()

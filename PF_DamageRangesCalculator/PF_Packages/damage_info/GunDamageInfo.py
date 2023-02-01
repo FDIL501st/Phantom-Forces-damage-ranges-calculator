@@ -22,6 +22,9 @@ class GunDamageInfo(DamageInfo.DamageInfo):
         self.torso_multi: float = torsoMulti
         self.head_multi: float = headMulti
 
+        # Need to now set the calculator
+        self._calculator = GunDamageCalculator.GunDamageCalculator(self)
+
     # Override abstract method
     def calculate_killing_ranges(self) -> None:
         # Only try to use the calculator if the calculator is set to some object and is not None

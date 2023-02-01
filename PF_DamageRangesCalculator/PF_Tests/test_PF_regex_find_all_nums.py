@@ -1,5 +1,5 @@
 import unittest
-import PF_Packages.parser.PF_regex
+import PF_DamageRangesCalculator.PF_Packages.parser.PF_regex
 from typing import TypeAlias, List
 
 PF_Regex: TypeAlias = PF_Packages.parser.PF_regex.PF_Regex

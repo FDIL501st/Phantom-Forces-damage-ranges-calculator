@@ -15,7 +15,7 @@ class DamageInfo(ABC):
         self.min_damage: float = d2
         self.min_range: float = r1
         self.max_range: float = r2
-        self.calculator: DmgCalc | None = None
+        self._calculator: DmgCalc | None = None
         # calculator is to be set later by subclasses to the one they need
 
     @abstractmethod
@@ -44,7 +44,7 @@ class DamageInfo(ABC):
     def calculator(self, calculator: DmgCalc) -> None:
         # Before setting calculator, must check if calculator passed is a subclass of DamageCalculator
         # Don't want to set objects that aren't actually a DamageCalculator
-        if issubclass(type(calculator), type(DmgCalc)):
+        if issubclass(type(calculator), DamageCalculator.DamageCalculator):
             self._calculator = calculator
 
     @property

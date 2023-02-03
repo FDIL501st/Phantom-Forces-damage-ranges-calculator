@@ -1,5 +1,6 @@
 from typing import TypeAlias
 from tkinter import ttk, Toplevel
+from .result_tables import GunResultTable
 from ....dataTypes import HitsToKill
 
 Label: TypeAlias = ttk.Label
@@ -20,22 +21,18 @@ class ResultWindow(Toplevel):
 
         ResultWindow.count += 1  # add 1 to count as a new window was created
 
-        self.__results_str: str = ""
-        for hits_to_kill, kill_range in results.items():
-            self.__results_str += hits_to_kill + ', ' + str(kill_range) + '\n'
-        # TODO - better results formatting
-
         # configure the window
         self.title("Results" + str(ResultWindow.count))  # window title
-        self.geometry("400x400")  # window size
+        self.geometry("400x600")  # window size
 
         # Add the widgets and related variables
 
-        self.display_label: Label = Label(master=self, text=self.__results_str)
         self.back_button: Button = Button(master=self, command=self.close)
+        # X button exists, to might be unneeded
         self.save_button: Button = Button(master=self, command=self.save_results)
 
-        self.display_label.pack()
+        self.result_table: GunResultTable = GunResultTable(master=self, results=results)
+        self.result_table.pack()
         # TODO - better placements of widgets
 
     def close(self) -> None:

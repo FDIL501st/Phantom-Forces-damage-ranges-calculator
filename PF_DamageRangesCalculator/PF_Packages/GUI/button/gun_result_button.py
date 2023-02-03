@@ -1,6 +1,7 @@
 from typing import TypeAlias
 from . import button_frame
 from .result_button import ResultButton
+from .results_window.result_window import ResultWindow
 from ...parser.damage_info_control import DamageInfoControl
 from ...damage_info import DamageInfo
 
@@ -34,7 +35,8 @@ class GunResultButton(ResultButton):
             gun_dmg_info: DamageInfo = damage_info_control.createDamageInfo()
             gun_dmg_info.calculate_killing_ranges()
             # now gun_dmg_info.calculator has result
-
+            # So, we print that result on a new window
+            result_win: ResultWindow = ResultWindow(gun_dmg_info.calculator.hits_to_kill)
 
         else:
             self.gui.error_message.grid(row=1, column=1)

@@ -1,6 +1,7 @@
 from typing import TypeAlias
 from .result_button import ResultButton
 from . import button_frame
+from .results_window.result_window import ResultWindow
 from ...parser.damage_info_control import DamageInfoControl
 from ...damage_info import DamageInfo
 
@@ -29,8 +30,10 @@ class GrenadeResultButton(ResultButton):
         if damage_info_control.verify_all_fields():
             # having verified the fields, now we can calculate and display the results
 
-            gun_dmg_info: DamageInfo = damage_info_control.createDamageInfo()
-            gun_dmg_info.calculate_killing_ranges()
+            grenade_dmg_info: DamageInfo = damage_info_control.createDamageInfo()
+            grenade_dmg_info.calculate_killing_ranges()
+            # TODO - grenadeDamageInfo has to implement calculate_killing_ranges()
+            result_win: ResultWindow = ResultWindow(grenade_dmg_info.calculator.hits_to_kill)
 
         else:
             self.gui.error_message.grid(row=1, column=1)

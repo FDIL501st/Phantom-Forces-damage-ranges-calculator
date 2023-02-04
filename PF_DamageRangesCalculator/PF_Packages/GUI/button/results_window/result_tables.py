@@ -1,5 +1,5 @@
 from typing import TypeAlias
-from tkinter import ttk
+from tkinter import ttk, Scrollbar
 from . import result_window
 from ....dataTypes import HitsToKill
 
@@ -12,10 +12,11 @@ Style: TypeAlias = ttk.Style
 class ResultTable(Frame):
     """Class representing the table used to show the results in."""
 
-    def __init__(self, master: ResultWindow) -> None:
+    def __init__(self, master: ResultWindow, results: HitsToKill) -> None:
         """Common constructor for all child classes."""
         super().__init__(master=master)
 
+        self.create_scrollbar(num_row=len(results))
         self.style = Style(master=self)
         # thus the style exists as a child of the frame
 
@@ -26,17 +27,17 @@ class ResultTable(Frame):
         # Left.TLabel is under TLabel
         # Heading.Left.TLabel is under Left, which is under TLabel
 
-        self.style.configure('TLabel', height=2, relief='groove', borderwidth=1)
+        self.style.configure('Table.TLabel', height=2, relief='groove', borderwidth=1)
         # potential relief: groove, solid, ridge
         # all labels will have height of 2,
         # with border of groove and border width of 1
 
-        self.style.configure('Left.TLabel', width=40)
-        self.style.configure('Right.TLabel', width=20)
+        self.style.configure('Left.Table.TLabel', width=40)
+        self.style.configure('Right.Table.TLabel', width=20)
         # left column will have width of 40, right one 20
 
-        self.style.configure('H1.Left.TLabel', relief='solid', borderwidth=10)
-        self.style.configure('H2.Right.TLabel', relief='solid', borderwidth=10)
+        self.style.configure('H1.Left.Table.TLabel', relief='solid', borderwidth=10)
+        self.style.configure('H2.Right.Table.TLabel', relief='solid', borderwidth=10)
         # headers will have solid borders
         # Unsure if this is working or not
 
@@ -45,12 +46,20 @@ class ResultTable(Frame):
         Will be placed as the top row of the table.
         """
         # create the header labels
-        header1_label: Label = Label(master=self, text=header1, style='H1.Left.TLabel')
-        header2_label: Label = Label(master=self, text=header2, style='H2.Right.TLabel')
+        header1_label: Label = Label(master=self, text=header1, style='H1.Left.Table.TLabel')
+        header2_label: Label = Label(master=self, text=header2, style='H2.Right.Table.TLabel')
 
         # place the header labels
         header1_label.grid(row=0, column=0)
         header2_label.grid(row=0, column=1)
+
+    def create_scrollbar(self, num_row: int) -> None:
+        """Creates a vertical scrollbar and places it on the right side."""
+        scrollbar: Scrollbar = Scrollbar(master=self, orient='vertical')
+        scrollbar.grid(row=0, column=2, rowspan=num_row)
+        # Seems that frames can't accept scrollbars, need a different widget
+        # self.config(yscrollcommand=scrollbar.set)
+        # scrollbar.config(command=self.yview)
 
 
 class GunResultTable(ResultTable):
@@ -60,7 +69,7 @@ class GunResultTable(ResultTable):
         """Will create the table with all the results placed within the frame.
         To see the results, just need to place the frame on the master widget.
         """
-        super().__init__(master=master)
+        super().__init__(master=master, results=results)
         self.create_header("Hits to Kill", "Range it can kill to")
         self.populate_table(results=results)
 
@@ -72,8 +81,8 @@ class GunResultTable(ResultTable):
         num_row: int = 1  # keeps track of what row to insert to
         for hits, kill_range in results.items():
             # create the labels
-            hits_label: Label = Label(master=self, text=hits, style='Left.TLabel')
-            range_label: Label = Label(master=self, text=str(kill_range), style='Right.TLabel')
+            hits_label: Label = Label(master=self, text=hits, style='Left.Table.TLabel')
+            range_label: Label = Label(master=self, text=str(kill_range), style='Right.Table.TLabel')
 
             # place the labels on self
             hits_label.grid(row=num_row, column=0)

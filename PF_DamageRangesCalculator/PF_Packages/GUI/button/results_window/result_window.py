@@ -1,10 +1,12 @@
-from typing import TypeAlias
+import tkinter
+from typing import TypeAlias, Literal
 from tkinter import ttk, Toplevel
 from .result_tables import GunResultTable
 from ....dataTypes import HitsToKill
 
 Label: TypeAlias = ttk.Label
 Button: TypeAlias = ttk.Button
+BOTH: Literal["both"] = tkinter.BOTH
 
 
 class ResultWindow(Toplevel):
@@ -23,7 +25,7 @@ class ResultWindow(Toplevel):
 
         # configure the window
         self.title("Results" + str(ResultWindow.count))  # window title
-        self.geometry("400x600")  # window size
+        self.geometry("550x600")  # window size
 
         # Add the widgets and related variables
 
@@ -32,7 +34,7 @@ class ResultWindow(Toplevel):
         self.save_button: Button = Button(master=self, command=self.save_results)
 
         self.result_table: GunResultTable = GunResultTable(master=self, results=results)
-        self.result_table.pack()
+        self.result_table.pack(fill=BOTH)
         # TODO - better placements of widgets
 
     def close(self) -> None:

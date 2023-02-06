@@ -5,3 +5,4 @@
 *.vscode
 *.idea
 /PF_DamageRangesCalculator/Results/
+*Results

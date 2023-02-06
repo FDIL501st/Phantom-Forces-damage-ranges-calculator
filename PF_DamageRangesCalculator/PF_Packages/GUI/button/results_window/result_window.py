@@ -1,13 +1,14 @@
 import tkinter
 from typing import TypeAlias, Literal
 from tkinter import ttk, Toplevel
-from .result_tables import GunResultTable
+from . import result_tables, save_result
 from ....dataTypes import HitsToKill
 
 Label: TypeAlias = ttk.Label
 Button: TypeAlias = ttk.Button
 BOTH: Literal["both"] = tkinter.BOTH
-
+GunResultTable: TypeAlias = result_tables.GunResultTable
+SaveButton: TypeAlias = 'save_result.SaveButton'
 
 class ResultWindow(Toplevel):
     """
@@ -31,17 +32,15 @@ class ResultWindow(Toplevel):
 
         self.back_button: Button = Button(master=self, command=self.close)
         # X button exists, to might be unneeded
-        self.save_button: Button = Button(master=self, command=self.save_results)
 
         self.result_table: GunResultTable = GunResultTable(master=self, results=results)
         self.result_table.pack(fill=BOTH)
+
+        self.save_button: Button = save_result.SaveButton(master=self)
+        self.save_button.pack()
         # TODO - better placements of widgets
 
     def close(self) -> None:
         """Closes the window."""
         self.destroy()
 
-    def save_results(self) -> None:
-        """Creates a .txt file to which the results are written into.
-        Then the .txt file will be saved within a local folder.
-        """

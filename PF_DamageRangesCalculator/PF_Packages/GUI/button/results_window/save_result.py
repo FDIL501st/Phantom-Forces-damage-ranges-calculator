@@ -1,5 +1,7 @@
-from typing import TypeAlias
+from typing import TypeAlias, List
 from tkinter import ttk
+import os
+
 from . import result_window, result_tables
 
 Button: TypeAlias = ttk.Button
@@ -19,6 +21,17 @@ class SaveButton(Button):
         self.config(command=self.__save)
         self.__results: str = master.result_table.get_text()
 
+        self.__results_directory_path: str = "./Results"
+
+        # First check if Results directory exists
+        if not os.path.isdir(self.__results_directory_path):
+            # if it doesn't, create the directory
+            os.mkdir(self.__results_directory_path)
+        # At this point, Results directory exists
+
+        # find all files that already exist within directory
+        self.files: List[str] = os.listdir(self.__results_directory_path)
+
     def __save(self) -> None:
         """Creates a file and puts results in it.
         Files are saved in a directly called Results.
@@ -26,8 +39,21 @@ class SaveButton(Button):
         Nor will they be deleted.
         """
 
-        # Need to figure out a way figure out if files exists or not
-        # Currently thinking having a list, which gets filled up during constructor
-        # with all file names in Results directory
-        with open("./Results/result.txt", 'w') as f:
+        # do a loop to find a file name that doesn't exist
+        i: int = 1
+        filename: str = "result"
+        while True:
+            potential_name: str = filename+str(i)+".txt"
+            if potential_name not in self.files:
+                # found the name to use
+                filename = potential_name
+                break
+
+            # need to loop to next potential name
+            i += 1
+
+        # at this point, have a filename that doesn't exist right now
+        pathname: str = os.path.join(self.__results_directory_path, filename)
+
+        with open(pathname, 'w') as f:
             f.write(self.__results)

@@ -21,8 +21,12 @@ class SaveButton(Button):
         self.config(command=self.__save)
         self.__results: str = master.result_table.get_text()
 
-        self.__results_directory_path: str = "./Results"
+        # Issue with checking results here is if open multiple results windows,
+        # then press save on all of them, only 1 file gets saved, not all of them
+        # as the files in the directory at the creation of the windows don't have those save files
 
+        # This only work if open a new window after saving results from another window
+        self.__results_directory_path: str = "./Results"
         # First check if Results directory exists
         if not os.path.isdir(self.__results_directory_path):
             # if it doesn't, create the directory

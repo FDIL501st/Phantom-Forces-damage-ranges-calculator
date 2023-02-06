@@ -32,7 +32,7 @@ class GrenadeResultButton(ResultButton):
 
             grenade_dmg_info: DamageInfo = damage_info_control.createDamageInfo()
             grenade_dmg_info.calculate_killing_ranges()
-            result_win: ResultWindow = ResultWindow(grenade_dmg_info.calculator.hits_to_kill)
+            result_win: ResultWindow = ResultWindow(grenade_dmg_info.calculator.hits_to_kill, grenade=True)
 
         else:
             self.gui.error_message.grid(row=1, column=1)

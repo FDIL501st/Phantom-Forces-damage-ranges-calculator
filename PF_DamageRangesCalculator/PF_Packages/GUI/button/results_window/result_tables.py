@@ -96,3 +96,19 @@ class GunResultTable(ResultTable):
             # move to next line
             self.insert(END, '\n')
             # Now we can loop
+
+
+class GrenadeResultTable(ResultTable):
+    """Class represents the result table for grenade results."""
+    def __init__(self, master: ResultWindow, results: HitsToKill) -> None:
+        """Will create the table with all the results placed within the frame.
+        To see the results, just need to place the frame on the master widget.
+        """
+        super().__init__(master=master, results=results)
+        self._create_header("Grenade", "Grenade kill radius")
+        self.__display_results(results=results)
+
+    def __display_results(self, results: HitsToKill) -> None:
+        """Inserts the grenade results to the text widget so it can be displayed."""
+        self._end_column1(line_num=3)
+        self.insert(END, results.get("Grenade kill radius"))

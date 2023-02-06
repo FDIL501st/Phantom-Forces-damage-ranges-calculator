@@ -8,6 +8,7 @@ Label: TypeAlias = ttk.Label
 Button: TypeAlias = ttk.Button
 BOTH: Literal["both"] = tkinter.BOTH
 GunResultTable: TypeAlias = result_tables.GunResultTable
+GrenadeResultTable: TypeAlias = result_tables.GrenadeResultTable
 SaveButton: TypeAlias = 'save_result.SaveButton'
 
 
@@ -18,7 +19,7 @@ class ResultWindow(Toplevel):
 
     count: int = 0  # counts number of results window created
 
-    def __init__(self, results: HitsToKill) -> None:
+    def __init__(self, results: HitsToKill, grenade: bool = False) -> None:
         super().__init__()
         # Will not link to gui, as want this window to be separate
         # allows for more flexibility on user end as can make more than 1
@@ -34,7 +35,11 @@ class ResultWindow(Toplevel):
         self.back_button: Button = Button(master=self, command=self.close)
         # X button exists, to might be unneeded
 
-        self.result_table: GunResultTable = GunResultTable(master=self, results=results)
+        if not grenade:
+            self.result_table: GunResultTable = GunResultTable(master=self, results=results)
+        else:
+            self.result_table: GrenadeResultTable = GrenadeResultTable(master=self, results=results)
+
         self.result_table.pack(fill=BOTH)
 
         self.save_button: Button = save_result.SaveButton(master=self)

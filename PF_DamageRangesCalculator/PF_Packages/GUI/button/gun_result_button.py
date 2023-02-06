@@ -6,7 +6,7 @@ from ...parser.damage_info_control import DamageInfoControl
 from ...damage_info import DamageInfo
 
 ButtonFrame: TypeAlias = 'button_frame.ButtonFrame'
-DamageInfo: TypeAlias = 'DamageInfo.DamageInfo'
+DmgInfo: TypeAlias = 'DamageInfo.DamageInfo'
 
 
 class GunResultButton(ResultButton):
@@ -32,7 +32,7 @@ class GunResultButton(ResultButton):
         if damage_info_control.verify_all_fields():
             # having verified the fields, now we can calculate and display the results
 
-            gun_dmg_info: DamageInfo = damage_info_control.createDamageInfo()
+            gun_dmg_info: DmgInfo = damage_info_control.createDamageInfo()
             gun_dmg_info.calculate_killing_ranges()
             # now gun_dmg_info.calculator has result
             # So, we print that result on a new window

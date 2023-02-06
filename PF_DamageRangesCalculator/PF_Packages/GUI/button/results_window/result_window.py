@@ -10,6 +10,7 @@ BOTH: Literal["both"] = tkinter.BOTH
 GunResultTable: TypeAlias = result_tables.GunResultTable
 SaveButton: TypeAlias = 'save_result.SaveButton'
 
+
 class ResultWindow(Toplevel):
     """
     Window that displays the results of the calculations done when the button is pressed.
@@ -38,9 +39,7 @@ class ResultWindow(Toplevel):
 
         self.save_button: Button = save_result.SaveButton(master=self)
         self.save_button.pack()
-        # TODO - better placements of widgets
 
     def close(self) -> None:
         """Closes the window."""
         self.destroy()
-

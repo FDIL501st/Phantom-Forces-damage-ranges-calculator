@@ -1,6 +1,8 @@
 from typing import TypeAlias, List, Optional
 from .PF_regex import PF_Regex
 from ..damage_info import GunDamageInfo, GrenadeDamageInfo, DamageInfo
+from ..GUI import damage_frame, multi_frame
+
 
 DamageFrame: TypeAlias = 'damage_frame.DamageFrame'
 MultiFrame: TypeAlias = 'multi_frame.MultiFrame'

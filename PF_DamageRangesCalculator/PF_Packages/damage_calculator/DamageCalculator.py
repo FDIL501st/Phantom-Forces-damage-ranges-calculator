@@ -7,7 +7,6 @@ class DamageCalculator(ABC):
 
     def __init__(self) -> None:
         super().__init__()
-        print("Constructor DamageCalculator abstract class.")
         self._hits_to_kill: dict[str, float] = dict()  # Make a new empty dict to store hits to kill in
 
     @abstractmethod

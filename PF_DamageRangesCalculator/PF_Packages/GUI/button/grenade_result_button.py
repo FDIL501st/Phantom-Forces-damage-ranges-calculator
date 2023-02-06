@@ -32,7 +32,6 @@ class GrenadeResultButton(ResultButton):
 
             grenade_dmg_info: DamageInfo = damage_info_control.createDamageInfo()
             grenade_dmg_info.calculate_killing_ranges()
-            # TODO - grenadeDamageInfo has to implement calculate_killing_ranges()
             result_win: ResultWindow = ResultWindow(grenade_dmg_info.calculator.hits_to_kill)
 
         else:

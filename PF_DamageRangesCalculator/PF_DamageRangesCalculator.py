@@ -1,19 +1,19 @@
 # import sys
 import typing
-import PF_Packages.damage_info.GunDamageInfo
-import PF_Packages.damage_calculator.GunDamageCalculator
-import PF_Packages.damage_function.GunDamageFunction
-import PF_Packages.damage_info.DamageInfo
-import PF_Packages.damage_function.function_calculator.FunctionCalculator
+# import PF_Packages.damage_info.GunDamageInfo
+# import PF_Packages.damage_calculator.GunDamageCalculator
+# import PF_Packages.damage_function.GunDamageFunction
+# import PF_Packages.damage_info.DamageInfo
+# import PF_Packages.damage_function.function_calculator.FunctionCalculator
 # from PF_Packages.parser.HitsToKillParser import HitsToKillParser
 import PF_Packages.GUI.main_window
 
 TypeAlias = typing.TypeAlias
-GunDmgInfo: TypeAlias = PF_Packages.damage_info.GunDamageInfo.GunDamageInfo
-GunDmgCalc: TypeAlias = PF_Packages.damage_calculator.GunDamageCalculator.GunDamageCalculator
-DmgInfo: TypeAlias = PF_Packages.damage_info.DamageInfo.DamageInfo
-DmgFuncCalc: TypeAlias = PF_Packages.damage_function.function_calculator.FunctionCalculator.DamageFunctionCalculator
-GunDmgFunc: TypeAlias = PF_Packages.damage_function.GunDamageFunction.GunDamageOverRangeFunction
+# GunDmgInfo: TypeAlias = PF_Packages.damage_info.GunDamageInfo.GunDamageInfo
+# GunDmgCalc: TypeAlias = PF_Packages.damage_calculator.GunDamageCalculator.GunDamageCalculator
+# DmgInfo: TypeAlias = PF_Packages.damage_info.DamageInfo.DamageInfo
+# DmgFuncCalc: TypeAlias = PF_Packages.damage_function.function_calculator.FunctionCalculator.DamageFunctionCalculator
+# GunDmgFunc: TypeAlias = PF_Packages.damage_function.GunDamageFunction.GunDamageOverRangeFunction
 GUI: TypeAlias = PF_Packages.GUI.main_window.GUI
 
 

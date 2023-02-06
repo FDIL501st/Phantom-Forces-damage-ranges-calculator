@@ -48,8 +48,6 @@ class WeaponLabelframe(Labelframe):
             variable=self.weapon,
             value=1,
             command=self.set_frames,
-            state=tkinter.DISABLED
-            # TODO - remove state line when implement grenade button
         )
         self.grenade_radiobutton.grid(row=1)
 

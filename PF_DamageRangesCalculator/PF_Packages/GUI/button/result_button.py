@@ -1,9 +1,8 @@
 from typing import TypeAlias
-from tkinter import ttk, StringVar, Toplevel
+from tkinter import ttk, StringVar
 from . import button_frame
 from .. import main_window
 from ...dataTypes import HitsToKill
-from ...parser.damage_info_control import DamageInfoControl
 from ...damage_info import DamageInfo
 
 Button: TypeAlias = ttk.Button

@@ -1,7 +1,7 @@
 import unittest
 from typing import TypeAlias
-from src.PF_Packages.damage_function.GunDamageFunction import GunDamageOverRangeFunction
-from src.PF_Packages.damage_info import GunDamageInfo
+from PF_Packages import GunDamageOverRangeFunction
+from PF_Packages import GunDamageInfo
 
 GunDmgFunc: TypeAlias = GunDamageOverRangeFunction
 GunDmgInfo: TypeAlias = GunDamageInfo.GunDamageInfo

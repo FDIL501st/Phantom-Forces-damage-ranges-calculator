@@ -1,6 +1,7 @@
 import unittest
-import src.PF_Packages.parser.PF_regex
 from typing import TypeAlias
+
+import src.PF_Packages
 
 PF_Regex: TypeAlias = src.PF_Packages.parser.PF_regex.PF_Regex
 

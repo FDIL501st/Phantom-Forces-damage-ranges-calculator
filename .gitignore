@@ -4,5 +4,5 @@
 **/__pycache__/**
 *.vscode
 *.idea
-/src/Results/
 *Results
+/Design Diagrams/

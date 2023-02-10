@@ -1,9 +1,9 @@
 import typing
 
-import PF_DamageRangesCalculator.PF_Packages.GUI.main_window
+import PF_Packages.GUI.main_window
 
 TypeAlias = typing.TypeAlias
-GUI: TypeAlias = PF_DamageRangesCalculator.PF_Packages.GUI.main_window.GUI
+GUI: TypeAlias = PF_Packages.GUI.main_window.GUI
 
 
 def main():

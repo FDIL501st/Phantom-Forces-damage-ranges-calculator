@@ -1,8 +1,8 @@
 import unittest
-import PF_DamageRangesCalculator.PF_Packages.parser.PF_regex
+import src.PF_Packages.parser.PF_regex
 from typing import TypeAlias
 
-PF_Regex: TypeAlias = PF_Packages.parser.PF_regex.PF_Regex
+PF_Regex: TypeAlias = src.PF_Packages.parser.PF_regex.PF_Regex
 
 class Test_test_PF_regex_match_one_non_zero_num(unittest.TestCase):   
     """Class testing PF_Regex.match_one_pos_num()."""

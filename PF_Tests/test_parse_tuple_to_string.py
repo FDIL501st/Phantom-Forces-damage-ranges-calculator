@@ -1,6 +1,6 @@
 import unittest
-from PF_DamageRangesCalculator.PF_Packages.parser.HitsToKillParser import HitsToKillParser
-from PF_DamageRangesCalculator.PF_Packages.dataTypes import Hits
+from src.PF_Packages.parser.HitsToKillParser import HitsToKillParser
+from src.PF_Packages.dataTypes import Hits
 
 
 class Test_test_parse_tuple_to_string(unittest.TestCase):

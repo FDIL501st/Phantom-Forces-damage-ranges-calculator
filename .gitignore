@@ -5,9 +5,9 @@
 *.vscode
 *.idea
 *Results
-/Design Diagrams/
-/build/
-/env_PF_App/
-/PF_Tests/
+*Design Diagrams
+*build
+*env_PF_App
+*PF_Tests
 PF_DamageRangesCalculator.spec
 

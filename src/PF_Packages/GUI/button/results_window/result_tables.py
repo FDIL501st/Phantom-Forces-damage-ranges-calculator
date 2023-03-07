@@ -98,8 +98,8 @@ class GunResultTable(ResultTable):
             self.insert(float(line_num), kill_hits)
             # add in column seperator
             self._end_column1(line_num=line_num)
-            # insert kill_range
-            self.insert(END, kill_range)
+            # insert kill_range, will round to 1 decimal place
+            self.insert(END, round(kill_range, 1))
             # move to next line
             self.insert(END, '\n')
             # Now we can loop
@@ -116,6 +116,7 @@ class GrenadeResultTable(ResultTable):
         self.__display_results(results=results)
 
     def __display_results(self, results: HitsToKill) -> None:
-        """Inserts the grenade results to the text widget so it can be displayed."""
+        """Inserts the grenade results to the text widget, so it can be displayed."""
         self._end_column1(line_num=3)
-        self.insert(END, results.get("Grenade kill radius"))
+        # round kill radius to 1 decimal place
+        self.insert(END, round(results.get("Grenade kill radius"), 1))

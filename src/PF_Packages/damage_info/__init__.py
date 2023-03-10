@@ -1,1 +1,0 @@
-# Package for all classes in DamageInfo hierarchy

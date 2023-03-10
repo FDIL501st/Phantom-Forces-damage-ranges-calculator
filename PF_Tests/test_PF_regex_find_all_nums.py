@@ -1,8 +1,9 @@
 import unittest
-import PF_DamageRangesCalculator.PF_Packages.parser.PF_regex
 from typing import TypeAlias, List
 
-PF_Regex: TypeAlias = PF_Packages.parser.PF_regex.PF_Regex
+import PF_DamageRangesCalculator
+
+PF_Regex: TypeAlias = PF_DamageRangesCalculator.PF_Packages.parser.PF_regex.PF_Regex
 
 class Test_test_PF_regex_find_all_nums(unittest.TestCase):
     """Class testing PF_Regex.find_all_nums()."""

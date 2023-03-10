@@ -1,7 +1,7 @@
 import unittest
 from typing import TypeAlias
-from PF_DamageRangesCalculator.PF_Packages.damage_info.GunDamageInfo import GunDamageInfo
-from PF_DamageRangesCalculator.PF_Packages.dataTypes import HitsToKill
+from PF_Packages.damage_info.GunDamageInfo import GunDamageInfo
+from PF_Packages.dataTypes import HitsToKill
 
 GunDmgInfo: TypeAlias = GunDamageInfo
 INF: float = float('inf')

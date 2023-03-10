@@ -6,3 +6,6 @@
 *.idea
 /PF_DamageRangesCalculator/Results/
 *Results
+build
+dist
+PF_DamageRangesCalculator.spec

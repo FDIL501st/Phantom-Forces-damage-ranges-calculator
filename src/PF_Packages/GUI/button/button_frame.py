@@ -2,7 +2,6 @@ from typing import TypeAlias, Dict, List
 from tkinter import ttk
 from .button import Button
 from . import result_button, gun_result_button, grenade_result_button
-from .. import main_window
 
 Frame: TypeAlias = ttk.Frame
 ResultButton: TypeAlias = result_button.ResultButton

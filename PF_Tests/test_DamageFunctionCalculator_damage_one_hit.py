@@ -1,8 +1,8 @@
 import unittest
 from typing import TypeAlias
-from PF_DamageRangesCalculator.PF_Packages.damage_function.function_calculator import FunctionCalculator
-from PF_DamageRangesCalculator.PF_Packages.damage_info import GunDamageInfo
-from PF_DamageRangesCalculator.PF_Packages.dataTypes import Hit
+from PF_Packages.damage_function.function_calculator import FunctionCalculator
+from PF_Packages import GunDamageInfo
+from PF_Packages.dataTypes import Hit
 
 DmgFuncCalc: TypeAlias = FunctionCalculator.DamageFunctionCalculator
 GunDmgInfo: TypeAlias = GunDamageInfo.GunDamageInfo

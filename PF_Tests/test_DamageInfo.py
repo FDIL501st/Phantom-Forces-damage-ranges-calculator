@@ -1,7 +1,7 @@
 import unittest
 from typing import TypeAlias
 
-import PF_DamageRangesCalculator.PF_Packages.damage_info.GunDamageInfo
+import PF_DamageRangesCalculator
 
 # Having importing troubles, so can't run the test
 # ModuleNotFoundError: No module named 'PF_Packages'

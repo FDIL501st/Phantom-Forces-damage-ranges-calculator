@@ -3,6 +3,7 @@ from typing import TypeAlias, Literal, final
 from tkinter import scrolledtext
 from . import result_window
 from ....dataTypes import HitsToKill
+from ....dict_sorter.HitsToKill_Sorter import HitsToKillSorter
 
 ResultWindow: TypeAlias = 'result_window.ResultWindow'
 ScrolledText: TypeAlias = scrolledtext.ScrolledText
@@ -79,11 +80,17 @@ class GunResultTable(ResultTable):
         """Populates the table with data from results
         and places it on the frame.
         """
+        # Where we implement the data structure to sort results
+        results_sorted: HitsToKillSorter = HitsToKillSorter(hits_to_kill=results)
 
         line_num: int = 2
         # keeps track which line we insert into
         # skip first 2 lines because they are for header
-        for kill_hits, kill_range in results.items():
+        for hits_to_kill in results_sorted:
+            # read off the tuple
+            kill_hits: str = hits_to_kill[0]
+            kill_range: float = hits_to_kill[1]
+
             # add 1 to line_num as inserting to next line
             line_num += 1
 
@@ -91,8 +98,8 @@ class GunResultTable(ResultTable):
             self.insert(float(line_num), kill_hits)
             # add in column seperator
             self._end_column1(line_num=line_num)
-            # insert kill_range
-            self.insert(END, kill_range)
+            # insert kill_range, will round to 1 decimal place
+            self.insert(END, round(kill_range, 1))
             # move to next line
             self.insert(END, '\n')
             # Now we can loop
@@ -109,6 +116,7 @@ class GrenadeResultTable(ResultTable):
         self.__display_results(results=results)
 
     def __display_results(self, results: HitsToKill) -> None:
-        """Inserts the grenade results to the text widget so it can be displayed."""
+        """Inserts the grenade results to the text widget, so it can be displayed."""
         self._end_column1(line_num=3)
-        self.insert(END, results.get("Grenade kill radius"))
+        # round kill radius to 1 decimal place
+        self.insert(END, round(results.get("Grenade kill radius"), 1))

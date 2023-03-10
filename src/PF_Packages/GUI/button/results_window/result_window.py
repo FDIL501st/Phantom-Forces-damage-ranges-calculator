@@ -1,15 +1,18 @@
 import tkinter
 from typing import TypeAlias, Literal
 from tkinter import ttk, Toplevel
-from . import result_tables, save_result
+from . import result_tables, save_result, filename_frame
 from ....dataTypes import HitsToKill
 
 Label: TypeAlias = ttk.Label
 Button: TypeAlias = ttk.Button
+Entry: TypeAlias = ttk.Entry
+StringVar: TypeAlias = tkinter.StringVar
 BOTH: Literal["both"] = tkinter.BOTH
 GunResultTable: TypeAlias = result_tables.GunResultTable
 GrenadeResultTable: TypeAlias = result_tables.GrenadeResultTable
-SaveButton: TypeAlias = 'save_result.SaveButton'
+FileNameFrame: TypeAlias = filename_frame.FileNameFrame
+SaveButton: TypeAlias = save_result.SaveButton
 
 
 class ResultWindow(Toplevel):
@@ -35,14 +38,19 @@ class ResultWindow(Toplevel):
         self.back_button: Button = Button(master=self, command=self.close)
         # X button exists, to might be unneeded
 
+        # create the result table
         if not grenade:
             self.result_table: GunResultTable = GunResultTable(master=self, results=results)
         else:
             self.result_table: GrenadeResultTable = GrenadeResultTable(master=self, results=results)
-
         self.result_table.pack(fill=BOTH)
 
-        self.save_button: Button = save_result.SaveButton(master=self)
+        # create the widget to enter result save __filename
+        self.filename_frame: FileNameFrame = FileNameFrame(master=self)
+        self.filename_frame.pack()
+
+        # create the save button
+        self.save_button: SaveButton = SaveButton(master=self)
         self.save_button.pack()
 
     def close(self) -> None:

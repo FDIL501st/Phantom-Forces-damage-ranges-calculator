@@ -1,7 +1,6 @@
 from typing import TypeAlias
 
 from . import DamageCalculator
-from ..damage_info import GunDamageInfo
 from ..damage_function import GunDamageFunction
 
 GunDmgInfo: TypeAlias = 'GunDamageInfo.GunDamageInfo'

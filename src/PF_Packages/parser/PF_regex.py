@@ -3,16 +3,18 @@ from typing import TypeAlias, List
 
 Pattern: TypeAlias = regex.Pattern
 
+
 class PF_Regex:
     """Class that handles all regex patterns and 
     matching for this app.
     """
     non_neg_num_pattern: Pattern = regex.compile(
-        r"""        # First try to match a decimal
+        r"""        # try to match a decimal number
         [\d]+       # integer part     
         [.]?        # decimal (may or may not have 1 decimal point)
         [\d]*       # fractional part (may or may not have this part)
         """, regex.VERBOSE)
+
     # Pattern to match a positive number, can be a decimal number
     # Does include 0 
 
@@ -27,14 +29,14 @@ class PF_Regex:
             return True
         else:
             return False
-    
+
     @classmethod
     def match_one_non_zero_num(cls, data: str) -> bool:
         """Returns True if data has only 1 non-zero number in it.
         Otherwise False. 
         """
         numbers: List[str] = cls.non_neg_num_pattern.findall(data)
-        
+
         if len(numbers) == 1:
             # This means only found 1 number, which is what we expect
             # Now we check if number is 0 or not, as pattern only matchs non-negative numbers
@@ -55,5 +57,5 @@ class PF_Regex:
         for match_num in cls.non_neg_num_pattern.finditer(data):
             num: str = match_num.group()
             numbers.append(float(num))
-        
+
         return numbers

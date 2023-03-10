@@ -1,5 +1,5 @@
 from typing import TypeAlias, Final
-from ...damage_info import GunDamageInfo, DamageInfo
+from ...damage_info import GunDamageInfo
 from ...dataTypes import Hit, Hits
 
 

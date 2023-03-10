@@ -8,3 +8,9 @@
 *Results
 build
 PF_DamageRangesCalculator.spec
+/src/
+/PF_Tests/
+/Design Diagrams/
+/env_PF_App/
+*.py
+

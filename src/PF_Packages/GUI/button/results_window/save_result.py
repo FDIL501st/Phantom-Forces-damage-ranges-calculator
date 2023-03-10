@@ -21,6 +21,7 @@ class SaveButton(Button):
 
     def __init__(self, master: ResultWindow) -> None:
         super().__init__(master=master)
+        self.result_window: ResultWindow = master
         self.config(text="Save Results")
         self.config(command=self.__save)
         self.__results: str = master.result_table.get_text()
@@ -30,7 +31,22 @@ class SaveButton(Button):
         """Creates a file and puts results in it.
         Files are saved in a directly called Results.
         Will not be replacing any previously created files,
-        unless user provided a name for a .txt file that already exist in the GUI.
+        unless user provided a name for a .txt file that already exists.
+        """
+        filename_input: str = self.result_window.filename_frame.filename
+        if filename_input == '':
+            # empty string means no input by user
+            # so need to use default save
+            self.__default_save()
+        else:
+            # use user filename input
+            self.__user_save(filename_input)
+
+    def __default_save(self) -> None:
+        """
+        Save method when no file name is provided.
+        Filename chosen then is result#.txt, where # is some positive integer,
+        not yet used. This means won't be overwriting previous default saved results.
         """
         # keep adding 1 to i until find a number that isn't in file_nums
         i: int = 1
@@ -38,7 +54,7 @@ class SaveButton(Button):
             i += 1
 
         filename: str = "result" + str(i) + ".txt"
-        # at this point, have a filename that doesn't exist right now
+        # at this point, have a __filename that doesn't exist right now
         pathname: str = os.path.join(SaveButton.results_directory_path, filename)
 
         with open(pathname, 'w') as f:
@@ -46,6 +62,21 @@ class SaveButton(Button):
 
         # add the i to the set as now used it
         self.file_nums.add(i)
+
+    def __user_save(self, filename: str) -> None:
+        """
+        Save method when user provides filename.
+        Does no checking if the filename already exists or not,
+        so can overwrite existing results file if user inputs an existing filename.
+        Also doesn't add to default filenames saved,
+        so it is possible to overwrite those as well now or in the future.
+        """
+        # add the file type to end of name
+        filename += ".txt"
+        pathname: str = os.path.join(SaveButton.results_directory_path, filename)
+
+        with open(pathname, 'w') as f:
+            f.write(self.__results)
 
     @classmethod
     def __initialize_file_nums(cls) -> None:
@@ -72,7 +103,7 @@ class SaveButton(Button):
         )
 
         for filename in filenames:
-            # match filename with pattern
+            # match __filename with pattern
             result_filename_match: regex.Match = result_filename_pattern.fullmatch(filename)
             # check if found match
             if result_filename_match is not None:

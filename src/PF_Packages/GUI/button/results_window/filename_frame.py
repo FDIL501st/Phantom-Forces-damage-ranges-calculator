@@ -14,7 +14,7 @@ class FileNameFrame(Frame):
     def __init__(self, master: ResultWindow) -> None:
         super().__init__(master=master)
 
-        self.filename: StringVar = StringVar()  # saves the filename input by user
+        self.__filename: StringVar = StringVar()  # saves the __filename input by user
 
         self.__createLabel()
         self.__createEntry()
@@ -29,5 +29,10 @@ class FileNameFrame(Frame):
 
     def __createEntry(self) -> None:
         """Create entry widget for user to write intput into."""
-        self.input_filename: Entry = Entry(master=self, textvariable=self.filename, width=50)
+        self.input_filename: Entry = Entry(master=self, textvariable=self.__filename, width=50)
         self.input_filename.pack(side=tkinter.RIGHT)
+
+    @property
+    def filename(self) -> str:
+        return self.__filename.get()
+

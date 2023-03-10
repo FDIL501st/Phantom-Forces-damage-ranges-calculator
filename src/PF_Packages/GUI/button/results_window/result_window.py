@@ -45,7 +45,7 @@ class ResultWindow(Toplevel):
             self.result_table: GrenadeResultTable = GrenadeResultTable(master=self, results=results)
         self.result_table.pack(fill=BOTH)
 
-        # create the widget to enter result save filename
+        # create the widget to enter result save __filename
         self.filename_frame: FileNameFrame = FileNameFrame(master=self)
         self.filename_frame.pack()
 

@@ -15,7 +15,7 @@ class HitsToKillParser:
         n_limb: int = hits[2]
 
         # Will use CSV format
-        hits_str: str = "{0:d}|{1:d}|{2:d}".format(n_head, n_torso, n_limb)
+        hits_str: str = "{0:d} | {1:d} | {2:d}".format(n_head, n_torso, n_limb)
         return hits_str
 
     @staticmethod

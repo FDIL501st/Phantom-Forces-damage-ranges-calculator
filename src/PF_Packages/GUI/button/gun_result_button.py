@@ -33,10 +33,8 @@ class GunResultButton(ResultButton):
             # having verified the fields, now we can calculate and display the results
 
             gun_dmg_info: DmgInfo = damage_info_control.createDamageInfo()
-            gun_dmg_info.calculate_killing_ranges()
-            # now gun_dmg_info.calculator has result
-            # So, we print that result on a new window
-            result_win: ResultWindow = ResultWindow(gun_dmg_info.calculator.hits_to_kill)
+            # send the gun damage info to the ResultWindow
+            result_win: ResultWindow = ResultWindow(gun_dmg_info)
 
         else:
             self.gui.error_message.grid(row=1, column=1)

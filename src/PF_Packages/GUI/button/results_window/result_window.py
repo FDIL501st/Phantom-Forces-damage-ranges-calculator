@@ -3,6 +3,8 @@ from typing import TypeAlias, Literal
 from tkinter import ttk, Toplevel
 from . import result_tables, save_result, filename_frame
 from ....dataTypes import HitsToKill
+from ....damage_info import DamageInfo
+
 
 Label: TypeAlias = ttk.Label
 Button: TypeAlias = ttk.Button
@@ -13,6 +15,7 @@ GunResultTable: TypeAlias = result_tables.GunResultTable
 GrenadeResultTable: TypeAlias = result_tables.GrenadeResultTable
 FileNameFrame: TypeAlias = filename_frame.FileNameFrame
 SaveButton: TypeAlias = save_result.SaveButton
+DmgInfo: TypeAlias = 'DamageInfo.DamageInfo'
 
 
 class ResultWindow(Toplevel):
@@ -22,7 +25,7 @@ class ResultWindow(Toplevel):
 
     count: int = 0  # counts number of results window created
 
-    def __init__(self, results: HitsToKill, grenade: bool = False) -> None:
+    def __init__(self, dmgInfo: DmgInfo, grenade: bool = False) -> None:
         super().__init__()
         # Will not link to gui, as want this window to be separate
         # allows for more flexibility on user end as can make more than 1
@@ -40,9 +43,9 @@ class ResultWindow(Toplevel):
 
         # create the result table
         if not grenade:
-            self.result_table: GunResultTable = GunResultTable(master=self, results=results)
+            self.result_table: GunResultTable = GunResultTable(master=self, gun_dmg_info=dmgInfo)
         else:
-            self.result_table: GrenadeResultTable = GrenadeResultTable(master=self, results=results)
+            self.result_table: GrenadeResultTable = GrenadeResultTable(master=self, gren_dmg_info=dmgInfo)
         self.result_table.pack(fill=BOTH)
 
         # create the widget to enter result save __filename

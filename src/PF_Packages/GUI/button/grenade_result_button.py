@@ -25,14 +25,15 @@ class GrenadeResultButton(ResultButton):
         self.gui.error_message.grid_forget()
 
         damage_info_control: DamageInfoControl = DamageInfoControl(damage_frame=self.gui.damage_frame)
-        # this constructor call is the only difference between the 2 buttons
+        # this constructor call is one of 2 difference between the 2 buttons
 
         if damage_info_control.verify_all_fields():
             # having verified the fields, now we can calculate and display the results
 
             grenade_dmg_info: DamageInfo = damage_info_control.createDamageInfo()
-            grenade_dmg_info.calculate_killing_ranges()
-            result_win: ResultWindow = ResultWindow(grenade_dmg_info.calculator.hits_to_kill, grenade=True)
+            # send the grenade damage to the result window
+            result_win: ResultWindow = ResultWindow(grenade_dmg_info, grenade=True)
+            # this constructor call with grenade=True is second difference between the buttons
 
         else:
             self.gui.error_message.grid(row=1, column=1)

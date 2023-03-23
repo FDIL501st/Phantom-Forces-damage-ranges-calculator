@@ -27,18 +27,31 @@ class ResultTable(ScrolledText):
         dmg_info.calculate_killing_ranges()
         self._results: HitsToKill = dmg_info.calculator.hits_to_kill
         self._num_results = len(self._results)  # number of results to display
+        self._dmg_info: DmgInfo = dmg_info
+
+        # current line number to write in
+        # should be +1 everytime a '\n' is added
+        self._line_num: int = 1
 
     def _create_header(self, header1_top: str, header1_bot: str, header2: str) -> None:
         """Creates the headers for the 2 columns.
         Will be placed as the top row of the table.
         """
-        self.insert(1.0, header1_top)
-        self._end_column1(1)
+        # first display stats of the damage
+        self.insert(float(self._line_num), str(self._dmg_info))
+        self.insert(END, '\n')
+        self._line_num += 2
+        # add 2 the damage stats takes 2 lines
+
+        self.insert(float(self._line_num), header1_top)
+        self._end_column1(line_num=self._line_num)
         self.insert(END, header2)
         self.insert(END, '\n')
-        self.insert(2.0, header1_bot)
-        self._end_column1(2)
+        self._line_num += 1
+        self.insert(float(self._line_num), header1_bot)
+        self._end_column1(self._line_num)
         self.insert(END, '\n')
+        self._line_num += 1
 
         # Create seperator
         SEPERATOR_LENGTH: int = 65
@@ -46,8 +59,9 @@ class ResultTable(ScrolledText):
         for i in range(SEPERATOR_LENGTH):
             seperator += '-'
         # made line, so insert it
-        self.insert(3.0, seperator)
+        self.insert(float(self._line_num), seperator)
         self.insert(END, '\n')
+        self._line_num += 1
 
     def _end_column1(self, line_num: int) -> None:
         """Inserts spaces and | to end the first column.
@@ -70,7 +84,7 @@ class ResultTable(ScrolledText):
         self.insert(END, "| ")
 
     def get_text(self) -> str:
-        """Gets the table displayed as string.
+        """Gets the entire table displayed as string.
         """
         return self.get(1.0, END)
 
@@ -96,26 +110,22 @@ class GunResultTable(ResultTable):
         # Where we implement the data structure to sort results
         results_sorted: HitsToKillSorter = HitsToKillSorter(hits_to_kill=results)
 
-        line_num: int = 3
-        # keeps track which line we insert into
-        # skip first 3 lines because they are for header
         for hits_to_kill in results_sorted:
             # read off the tuple
             kill_hits: str = hits_to_kill[0]
             kill_range: float = hits_to_kill[1]
 
-            # add 1 to line_num as inserting to next line
-            line_num += 1
-
             # insert kill_hits
-            self.insert(float(line_num), kill_hits)
+            self.insert(float(self._line_num), kill_hits)
             # add in column seperator
-            self._end_column1(line_num=line_num)
+            self._end_column1(line_num=self._line_num)
             # insert kill_range, will round to 1 decimal place
             self.insert(END, str(round(kill_range, 1)))
             # move to next line
             self.insert(END, '\n')
-            # Now we can loop
+            self._line_num += 1
+
+            # Now we can loop to display next line
 
 
 class GrenadeResultTable(ResultTable):
@@ -131,6 +141,8 @@ class GrenadeResultTable(ResultTable):
 
     def __display_results(self, results: HitsToKill) -> None:
         """Inserts the grenade results to the text widget, so it can be displayed."""
-        self._end_column1(line_num=4)
+        self._end_column1(self._line_num)
         # round kill radius to 1 decimal place
         self.insert(END, str(round(results.get("Grenade kill radius"), 1)))
+        self.insert(END, '\n')
+        self._line_num += 1

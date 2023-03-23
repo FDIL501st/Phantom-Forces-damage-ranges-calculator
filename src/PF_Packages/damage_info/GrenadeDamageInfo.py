@@ -14,3 +14,10 @@ class GrenadeDamageInfo(DamageInfo.DamageInfo):
     # Override abstract method
     def calculate_killing_ranges(self) -> HitsToKill:
         return self._calculator.calculate_all_hits_to_kill()
+
+    def __str__(self) -> str:
+        stats: str = super().__str__()
+        stats += '\n'
+        # this extra new line added to make things consistent with gun damage info __str__
+        # which also takes 2 lines
+        return stats

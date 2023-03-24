@@ -37,12 +37,6 @@ class ResultTable(ScrolledText):
         """Creates the headers for the 2 columns.
         Will be placed as the top row of the table.
         """
-        # first display stats of the damage
-        self.insert(float(self._line_num), str(self._dmg_info))
-        self.insert(END, '\n')
-        self._line_num += 2
-        # add 2 the damage stats takes 2 lines
-
         self.insert(float(self._line_num), header1_top)
         self._end_column1(line_num=self._line_num)
         self.insert(END, header2)
@@ -127,6 +121,20 @@ class GunResultTable(ResultTable):
 
             # Now we can loop to display next line
 
+    def _create_header(self, header1_top: str, header1_bot: str, header2: str) -> None:
+        # first display stats of the damage
+        self.insert(float(self._line_num), str(self._dmg_info))
+        self.insert(END, '\n')
+        self._line_num += 2
+        # add 2 as the gun damage stats takes 2 lines
+
+        # blank line to separate from actual table
+        self.insert(float(self._line_num), '\n')
+        self._line_num += 1
+
+        # now put rest of header from parent
+        super()._create_header(header1_top=header1_top, header1_bot=header1_bot, header2=header2)
+
 
 class GrenadeResultTable(ResultTable):
     """Class represents the result table for grenade results."""
@@ -146,3 +154,17 @@ class GrenadeResultTable(ResultTable):
         self.insert(END, str(round(results.get("Grenade kill radius"), 1)))
         self.insert(END, '\n')
         self._line_num += 1
+
+    def _create_header(self, header1_top: str, header1_bot: str, header2: str) -> None:
+        # first display stats of the damage
+        self.insert(float(self._line_num), str(self._dmg_info))
+        self.insert(END, '\n')
+        self._line_num += 1
+        # add 1 as the grenade damage stats takes 1 line
+
+        # blank line to separate from actual table
+        self.insert(float(self._line_num), '\n')
+        self._line_num += 1
+
+        # now rest of header from parent
+        super()._create_header(header1_top=header1_top, header1_bot=header1_bot, header2=header2)

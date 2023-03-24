@@ -17,7 +17,5 @@ class GrenadeDamageInfo(DamageInfo.DamageInfo):
 
     def __str__(self) -> str:
         stats: str = super().__str__()
-        stats += '\n'
-        # this extra new line added to make things consistent with gun damage info __str__
-        # which also takes 2 lines
+        # Just the same as DamageInfo as no extra damage info in grenades
         return stats

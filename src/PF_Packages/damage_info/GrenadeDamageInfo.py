@@ -14,3 +14,8 @@ class GrenadeDamageInfo(DamageInfo.DamageInfo):
     # Override abstract method
     def calculate_killing_ranges(self) -> HitsToKill:
         return self._calculator.calculate_all_hits_to_kill()
+
+    def __str__(self) -> str:
+        stats: str = super().__str__()
+        # Just the same as DamageInfo as no extra damage info in grenades
+        return stats

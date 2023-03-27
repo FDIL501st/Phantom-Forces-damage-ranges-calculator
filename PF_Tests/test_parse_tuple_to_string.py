@@ -6,7 +6,7 @@ from PF_Packages.dataTypes import Hits
 class Test_test_parse_tuple_to_string(unittest.TestCase):
     def test_parse_one_limb_shot(self) -> None:
         """Tests if correctly converts (0, 0, 1) to string."""
-        expected: str = "1 limb shot"
+        expected: str = "0|0|1"
         hits: Hits = (0, 0, 1)
         actual: str = HitsToKillParser.convert_tuple_to_str(hits=hits)
         self.assertEqual(expected, actual, msg=f"Did not parse {hits} correctly with torso multi != 1.")
@@ -14,24 +14,23 @@ class Test_test_parse_tuple_to_string(unittest.TestCase):
         expected = "1 torso/limb shot"
         actual = HitsToKillParser.convert_tuple_to_str(hits=hits, torso_multi_is_one=True)
         self.assertEqual(expected, actual, msg=f"Did not parse {hits} correctly with torso multi == 1.")
-        
 
     def test_parse_more_than_one_limb_shot(self) -> None:
         """Tests if correctly converts more than 1 limb shot to string."""
-        expect1: str = "2 limb shots"
+        expect1: str = "0|0|2"
         expect2: str = "2 torso/limb shots"
 
         expect3: str = "7 limb shots"
         expect4: str = "7 torso/limb shots"
 
-        hits1: Hits = (0,0,2)
-        hits7: Hits = (0,0,7)
+        hits1: Hits = (0, 0, 2)
+        hits7: Hits = (0, 0, 7)
 
         actual1: str = HitsToKillParser.convert_tuple_to_str(hits1)
-        actual2: str = HitsToKillParser.convert_tuple_to_str(hits1, True)
+        actual2: str = HitsToKillParser.convert_tuple_to_str(hits1)
 
         actual3: str = HitsToKillParser.convert_tuple_to_str(hits7)
-        actual4: str = HitsToKillParser.convert_tuple_to_str(hits7, True)
+        actual4: str = HitsToKillParser.convert_tuple_to_str(hits7)
 
         self.assertEqual(expect1, actual1, msg=f"Did not parse {hits1} correctly with torso multi != 1.")
         self.assertEqual(expect2, actual2, msg=f"Did not parse {hits1} correctly with torso multi == 1.")
@@ -50,7 +49,7 @@ class Test_test_parse_tuple_to_string(unittest.TestCase):
         e2: str = ""
         a2: str = HitsToKillParser.convert_tuple_to_str(hits=hits, torso_multi_is_one=True)
         self.assertEqual(e2, a2, msg=f"Did not parse {hits} correctly with torso multi == 1.")
-    
+
     def test_parse_more_than_one_torso_shots(self) -> None:
         """Tests if correctly converts when have more than 1 torso shots."""
         hits2: Hits = (0, 2, 0)
@@ -101,6 +100,7 @@ class Test_test_parse_tuple_to_string(unittest.TestCase):
         e = "2 torso/limb shots"
         a = HitsToKillParser.convert_tuple_to_str(hits_3_2, True)
         self.assertEqual(e, a, msg=f"Did not parse {hits_3_2} correctly where torso multi == 1.")
+
     def test_parse_headshots_only(self) -> None:
         """Tests hits that are headshots only. This include 1 headshot, and many headshots."""
         hits1: Hits = (1, 0, 0)
@@ -149,7 +149,7 @@ class Test_test_parse_tuple_to_string(unittest.TestCase):
         e = "3 headshots, 2 torso/limb shots"
         a = HitsToKillParser.convert_tuple_to_str(hits_3_2, True)
         self.assertEqual(e, a, msg=f"Did not parse {hits_3_2} correctly where torso multi == 1")
-    
+
     def test_parse_head_torso_combination_shots(self) -> None:
         """Tests hits that are combinations of head and torso shots."""
         hits_1_4: Hits = (1, 4, 0)
@@ -191,7 +191,7 @@ class Test_test_parse_tuple_to_string(unittest.TestCase):
         hits_3_1_1: Hits = (3, 1, 1)
         hits_3_1_2: Hits = (3, 1, 2)
 
-        #Whenever torso multi is 1, ignore torsho shots and limb replaced by torso/limb
+        # Whenever torso multi is 1, ignore torsho shots and limb replaced by torso/limb
 
         e: str = "1 headshot, 1 torso shot, 3 limb shots"
         a: str = HitsToKillParser.convert_tuple_to_str(hits_1_1_3)
@@ -224,7 +224,7 @@ class Test_test_parse_tuple_to_string(unittest.TestCase):
         e = "2 headshots, 1 torso/limb shot"
         a = HitsToKillParser.convert_tuple_to_str(hits_2_1_1, True)
         self.assertEqual(e, a, msg=f"Did not parse {hits_2_1_1} correctly where torso multi == 1")
-        
+
         e = "3 headshots, 1 torso shot, 1 limb shot"
         a = HitsToKillParser.convert_tuple_to_str(hits_3_1_1)
         self.assertEqual(e, a, msg=f"Did not parse {hits_3_1_1} correctly where torso multi != 1")
@@ -240,6 +240,7 @@ class Test_test_parse_tuple_to_string(unittest.TestCase):
         e = "3 headshots, 2 torso/limb shots"
         a = HitsToKillParser.convert_tuple_to_str(hits_3_1_2, True)
         self.assertEqual(e, a, msg=f"Did not parse {hits_3_1_2} correctly where torso multi == 1")
+
 
 if __name__ == '__main__':
     unittest.main()

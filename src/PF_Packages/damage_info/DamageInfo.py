@@ -99,4 +99,11 @@ class DamageInfo(ABC):
     def damage_drop(self) -> float:
         return self._damage_drop
         # No need to check of Attribute Error as constructor should give this a value
+
     # No setter for damage_drop as it should not be set directly
+
+    def __str__(self) -> str:
+        stats: str = "Damage: {0} > {1}, Ranges: {2} > {3}".format(
+            self._max_damage, self._min_damage, self._min_range, self._max_range
+        )
+        return stats

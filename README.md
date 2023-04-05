@@ -1,13 +1,15 @@
 # Phantom-Forces-damage-ranges-calculator
 Python GUI that calculates hits to kill for Phantom Forces (Roblox) guns. Have to give information about damage and damage ranges into the system, can't just search the gun up.  
 
-Our latest release is v1.1.0. 
+Our latest release is v1.1.1 as of March 4, 2023.
 
-The ability to provide a name to the results file, and the results being orderd by increasing in kill range are the new things added. 
+The ability to provide a name to the results file, and the results being ordered by increasing in kill range are the new things added.
+Changed the formatting of how the hits to kill are represented, and also added damage information as part of the header.
+This will let users know when reading the file some context as to what the original stats were.
+Also kept the source files (except the driver file with main function).
 ## How to run
-Run PF_DamageRangesCalculator.py
+Run the executable within the dist/PF_DamageRangesCalculator directory.
+**dist/PF_DamageRangesCalculator/PF_DamageRangesCalculator.exe**
 
-Make sure you have all the python modules as in requirements.txt in the enviroment you are running, else the app won't run and instantly close.
+Results folder found within dist/PF_DamageRangesCalculator directory.
 
-You will find your saved results within a directory called Results, accessible in the same level as PF_DamageRangesCalculator.py. 
-The directory gets automatically created if it doesn't already exist. Your results also shouldn't get overwritten when you save a new result.

@@ -1,13 +1,12 @@
 import unittest
 from typing import TypeAlias
 
-import PF_DamageRangesCalculator
-
+from PF_Packages.damage_info import GunDamageInfo
 # Having importing troubles, so can't run the test
 # ModuleNotFoundError: No module named 'PF_Packages'
 # Somehow vs test explorer can still run the tests
 
-GunDmgInfo: TypeAlias = PF_DamageRangesCalculator.PF_Packages.damage_info.GunDamageInfo.GunDamageInfo
+GunDmgInfo: TypeAlias = GunDamageInfo.GunDamageInfo
 
 
 class Test_test_DamageInfo(unittest.TestCase):

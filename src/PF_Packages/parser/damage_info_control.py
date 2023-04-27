@@ -44,19 +44,36 @@ class DamageInfoControl:
         return verify_damage and verify_range
 
     def __verify_damage(self) -> bool:
-        """"Verifies the damage field from the GUI. 
-        This means having 2 non-negative numbers numbers.
+        """
+        Verifies the damage field from the GUI.
+        This means having 2 non-negative numbers.
+        Also checks if both numbers are not the same.
         Returns true if all fields can be used/are in proper format.
-        Returns false if there is an issue with the data in the fields."""
-        return PF_Regex.match_two_nums(self.__damage)
+        Returns false if there is an issue with the data in the fields.
+        """
+        # Calculations fails if damage drop is 0 (e.g. 24 -> 24)
+        # Also at that point this calculator isn't needed
+
+        if not PF_Regex.match_two_nums(self.__damage):
+            return False
+        # Calculations fails if damage drop is 0 (e.g. 24 -> 24)
+        # So need to check for that, this app won't support no damage drop
+        damages: list[float] = PF_Regex.find_all_nums(self.__damage)
+        if damages[0] == damages[1]:
+            return False
+
+        # passed all checks, can return True
+        return True
 
     def __verify_damageRange(self) -> bool:
-        """"Verifies the damage range field from the GUI. 
+        """
+        Verifies the damage range field from the GUI.
         This means having 2 non-negative numbers.
         Also check if second number is greater than first number. 
         Now allowed to give ranges in opposite order.
         Returns true if all fields can be used/are in proper format.
-        Returns false if there is an issue with the data in the fields."""
+        Returns false if there is an issue with the data in the fields.
+        """
         match_result: bool = PF_Regex.match_two_nums(self.__damage_range)
         if match_result:
             # Need to check if second number greater than first number

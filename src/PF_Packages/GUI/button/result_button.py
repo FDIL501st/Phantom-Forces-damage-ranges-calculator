@@ -11,7 +11,6 @@ GUI: TypeAlias = 'main_window.GUI'
 DamageInfo: TypeAlias = 'DamageInfo.DamageInfo'
 
 
-# noinspection SpellCheckingInspection
 class ResultButton(Button):
     """The button from when pressed should do some calculations and display the results.
     This class is the parent class of the button classes
@@ -31,7 +30,7 @@ class ResultButton(Button):
         # the value gets set automatically, and doesn't need to be specifically updated in children constructor
 
         # Also set the command here, as the command is common between the 2 buttons
-        # only difference betwee buttons should be the label they have
+        # only difference between buttons should be the label they have
 
         self.config(command=self.calculate_and_display)
 
@@ -39,11 +38,5 @@ class ResultButton(Button):
         """Reads damage info(damage, damage ranges and maybe multis) from GUI fields,
         then does the calculations required of the button, and then display the results.
         """
-        # TODO - somehow make the definations less repetive as only DamageInfoControl line is difference
-        # TODO - add the display results part to the command
-
-    def __display_results(self, results: HitsToKill) -> None:
-        """Displays the results in a pop-up window.
-        """
-
+        # TODO - somehow make the definitions less respective as only DamageInfoControl line is difference
 

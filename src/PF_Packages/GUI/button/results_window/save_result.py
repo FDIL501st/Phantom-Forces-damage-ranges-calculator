@@ -12,13 +12,12 @@ ResultTable: TypeAlias = 'result_tables.ResultTable'
 class SaveButton(Button):
     """
     A button to save the results displayed into a .txt file.
-    The files are saved in a local directly called Results
     """
-    # issue, recent_dir gets reset whenever new SaveButton created
-    # which occurs for every new result window
-    __recent_dir = './'
+
+    __recent_dir: str = './'
     # keeps track of the most recent directory used to save results
-    # this is used as the initialdir of the save as file dialog
+    # this is used as the initial directory of the save as file dialog
+    # helpful feature of repeated use when trying to save into the same place
 
     def __init__(self, master: ResultWindow) -> None:
         super().__init__(master=master)
@@ -31,7 +30,7 @@ class SaveButton(Button):
         """
         Creates a file and puts results in it.
         """
-        filetypes: list[tuple[str, str]] = [("Text Files (.txt)", "*.txt"), ("All Files", "*.*")]
+        filetypes: list[tuple[str, str]] = [("Text Files (.txt)", "*.txt")]
         result_file = filedialog.asksaveasfile(mode='w',
                                                initialdir=self.__recent_dir,
                                                defaultextension='*.txt',
@@ -41,10 +40,10 @@ class SaveButton(Button):
             # write into file
             result_file.write(self.__results)
             # update recent_dir
-            self.__recent_dir = os.path.dirname(result_file.name)
+            SaveButton.__recent_dir = os.path.dirname(result_file.name)
             # close file
             result_file.close()
-            # unsure if wanna close the results window as well or not
-            # self.result_window.close()
+            # close the result window as to reduce opened windows by the app
+            self.result_window.close()
 
         # might want to add an else in case failed to save as was unable to create the file

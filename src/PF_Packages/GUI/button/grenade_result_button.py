@@ -31,6 +31,7 @@ class GrenadeResultButton(ResultButton):
         verify_flags: list[bool] = damage_info_control.verify_all_fields()
         if False in set(verify_flags):
             # there is at least 1 field that has an issue
+            self.gui.error_message.add_all_error_messages(verify_flags=verify_flags)
             self.gui.error_message.grid(row=1, column=1)
 
         else:

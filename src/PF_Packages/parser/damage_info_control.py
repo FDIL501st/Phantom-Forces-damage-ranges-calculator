@@ -1,6 +1,7 @@
 from typing import TypeAlias, List, Optional
 from .PF_regex import PF_Regex
-from ..damage_info import GunDamageInfo, GrenadeDamageInfo
+from ..GUI import multi_frame, damage_frame
+from ..damage_info import GunDamageInfo, GrenadeDamageInfo, DamageInfo
 
 DamageFrame: TypeAlias = 'damage_frame.DamageFrame'
 MultiFrame: TypeAlias = 'multi_frame.MultiFrame'
@@ -30,18 +31,20 @@ class DamageInfoControl:
 
         # self.__have_multis stores if we have multi fields or not
 
-    def verify_all_fields(self) -> bool:
+    def verify_all_fields(self) -> List[bool]:
         """Verifies all the fields provided.
-        Returns true if all fields can be used/are in proper format.
-        Returns false if there is an issue with the data in at least 1 fields."""
-        verify_damage: bool = self.__verify_damage()
-        verify_range: bool = self.__verify_damageRange()
+        Returns a list of flags which tracks which fields have issues or not.
+        Any True means verify passed. False means verify failed.
+        Order of flags are: damage, damage ranges, multis(if applicable)"""
+
+        verify_flags: List[bool] = [True for i in range(2)]
+        verify_flags[0] = self.__verify_damage()
+        verify_flags[1] = self.__verify_damageRange()
 
         if self.__have_multis:
-            verify_multi: bool = self.__verify_multis()
-            return verify_damage and verify_range and verify_multi
+            verify_flags.append(self.__verify_multis())
 
-        return verify_damage and verify_range
+        return verify_flags
 
     def __verify_damage(self) -> bool:
         """
@@ -96,7 +99,7 @@ class DamageInfoControl:
         """Parses the data and creates one of the DamageInfo objects.
         If have multis, creates GunDamageInfo object. 
         If not, then GrenadeDamageInfo object.
-        Should be used after using the verify_all_fields() and it returning true.
+        Should be used after using the verify_all_fields() and it returns true.
         Not doing so may result in an exception being thrown.
         """
         # Extract damage info and damage range info

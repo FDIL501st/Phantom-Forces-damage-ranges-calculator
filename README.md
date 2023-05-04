@@ -10,4 +10,5 @@ Run PF_DamageRangesCalculator.py
 Make sure you have all the python modules as in requirements.txt in the enviroment you are running, else the app won't run and instantly close.
 
 Just run PF_DamageRangesCalculator.py
+
 A good idea to create a folder to save calculations in.

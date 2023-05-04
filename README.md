@@ -9,5 +9,5 @@ Run PF_DamageRangesCalculator.py
 
 Make sure you have all the python modules as in requirements.txt in the enviroment you are running, else the app won't run and instantly close.
 
-You will find your saved results within a directory called Results, accessible in the same level as PF_DamageRangesCalculator.py. 
-The directory gets automatically created if it doesn't already exist. Your results also shouldn't get overwritten when you save a new result.
+Just run PF_DamageRangesCalculator.py
+A good idea to create a folder to save calculations in.

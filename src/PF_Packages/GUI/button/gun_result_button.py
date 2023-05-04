@@ -29,12 +29,15 @@ class GunResultButton(ResultButton):
                                                                    multi_frame=self.gui.multi_frame)
         # this constructor call is the only difference between the 2 buttons (gun and grenade)
 
-        if damage_info_control.verify_all_fields():
-            # having verified the fields, now we can calculate and display the results
+        # verify all the fields before going on with calculations
+        verify_flags: list[bool] = damage_info_control.verify_all_fields()
+        if False in set(verify_flags):
+            # there was at least 1 field with an issue
+            self.gui.error_message.add_all_error_messages(verify_flags=verify_flags)
+            self.gui.error_message.grid(row=1, column=1)
 
+        else:
+            # having verified all the fields, now we can calculate and display the results
             gun_dmg_info: DmgInfo = damage_info_control.createDamageInfo()
             # send the gun damage info to the ResultWindow
             result_win: ResultWindow = ResultWindow(gun_dmg_info)
-
-        else:
-            self.gui.error_message.grid(row=1, column=1)

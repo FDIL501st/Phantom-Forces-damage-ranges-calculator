@@ -1,10 +1,9 @@
 import tkinter
-from typing import TypeAlias, Literal
 from tkinter import ttk, Toplevel
-from . import result_tables, save_result, filename_frame
-from ....dataTypes import HitsToKill
-from ....damage_info import DamageInfo
+from typing import TypeAlias, Literal
 
+from . import result_tables, save_result
+from ....damage_info import DamageInfo
 
 Label: TypeAlias = ttk.Label
 Button: TypeAlias = ttk.Button
@@ -13,7 +12,6 @@ StringVar: TypeAlias = tkinter.StringVar
 BOTH: Literal["both"] = tkinter.BOTH
 GunResultTable: TypeAlias = result_tables.GunResultTable
 GrenadeResultTable: TypeAlias = result_tables.GrenadeResultTable
-FileNameFrame: TypeAlias = filename_frame.FileNameFrame
 SaveButton: TypeAlias = save_result.SaveButton
 DmgInfo: TypeAlias = 'DamageInfo.DamageInfo'
 
@@ -47,10 +45,6 @@ class ResultWindow(Toplevel):
         else:
             self.result_table: GrenadeResultTable = GrenadeResultTable(master=self, gren_dmg_info=dmgInfo)
         self.result_table.pack(fill=BOTH)
-
-        # create the widget to enter result save __filename
-        self.filename_frame: FileNameFrame = FileNameFrame(master=self)
-        self.filename_frame.pack()
 
         # create the save button
         self.save_button: SaveButton = SaveButton(master=self)

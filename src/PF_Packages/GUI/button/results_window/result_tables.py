@@ -26,7 +26,7 @@ class ResultTable(ScrolledText):
         # calculate results
         dmg_info.calculate_killing_ranges()
         self._results: HitsToKill = dmg_info.calculator.hits_to_kill
-        self._num_results = len(self._results)  # number of results to display
+        # self._num_results = len(self._results)  # number of results to display
         self._dmg_info: DmgInfo = dmg_info
 
         # current line number to write in

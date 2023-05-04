@@ -1,6 +1,7 @@
 from typing import TypeAlias, List, Optional
 from .PF_regex import PF_Regex
-from ..damage_info import GunDamageInfo, GrenadeDamageInfo
+from ..GUI import multi_frame, damage_frame
+from ..damage_info import GunDamageInfo, GrenadeDamageInfo, DamageInfo
 
 DamageFrame: TypeAlias = 'damage_frame.DamageFrame'
 MultiFrame: TypeAlias = 'multi_frame.MultiFrame'
@@ -30,33 +31,52 @@ class DamageInfoControl:
 
         # self.__have_multis stores if we have multi fields or not
 
-    def verify_all_fields(self) -> bool:
+    def verify_all_fields(self) -> List[bool]:
         """Verifies all the fields provided.
-        Returns true if all fields can be used/are in proper format.
-        Returns false if there is an issue with the data in at least 1 fields."""
-        verify_damage: bool = self.__verify_damage()
-        verify_range: bool = self.__verify_damageRange()
+        Returns a list of flags which tracks which fields have issues or not.
+        Any True means verify passed. False means verify failed.
+        Order of flags are: damage, damage ranges, multis(if applicable)"""
+
+        verify_flags: List[bool] = [True for i in range(2)]
+        verify_flags[0] = self.__verify_damage()
+        verify_flags[1] = self.__verify_damageRange()
 
         if self.__have_multis:
-            verify_multi: bool = self.__verify_multis()
-            return verify_damage and verify_range and verify_multi
+            verify_flags.append(self.__verify_multis())
 
-        return verify_damage and verify_range
+        return verify_flags
 
     def __verify_damage(self) -> bool:
-        """"Verifies the damage field from the GUI. 
-        This means having 2 non-negative numbers numbers.
+        """
+        Verifies the damage field from the GUI.
+        This means having 2 non-negative numbers.
+        Also checks if both numbers are not the same.
         Returns true if all fields can be used/are in proper format.
-        Returns false if there is an issue with the data in the fields."""
-        return PF_Regex.match_two_nums(self.__damage)
+        Returns false if there is an issue with the data in the fields.
+        """
+        # Calculations fails if damage drop is 0 (e.g. 24 -> 24)
+        # Also at that point this calculator isn't needed
+
+        if not PF_Regex.match_two_nums(self.__damage):
+            return False
+        # Calculations fails if damage drop is 0 (e.g. 24 -> 24)
+        # So need to check for that, this app won't support no damage drop
+        damages: list[float] = PF_Regex.find_all_nums(self.__damage)
+        if damages[0] == damages[1]:
+            return False
+
+        # passed all checks, can return True
+        return True
 
     def __verify_damageRange(self) -> bool:
-        """"Verifies the damage range field from the GUI. 
+        """
+        Verifies the damage range field from the GUI.
         This means having 2 non-negative numbers.
         Also check if second number is greater than first number. 
         Now allowed to give ranges in opposite order.
         Returns true if all fields can be used/are in proper format.
-        Returns false if there is an issue with the data in the fields."""
+        Returns false if there is an issue with the data in the fields.
+        """
         match_result: bool = PF_Regex.match_two_nums(self.__damage_range)
         if match_result:
             # Need to check if second number greater than first number
@@ -79,7 +99,7 @@ class DamageInfoControl:
         """Parses the data and creates one of the DamageInfo objects.
         If have multis, creates GunDamageInfo object. 
         If not, then GrenadeDamageInfo object.
-        Should be used after using the verify_all_fields() and it returning true.
+        Should be used after using the verify_all_fields() and it returns true.
         Not doing so may result in an exception being thrown.
         """
         # Extract damage info and damage range info

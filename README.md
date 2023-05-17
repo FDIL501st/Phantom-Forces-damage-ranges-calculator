@@ -10,5 +10,10 @@ You can save the results in a .txt file wherever you want. It is good idea to ma
 ### Run PF_DamageRangesCalculator.py
 
 Make sure you have all the python modules as in requirements.txt in the enviroment you are running, else the app won't run and instantly close.
+Can run in terminal:
 
-Just run PF_DamageRangesCalculator.py
+```pip install -r requirements.txt```
+
+Just run PF_DamageRangesCalculator.py. In terminal, run:
+
+```py PF_DamageRangesCalculator.py```

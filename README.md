@@ -17,3 +17,17 @@ Can run in terminal:
 Just run PF_DamageRangesCalculator.py. In terminal, run:
 
 ```py PF_DamageRangesCalculator.py```
+
+
+### Run PF_DamageRangesCalculator executable
+
+You can either find the executable within dist/PF_DamageRangesCalculator or run the bash file. 
+
+Below are the instructions to run the bash file.
+
+#### First make sure you can run the bash file
+This means running this command in the terminal once. If you already run this command, you won't need to run this command again.
+```chmod +x PF_DamageRangesCalculator.sh```
+
+Now you can run the bash file by double clicking on it
+```PF_DamageRangesCalculator.sh```

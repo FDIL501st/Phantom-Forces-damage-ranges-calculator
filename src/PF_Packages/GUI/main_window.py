@@ -20,7 +20,7 @@ class GUI(Tk):
         self.__createGUI()
 
     def __createGUI(self) -> None:
-        """Creates the main window of the GUI and runs it."""
+        """Creates the main window of the GUI."""
         self.__createGrid()
 
         self.__createFrames()

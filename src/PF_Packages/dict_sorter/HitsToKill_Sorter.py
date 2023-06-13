@@ -13,14 +13,19 @@ class HitsToKillSorter:
     The (key, value) pairs are stored in a list.
     """
 
+    # Can use sortedList instead and pass key to sort by range
     def __init__(self, hits_to_kill: HitsToKill = None) -> None:
-        self.sorted_HitsToKill: List[element] = []
+        self.__sorted_HitsToKill: List[element] = []
 
         if hits_to_kill is not None:
             # Loop through for insertion into list as there are hits to kill provided
             for hit, kill_range in hits_to_kill.items():
                 # have to insert the (key, value) pair into the list
                 self.insert(hit, kill_range)
+
+    @property
+    def sorted_HitsToKill(self) -> List[element]:
+        return self.__sorted_HitsToKill
 
     def insert(self, hits: str, kill_range: float) -> None:
         """
@@ -37,9 +42,9 @@ class HitsToKillSorter:
         # this ensures we insert duplicates right before next kill_range
 
         # special case: insert into empty list
-        if len(self.sorted_HitsToKill) == 0:
+        if len(self.__sorted_HitsToKill) == 0:
             # can just add to list
-            self.sorted_HitsToKill.append((hits, kill_range))
+            self.__sorted_HitsToKill.append((hits, kill_range))
             # done insertion, so can stop
             return
 
@@ -51,7 +56,7 @@ class HitsToKillSorter:
         lo: int = 0
 
         # index of higher end of array
-        hi: int = len(self.sorted_HitsToKill) - 1
+        hi: int = len(self.__sorted_HitsToKill) - 1
 
         # keep looping until have 1 element left in array being analyzed
         while lo != hi:
@@ -61,7 +66,7 @@ class HitsToKillSorter:
             # compare to middle element
             # don't care if kill_range is equal as then we go to right(same thing as greater than)
 
-            if kill_range < self.sorted_HitsToKill[mid][1]:
+            if kill_range < self.__sorted_HitsToKill[mid][1]:
                 # have to insert to left-side of array
                 # move hi to mid, lo kept the same
                 hi = mid
@@ -75,13 +80,13 @@ class HitsToKillSorter:
         # similar deal with which side to place as with loop, except this time actually insert
 
         # doesn't matter if you use lo or hi, as at this point they should be equal
-        if kill_range < self.sorted_HitsToKill[lo][1]:
+        if kill_range < self.__sorted_HitsToKill[lo][1]:
             # move everything at lo and above to the right,
             # everything at lo and above is greater than
-            self.sorted_HitsToKill.insert(lo, (hits, kill_range))
+            self.__sorted_HitsToKill.insert(lo, (hits, kill_range))
         else:
             # place it right after lo, as lo and below are less than or equal to
-            self.sorted_HitsToKill.insert(lo + 1, (hits, kill_range))
+            self.__sorted_HitsToKill.insert(lo + 1, (hits, kill_range))
 
     def __iter__(self) -> HitsToKillSorter:
         # start index at 0 for iteration
@@ -92,7 +97,7 @@ class HitsToKillSorter:
     def __next__(self) -> element:
         try:
             # try to use the index to access an element
-            elem: element = self.sorted_HitsToKill[self.index]
+            elem: element = self.__sorted_HitsToKill[self.index]
         except IndexError:
             # stop iteration if left the list
             raise StopIteration

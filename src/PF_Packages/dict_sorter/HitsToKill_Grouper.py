@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import TypeAlias, Dict
 
 from .HitsToKill_Sorter import HitsToKillSorter
+from ..dataTypes import Hits
 
 
 class HitsToKill_Grouper:
@@ -16,5 +17,15 @@ class HitsToKill_Grouper:
         self.hit_groups: Dict[int, HitsToKillSorter] = {}
 
 
-def num_hits(hits_to_kill: str) -> int:
-    """Returns the number of hits a HitsToKill has."""
+def num_hits(hits_to_kill: Hits) -> int:
+    """
+    Sums up the number of hits in hits to kill provided.
+
+    :param hits_to_kill: Hits to kill as 3 numbers
+    :type hits_to_kill: tuple[int, int, int]
+    :return: The total number of hits in hits to kill
+    :rtype: int
+    """
+    # expect hits_to_kill to be a tuple of 3 ints
+    # we just sum up those 3 numbers
+    return sum(hits_to_kill)

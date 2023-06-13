@@ -1,5 +1,5 @@
 import unittest
-from PF_Packages.parser import HitsToKillParser
+from PF_Packages.parser.HitsToKillParser import HitsToKillParser
 from PF_Packages.dataTypes import Hits
 
 

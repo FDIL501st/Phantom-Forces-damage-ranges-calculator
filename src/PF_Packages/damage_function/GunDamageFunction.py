@@ -47,7 +47,7 @@ class GunDamageOverRangeFunction(DamageFunction.DamageOverRangeFunction):
             # Check if can kill
             if range != -1:
                 # Can kill, so add to hits_to_kill
-                hits_str: str = HitsToKillParser.convert_tuple_to_str(hits=hits, torso_multi_is_one=torso_multi_one)
+                hits_str: str = HitsToKillParser.convert_tuple_to_str(hits=hits)
                 hits_to_kill[hits_str] = range
 
             # Check if can kill all ranges
@@ -107,7 +107,7 @@ class GunDamageOverRangeFunction(DamageFunction.DamageOverRangeFunction):
             # Check if can kill
             if range != -1:
                 # can kill, so add to hits_to kill
-                hits_str: str = HitsToKillParser.convert_tuple_to_str(hits=hits, torso_multi_is_one=True)
+                hits_str: str = HitsToKillParser.convert_tuple_to_str(hits=hits)
                 # This function only called when torso multi is 1
                 hits_to_kill[hits_str] = range
 

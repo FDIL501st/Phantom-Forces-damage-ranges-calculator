@@ -13,7 +13,9 @@ class PF_Regex:
         [\d]+       # integer part     
         [.]?        # decimal (may or may not have 1 decimal point)
         [\d]*       # fractional part (may or may not have this part)
-        """, regex.VERBOSE)
+        """,
+        regex.VERBOSE
+    )
 
     # Pattern to match a positive number, can be a decimal number
     # Does include 0 
@@ -39,7 +41,7 @@ class PF_Regex:
 
         if len(numbers) == 1:
             # This means only found 1 number, which is what we expect
-            # Now we check if number is 0 or not, as pattern only matchs non-negative numbers
+            # Now we check if number is 0 or not, as pattern only matches non-negative numbers
             if float(numbers[0]) != 0:
                 # if will filter out any 0 to not return True 
                 return True

@@ -30,7 +30,7 @@ class Test_test_calculating_hits_to_kill(unittest.TestCase):
     def test_TRG_42_hits_to_kill(self) -> None:
         """Tests if can calculate all hits to kill of TRG_42."""
         a = self.TRG_42_DmgFunc.calculate_all_combinations_hits_to_kill()
-        e = {"1 headshot": INF, "1 torso/limb shot": 60, "2 torso/limb shots": INF}
+        e = {"1 | 0 | 0": INF, "1 torso/limb shot": 60, "2 torso/limb shots": INF}
 
         self.assertDictEqual(a, e)
         # Can also use assertDictContainsSubset, though that doesn't check order, which isn't really important
@@ -38,7 +38,7 @@ class Test_test_calculating_hits_to_kill(unittest.TestCase):
     def test_GYROJET_MK_1_hits_to_kill(self) -> None:
         """Tests if can calculate all htis to kill of Gyrojet Mk 1."""
         a = self.GYROJET_MK_1_DmgFunc.calculate_all_combinations_hits_to_kill()
-        e = {"1 headshot": INF, "3 limb shots": INF, "1 torso shot": 171.944, 
+        e = {"1 | 0 | 0": INF, "3 limb shots": INF, "1 torso shot": 171.944,
             "1 torso shot, 1 limb shot": INF, "2 torso shots": INF}
         
         self.assertDictEqual(e, a)

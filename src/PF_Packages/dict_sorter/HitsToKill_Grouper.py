@@ -1,8 +1,12 @@
 from __future__ import annotations
-from typing import TypeAlias, Dict
+from typing import TypeAlias
+from sortedcontainers import SortedDict
 
 from .HitsToKill_Sorter import HitsToKillSorter
+from ..parser.HitsToKillParser import HitsToKillParser
 from ..dataTypes import Hits
+
+hit_group: TypeAlias = SortedDict[int, HitsToKillSorter]
 
 
 class HitsToKill_Grouper:
@@ -13,19 +17,57 @@ class HitsToKill_Grouper:
     where the key is number of hits and
     value is the HitsToKill_Sorter with all this hits to kill with that number of hits.
     """
-    def __int__(self) -> None:
-        self.hit_groups: Dict[int, HitsToKillSorter] = {}
+
+    def __init__(self) -> None:
+        self.__hit_groups: hit_group = SortedDict()
+        # Help with ordering by key
+
+    @property
+    def hit_groups(self) -> hit_group:
+        return self.__hit_groups
+
+    def insert(self, hits: str, kill_range: float) -> None:
+        """
+        Adds a hit to hit_groups.
+
+        :param hits: hits to add
+        :type hits: str
+        :param kill_range: range the hits can kill to
+        :type kill_range: float
+        """
+
+        # get number of hits
+        n_hits: int = num_hits(HitsToKillParser.convert_str_to_tuple(hits))
+        # before adding, check if n_hits exist
+        if n_hits in self.__hit_groups:
+            # this means there is a HitsToKillSorter that can be added to
+            sorted_hits_to_kill: HitsToKillSorter = self.__hit_groups[n_hits]
+            sorted_hits_to_kill.insert(hits, kill_range)
+            return
+
+        # n_hit doesn't exist, so need to make a new HitsToKillSorter list
+        new_sorted_list: HitsToKillSorter = HitsToKillSorter()
+        new_sorted_list.insert(hits, kill_range)
+
+        self.__hit_groups[n_hits] = new_sorted_list
+
+    def __iter__(self):
+        # just return to call iter of the dict
+
+        # this means I don't need to define __next__ for this class
+        # as the iter of the SortedDict has that already defined
+        return iter(self.__hit_groups)
 
 
-def num_hits(hits_to_kill: Hits) -> int:
+def num_hits(hits: Hits) -> int:
     """
     Sums up the number of hits in hits to kill provided.
 
-    :param hits_to_kill: Hits to kill as 3 numbers
-    :type hits_to_kill: tuple[int, int, int]
+    :param hits: Hits to kill as 3 numbers
+    :type hits: tuple[int, int, int]
     :return: The total number of hits in hits to kill
     :rtype: int
     """
     # expect hits_to_kill to be a tuple of 3 ints
     # we just sum up those 3 numbers
-    return sum(hits_to_kill)
+    return sum(hits)

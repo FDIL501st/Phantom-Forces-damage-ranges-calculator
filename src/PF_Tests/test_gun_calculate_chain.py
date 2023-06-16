@@ -20,7 +20,7 @@ class TestGunCalculateChain(unittest.TestCase):
         # calculate the killing ranges
         self.TRG_42.calculate_killing_ranges()
 
-        e_hits_to_kill: HitsToKill = {"1 headshot": INF, "1 torso/limb shot": 60, "2 torso/limb shots": INF}
+        e_hits_to_kill: HitsToKill = {"1 | 0 | 0": INF, "0 | 0 | 1": 60, "0 | 0 | 2": INF}
         a_hits_to_kill: HitsToKill = self.TRG_42.calculator.hits_to_kill
         self.assertDictEqual(a_hits_to_kill, e_hits_to_kill)
 

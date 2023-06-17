@@ -75,7 +75,7 @@ class GunDamageInfo(DamageInfo.DamageInfo):
     def __str__(self) -> str:
         stats: str = super().__str__()
 
-        stats += ",\nHead multi: {0}, Torso multi: {1}".format(
+        stats += ",\nHead: x{0}, Torso: x{1}".format(
             self._head_multi, self._torso_multi
         )
         return stats

@@ -4,6 +4,7 @@ from tkinter import scrolledtext
 from . import result_window
 from ....dataTypes import HitsToKill
 from ....dict_sorter.HitsToKill_Sorter import HitsToKillSorter
+from ....dict_sorter.HitsToKill_Grouper import HitsToKill_Grouper
 from ....damage_info import GunDamageInfo, GrenadeDamageInfo, DamageInfo
 
 ResultWindow: TypeAlias = 'result_window.ResultWindow'
@@ -102,24 +103,44 @@ class GunResultTable(ResultTable):
         and places it on the frame.
         """
         # Where we implement the data structure to sort results
-        results_sorted: HitsToKillSorter = HitsToKillSorter(hits_to_kill=results)
 
-        for hits_to_kill in results_sorted:
-            # read off the tuple
-            kill_hits: str = hits_to_kill[0]
-            kill_range: float = hits_to_kill[1]
+        # First make the grouper
+        results_grouper: HitsToKill_Grouper = HitsToKill_Grouper()
+        results_grouper.insert_all(hits_to_kills=results)
 
-            # insert kill_hits
-            self.insert(float(self._line_num), kill_hits)
-            # add in column seperator
-            self._end_column1(line_num=self._line_num)
-            # insert kill_range, will round to 1 decimal place
-            self.insert(END, str(round(kill_range, 1)))
+        # having grouped, can now access each group to read each hits to kill
+        for hit_num in results_grouper:
+            results_sorted: HitsToKillSorter = results_grouper.hit_groups[hit_num]
+            # add a header for number of hits
+            group_header: str = "{0} hit kills".format(hit_num)
+            self.insert(float(self._line_num), group_header)
+
             # move to next line
             self.insert(END, '\n')
             self._line_num += 1
 
-            # Now we can loop to display next line
+            # now read results of this group of number of hits
+            for hits_to_kill in results_sorted:
+                # read off the tuple
+                kill_hits: str = hits_to_kill[0]
+                kill_range: float = hits_to_kill[1]
+
+                # insert kill_hits
+                self.insert(float(self._line_num), kill_hits)
+                # add in column seperator
+                self._end_column1(line_num=self._line_num)
+                # insert kill_range, will round to 1 decimal place
+                self.insert(END, str(round(kill_range, 1)))
+                # move to next line
+                self.insert(END, '\n')
+                self._line_num += 1
+
+                # Now we can loop to display next line
+
+            # add an extra line between groups
+            # move to next line
+            self.insert(END, '\n')
+            self._line_num += 1
 
     def _create_header(self, header1_top: str, header1_bot: str, header2: str) -> None:
         # first display stats of the damage

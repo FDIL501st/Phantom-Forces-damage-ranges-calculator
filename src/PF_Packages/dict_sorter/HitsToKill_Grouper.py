@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import TypeAlias
+
+from typing import TypeAlias, Dict
 from sortedcontainers import SortedDict
 
 from .HitsToKill_Sorter import HitsToKillSorter
@@ -50,6 +51,15 @@ class HitsToKill_Grouper:
         new_sorted_list.insert(hits, kill_range)
 
         self.__hit_groups[n_hits] = new_sorted_list
+
+    def insert_all(self, hits_to_kills: Dict[str, float]) -> None:
+        """
+        A method to bulk insert lots of hits to kills. Just calls insert for each hits to kill.
+
+        :param hits_to_kills: a dict of all hits to kills to insert
+        """
+        for hits, kill_range in hits_to_kills.items():
+            self.insert(hits, kill_range)
 
     def __iter__(self):
         # just return to call iter of the dict

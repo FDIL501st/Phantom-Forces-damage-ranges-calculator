@@ -21,5 +21,5 @@ Just run PF_DamageRangesCalculator.py. In terminal, run:
 
 ### Run PF_DamageRangesCalculator executable
 
-You can either find the executable within dist/PF_DamageRangesCalculator
+You can find the executable within dist/PF_DamageRangesCalculator
 

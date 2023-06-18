@@ -1,8 +1,1 @@
-regex==2023.6.3
-pip==23.1.2
-wheel==0.40.0
-setuptools==67.8.0
-altgraph>=0.17.3
-pefile>=2023.2.7
-pyinstaller==5.12.0
 sortedcontainers==2.4.0

@@ -1,20 +1,20 @@
-import regex
+import re
 from typing import TypeAlias, List
 
-Pattern: TypeAlias = regex.Pattern
+Pattern: TypeAlias = re.Pattern
 
 
 class PF_Regex:
     """Class that handles all regex patterns and 
     matching for this app.
     """
-    non_neg_num_pattern: Pattern = regex.compile(
+    non_neg_num_pattern: Pattern = re.compile(
         r"""        # try to match a decimal number
-        [\d]+       # integer part     
+        \d+         # integer part     
         [.]?        # decimal (may or may not have 1 decimal point)
-        [\d]*       # fractional part (may or may not have this part)
+        \d*         # fractional part (may or may not have this part)
         """,
-        regex.VERBOSE
+        flags=re.VERBOSE
     )
 
     # Pattern to match a positive number, can be a decimal number
